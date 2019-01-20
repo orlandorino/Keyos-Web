@@ -11,6 +11,12 @@ import { MaterialModule } from './Util/material.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtHelper } from 'angular2-jwt';
+import { AuthGuardService } from './services/auth-guard.service';
+import { HomeComponent } from './home/home.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -19,14 +25,22 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 AppComponent,
                 SignupComponent,
-                LoginComponent
+                LoginComponent,
+                HomeComponent
             ],
             imports: [
                 BrowserModule,
                 BrowserAnimationsModule,
                 MaterialModule,
+                FormsModule,
+                HttpClientModule,
+                RouterModule.forRoot([
+                    { path: '', component: HomeComponent },
+                    { path: 'login', component: LoginComponent },
+                    { path: 'signup', component: SignupComponent },
+                ])
             ],
-            providers: [],
+            providers: [JwtHelper, AuthGuardService],
             bootstrap: [AppComponent]
         })
     ], AppModule);

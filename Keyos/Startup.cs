@@ -40,6 +40,14 @@ namespace Keyos
                 };
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
+                });
+            });
+
             services.AddMvc()
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore) //ignores self reference object 
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); //validate api rules
@@ -77,6 +85,7 @@ namespace Keyos
 
             app.UseMvc();
             app.UseAuthentication();
+            app.UseCors("EnableCORS");
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>

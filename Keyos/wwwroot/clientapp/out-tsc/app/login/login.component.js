@@ -8,10 +8,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from "@angular/router";
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
+    function LoginComponent(router, http) {
+        this.router = router;
+        this.http = http;
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.login = function (form) {
+        var _this = this;
+        var credentials = JSON.stringify(form.value);
+        this.http.post("http://localhost:5000/api/auth/login", credentials, {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json"
+            })
+        }).subscribe(function (response) {
+            var token = response.token;
+            localStorage.setItem("jwt", token);
+            _this.invalidLogin = false;
+            _this.router.navigate(["/"]);
+        }, function (err) {
+            _this.invalidLogin = true;
+        });
     };
     LoginComponent = __decorate([
         Component({
@@ -19,7 +39,7 @@ var LoginComponent = /** @class */ (function () {
             templateUrl: './login.component.html',
             styleUrls: ['./login.component.css']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [Router, HttpClient])
     ], LoginComponent);
     return LoginComponent;
 }());
