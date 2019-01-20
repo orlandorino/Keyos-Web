@@ -1,4 +1,5 @@
 ﻿
+using Keyos.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,6 +63,7 @@ namespace Keyos
                 configuration.RootPath = "wwwroot/clientapp/dist";
             });
 
+            services.AddEntityFrameworkSqlite().AddDbContext<DatabaseContext>();
 
         }
 

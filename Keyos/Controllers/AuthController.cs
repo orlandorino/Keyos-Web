@@ -7,11 +7,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+using System.Linq;
+using System.Collections;
+
 namespace Keyos.Controllers
 {
     [Route("api/auth")]
     public class AuthController : Controller
     {
+
+
+
         // GET api/values
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]Login user)
@@ -21,7 +27,22 @@ namespace Keyos.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            if (user.UserName == "johndoe" && user.Password == "def@123")
+
+            //access db, get list of users, and check user.
+            var db = new DatabaseContext();
+
+            var Logins = db.Logins.ToList();
+
+            Boolean checkUser = false;
+
+            foreach( var login in  Logins)
+            {
+
+                checkUser |= (user.UserName == login.UserName && user.Password == login.Password);
+
+            }
+
+            if (checkUser)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
