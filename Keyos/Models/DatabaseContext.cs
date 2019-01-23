@@ -7,7 +7,7 @@ namespace Keyos.Models
     {
 
  
-        public DbSet<Login> Logins { get; set; }
+        public DbSet<User> Logins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

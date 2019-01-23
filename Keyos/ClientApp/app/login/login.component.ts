@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
-
+  hide = true;
   ngOnInit() {
   }
 

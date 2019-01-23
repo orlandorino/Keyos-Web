@@ -11,4 +11,5 @@
 <ul>
   <li><a routerLink="/">home</a></li>
   <li *ngIf="!isUserAuthenticated()"><a routerLink="/login">login</a></li>
-</ul>
+  <li *ngIf="!isUserAuthenticated()"><a routerLink="/signup">register</a></li>
+</ul> 

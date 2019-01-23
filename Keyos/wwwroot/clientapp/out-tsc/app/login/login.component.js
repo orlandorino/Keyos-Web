@@ -14,6 +14,7 @@ var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, http) {
         this.router = router;
         this.http = http;
+        this.hide = true;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };

@@ -8,10 +8,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from "@angular/router";
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent() {
+    function SignupComponent(router, http) {
+        this.router = router;
+        this.http = http;
+        this.hide = true;
+        this.hide1 = true;
+        this.email = new FormControl('', [Validators.required, Validators.email]);
+        this.username = new FormControl('', [Validators.required, Validators.email]);
     }
     SignupComponent.prototype.ngOnInit = function () {
+    };
+    SignupComponent.prototype.register = function (form) {
+        var _this = this;
+        var credentials = JSON.stringify(form.value);
+        console.log(credentials);
+        this.http.post("http://localhost:5000/api/auth/register", credentials, {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json"
+            })
+        }).subscribe(function (response) {
+            var token = response.token;
+            _this.router.navigate(["/login"]);
+        }, function (err) {
+            console.log("Err");
+        });
+    };
+    SignupComponent.prototype.getErrorMessage = function () {
+        console.log(this.email);
+        return this.email.hasError('email') ? 'Not a valid email' : this.email.hasError('required') ? 'You must enter a valid email'
+            : '';
     };
     SignupComponent = __decorate([
         Component({
@@ -19,7 +48,7 @@ var SignupComponent = /** @class */ (function () {
             templateUrl: './signup.component.html',
             styleUrls: ['./signup.component.css']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [Router, HttpClient])
     ], SignupComponent);
     return SignupComponent;
 }());

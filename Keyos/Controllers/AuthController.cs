@@ -4,11 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
-
-using System.Linq;
-using System.Collections;
 
 namespace Keyos.Controllers
 {
@@ -16,11 +14,17 @@ namespace Keyos.Controllers
     public class AuthController : Controller
     {
 
+        private DatabaseContext _context;
 
+        public AuthController()
+        {
+            _context = new DatabaseContext();
+
+        }
 
         // GET api/values
         [HttpPost, Route("login")]
-        public IActionResult Login([FromBody]Login user)
+        public IActionResult Login([FromBody]User user)
         {
             if (user == null)
             {
@@ -29,13 +33,12 @@ namespace Keyos.Controllers
 
 
             //access db, get list of users, and check user.
-            var db = new DatabaseContext();
+            var Logins = _context.Logins.ToList();
 
-            var Logins = db.Logins.ToList();
 
             Boolean checkUser = false;
 
-            foreach( var login in  Logins)
+            foreach (var login in Logins)
             {
 
                 checkUser |= (user.UserName == login.UserName && user.Password == login.Password);
@@ -62,6 +65,19 @@ namespace Keyos.Controllers
             {
                 return Unauthorized();
             }
+        }
+        [HttpPost, Route("register")]
+        public IActionResult Register([FromBody] User user)
+        {
+            // Checks if username is taken
+            if (_context.Logins.Any(x => x.UserName == user.UserName))
+            {
+                return Unauthorized();
+            }
+
+            _context.Add(new User { UserName = user.UserName, Password = user.Password });
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
