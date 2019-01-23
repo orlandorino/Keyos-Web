@@ -75,7 +75,7 @@ namespace Keyos.Controllers
                 return Unauthorized();
             }
 
-            _context.Add(new User { UserName = user.UserName, Password = user.Password });
+            _context.Add(new User { UserName = user.UserName, Password = user.Password, Email = user.Email });
             _context.SaveChanges();
             return Ok();
         }

@@ -28,8 +28,6 @@ export class SignupComponent implements OnInit {
         "Content-Type": "application/json"
       })
     }).subscribe(response => {
-      let token = (<any>response).token;
-      
       this.router.navigate(["/login"]);
     }, err => {
      console.log("Err")
