@@ -3,9 +3,18 @@
     margin: auto;
     width: 50%;
     margin-top: 300px;
+    background-color: #212121;
   }
 
-
+  .display1 {
+    font-size: 28px;
+    font-weight: 100;
+    line-height: 1.2;
+    color: #00e676;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    text-align: center;
+  }
   .field{
       width: 100%;
   }

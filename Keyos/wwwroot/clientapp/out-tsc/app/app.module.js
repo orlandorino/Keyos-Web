@@ -14,8 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtHelper } from 'angular2-jwt';
-import { AuthGuardService } from './services/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -25,6 +26,7 @@ var AppModule = /** @class */ (function () {
                 AppComponent,
                 SignupComponent,
                 LoginComponent,
+                NavbarComponent
             ],
             imports: [
                 BrowserModule,
@@ -32,9 +34,10 @@ var AppModule = /** @class */ (function () {
                 MaterialModule,
                 FormsModule,
                 HttpClientModule,
-                AppRoutingModule
+                AppRoutingModule,
+                FlexLayoutModule
             ],
-            providers: [JwtHelper, AuthGuardService],
+            providers: [JwtHelper],
             bootstrap: [AppComponent]
         })
     ], AppModule);

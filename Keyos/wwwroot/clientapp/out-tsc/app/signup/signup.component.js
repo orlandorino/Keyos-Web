@@ -31,7 +31,6 @@ var SignupComponent = /** @class */ (function () {
                 "Content-Type": "application/json"
             })
         }).subscribe(function (response) {
-            var token = response.token;
             _this.router.navigate(["/login"]);
         }, function (err) {
             console.log("Err");

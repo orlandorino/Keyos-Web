@@ -23,6 +23,10 @@
               "ClientApp/assets"
             ],
             "styles": [
+              {
+                "input":"ClientApp/theme.scss"
+              }
+              ,
               "ClientApp/styles.css"
             ],
             "scripts": []
