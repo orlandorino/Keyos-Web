@@ -1,0 +1,11 @@
+.example-card {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+
+    border-left: 2px solid green;
+    height: fit-content;
+  }
+   .data{
+  margin-left: 65%;
+  }
