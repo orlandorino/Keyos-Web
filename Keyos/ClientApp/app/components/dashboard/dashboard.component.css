@@ -1,7 +1,8 @@
 .title{
-   
+text-align: center;
  margin: 32px;
-    font-weight: bold;
+ margin-bottom: 50px;
+ font-weight: bold;
 }
 mat-icon{
 
@@ -9,13 +10,54 @@ font-size: 36px;
 }
 
 .menu{
-    margin: 32px;
+   
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.menu:hover{
+    color: #00e676;
+    background: #eee;
 }
 
 
-table {
-    width: 97%;
-    margin-left: 2%;
-    margin-bottom: 5%;   
+  .example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
   }
 
+
+   div span {
+        opacity: 0;
+        color: #00e676;
+        max-width: 0;
+        display: inline-block;
+        text-decoration: none;
+        transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
+    }
+        div span:hover {
+            color: #00e676;
+        }
+        div span i {
+            float:right;
+            display: block;
+            padding-right: 1em;
+            font:1em/1 'roboto', sans-serif;
+        }
+    div b {
+        color: #c33;
+        line-height:1;
+        font-size: 25px;
+        display: inline-block;
+        padding:.125em .375em;
+    }
+    div:hover {}
+        div:hover span {
+            opacity: 1;
+            max-width: 150px;
+            transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color .2s;
+        }

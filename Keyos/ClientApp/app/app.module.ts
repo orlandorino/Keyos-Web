@@ -14,6 +14,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/dashboard/subcomponents/header/header.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartComponent } from './components/chart/chart.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { HeaderComponent } from './components/dashboard/subcomponents/header/hea
     LoginComponent,
     NavbarComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChartComponent,
+    TableComponent
   
   ],
   imports: [
@@ -32,7 +37,8 @@ import { HeaderComponent } from './components/dashboard/subcomponents/header/hea
       FormsModule,
       HttpClientModule,
       AppRoutingModule,
-      FlexLayoutModule
+      FlexLayoutModule,
+      HighchartsChartModule
   ],
   providers: [JwtHelper],
   bootstrap: [AppComponent]

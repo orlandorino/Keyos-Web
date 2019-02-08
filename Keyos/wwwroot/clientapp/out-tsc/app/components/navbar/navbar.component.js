@@ -7,28 +7,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
-var AuthService = /** @class */ (function () {
-    function AuthService(jwtHelper) {
-        this.jwtHelper = jwtHelper;
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+var NavbarComponent = /** @class */ (function () {
+    function NavbarComponent(auth) {
+        this.auth = auth;
     }
-    AuthService.prototype.isUserAuthenticated = function () {
-        var token = localStorage.getItem("jwt");
-        if (token && !this.jwtHelper.isTokenExpired(token)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    NavbarComponent.prototype.ngOnInit = function () {
     };
-    AuthService = __decorate([
-        Injectable({
-            providedIn: 'root'
+    NavbarComponent.prototype.checkAuth = function () {
+        return this.auth.isUserAuthenticated();
+    };
+    NavbarComponent = __decorate([
+        Component({
+            selector: 'app-navbar',
+            templateUrl: './navbar.component.html',
+            styleUrls: ['./navbar.component.css']
         }),
-        __metadata("design:paramtypes", [JwtHelper])
-    ], AuthService);
-    return AuthService;
+        __metadata("design:paramtypes", [AuthService])
+    ], NavbarComponent);
+    return NavbarComponent;
 }());
-export { AuthService };
-//# sourceMappingURL=auth.service.js.map
+export { NavbarComponent };
+//# sourceMappingURL=navbar.component.js.map

@@ -7,28 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
-var AuthService = /** @class */ (function () {
-    function AuthService(jwtHelper) {
-        this.jwtHelper = jwtHelper;
+import { Component } from '@angular/core';
+var DashboardComponent = /** @class */ (function () {
+    function DashboardComponent() {
     }
-    AuthService.prototype.isUserAuthenticated = function () {
-        var token = localStorage.getItem("jwt");
-        if (token && !this.jwtHelper.isTokenExpired(token)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    DashboardComponent.prototype.ngOnInit = function () {
     };
-    AuthService = __decorate([
-        Injectable({
-            providedIn: 'root'
+    DashboardComponent = __decorate([
+        Component({
+            selector: 'app-dashboard',
+            templateUrl: './dashboard.component.html',
+            styleUrls: ['./dashboard.component.css']
         }),
-        __metadata("design:paramtypes", [JwtHelper])
-    ], AuthService);
-    return AuthService;
+        __metadata("design:paramtypes", [])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
-export { AuthService };
-//# sourceMappingURL=auth.service.js.map
+export { DashboardComponent };
+//# sourceMappingURL=dashboard.component.js.map
