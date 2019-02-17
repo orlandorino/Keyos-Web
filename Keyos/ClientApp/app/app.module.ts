@@ -17,7 +17,7 @@ import { HeaderComponent } from './components/dashboard/subcomponents/header/hea
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './components/chart/chart.component';
 import { TableComponent } from './components/table/table.component';
-
+import {MillionPipe} from './pipes/MillionPipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,8 @@ import { TableComponent } from './components/table/table.component';
     DashboardComponent,
     HeaderComponent,
     ChartComponent,
-    TableComponent
+    TableComponent,
+    MillionPipe
   
   ],
   imports: [

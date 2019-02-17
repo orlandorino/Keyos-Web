@@ -1,27 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {StockSummary,Quote} from '../../models/StockSummary';
+import { StocksummaryService } from '../../services/stocksummary.service';
+import { DataSource } from '@angular/cdk/table';
+import { Observable, merge } from 'rxjs';
+import {MatPaginator, MatSort} from '@angular/material';
+import { detachEmbeddedView } from '@angular/core/src/view';
+const deh:Quote[] = [
+{symbol: "AABA", companyName: "Altaba Inc.",  sector: "Financial Services",change: -0.76,changePercent: -1.1079999999999999 },
+{symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology",change: 0.76,changePercent: 1.1079999999999999} ];
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 12, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 13, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 14, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
+
 
 @Component({
   selector: 'app-table',
@@ -29,11 +18,47 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+
+
+  displayedColumns: string[] = ['symbol','CompanyName','LatestPrice','PercentChange','avgTotalVolume','marketCap'];
+  quote:Quote[] = [];
+  dataSource = new QuoteDataSource(this.stocksummary);
+  icon: string;
+  constructor(private stocksummary:StocksummaryService) { }
 
   ngOnInit() {
+
+
+    // this.stocksummary.getStocks().subscribe(t => {
+    // this.quote = t;
+    //    console.log(this.quote);
+    //  });   
+
   }
 
+  getColor(percent:string) {   
+    if (percent.toString().includes("-"))
+    {
+      this.icon = 'arrow_downward'
+      return  'red';
+    }else{
+      this.icon = 'arrow_upward'
+      return 'green';
+    }
+        
 }
+}
+
+export class QuoteDataSource extends DataSource<any> {
+  constructor(private stocksummary:StocksummaryService)
+  {
+    super();
+  }
+  connect(): Observable<Quote[]>
+  {
+    return this.stocksummary.getStocks();
+  }
+
+  disconnect(){}
+}
+
