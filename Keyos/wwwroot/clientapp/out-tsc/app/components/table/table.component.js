@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,28 +21,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var ELEMENT_DATA = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-    { position: 11, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 12, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 13, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 14, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { StocksummaryService } from '../../services/stocksummary.service';
+import { DataSource } from '@angular/cdk/table';
+var deh = [];
 var TableComponent = /** @class */ (function () {
-    function TableComponent() {
-        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
-        this.dataSource = ELEMENT_DATA;
+    function TableComponent(stocksummary) {
+        this.stocksummary = stocksummary;
+        this.displayedColumns = ['symbol'];
+        this.quote = [];
+        this.dataSource = new QuoteDataSource(this.stocksummary);
     }
     TableComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.stocksummary.getStocks().subscribe(function (t) {
+            _this.quote = t;
+            console.log(_this.quote);
+        });
     };
     TableComponent = __decorate([
         Component({
@@ -37,9 +44,24 @@ var TableComponent = /** @class */ (function () {
             templateUrl: './table.component.html',
             styleUrls: ['./table.component.css']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [StocksummaryService])
     ], TableComponent);
     return TableComponent;
 }());
 export { TableComponent };
+var QuoteDataSource = /** @class */ (function (_super) {
+    __extends(QuoteDataSource, _super);
+    function QuoteDataSource(stocksummary) {
+        var _this = _super.call(this) || this;
+        _this.stocksummary = stocksummary;
+        return _this;
+    }
+    QuoteDataSource.prototype.connect = function () {
+        return this.stocksummary.getStocks();
+        ;
+    };
+    QuoteDataSource.prototype.disconnect = function () { };
+    return QuoteDataSource;
+}(DataSource));
+export { QuoteDataSource };
 //# sourceMappingURL=table.component.js.map

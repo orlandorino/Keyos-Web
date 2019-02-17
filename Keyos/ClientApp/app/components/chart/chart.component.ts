@@ -6,7 +6,7 @@ import DarkUnicaTheme from 'highcharts/themes/sunset';
 import StockModule from 'highcharts/modules/stock';
 import { StockdataService } from 'ClientApp/app/services/stockdata.service';
 import { Response } from '@angular/http';
-import { StockModel } from 'ClientApp/app/services/StockModel';
+import { StockModel } from '../../models/StockModel';
 import { HttpClient } from '@angular/common/http';
 StockModule(Highcharts);
 DarkUnicaTheme(Highcharts);
@@ -33,15 +33,9 @@ export class ChartComponent implements OnInit {
 
         this.stockData.getStockData().subscribe(t => {
             this.arr = t as StockModel[];
-            //console.log(this.arr);
-
-            //this.arr.forEach(data => { console.log(data.date) });
-            //{ Date:"",}
-
+      
             this.arr.forEach(data => { this.arr1.push([Number(data.date), data.high]) });
 
-            //pricesList.push([3234234, 32.43])
-            //pricesList.push([3234234, 32.43])
 
             this.chartOptions = {
 
@@ -70,37 +64,6 @@ export class ChartComponent implements OnInit {
                 }]
             };
         });
-
-
-        //this.stockData.getStockData().subscribe((Response) =>{this.arr =  Response})
-        //this.stockData.getStockData().subscribe((Response) => { Response})
-        //his.stockData.getStockData().subscribe((Response) => { this.arr = Response as StockModel[]; }, error => console.error(error));
-
-
-
-        //this.http.get("http://localhost:5000/api/Stocks").subscribe(result => {
-        //    this.apps = result as StockModel[];
-        //})
-
-
-
-
-
-        //for (var i = 0; i < this.apps.length; i++) {
-
-        //    console.log(this.apps[i].date);
-        //}
-
-
-        //console.log(this.apps);
         console.log(this.arr1);
-
-
-
     }
-
-
-
-
-
 }

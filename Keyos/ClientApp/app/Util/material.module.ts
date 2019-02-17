@@ -12,6 +12,7 @@ import {
     MatTableModule,
     MatDialogModule, 
     MatInputModule, 
+    MatPaginatorModule,
     MatMenuModule, 
     MatProgressSpinnerModule
 } from '@angular/material';
@@ -28,6 +29,7 @@ import {
         MatDialogModule, 
         MatInputModule, 
         MatMenuModule, 
+        MatPaginatorModule,
         MatProgressSpinnerModule
     ],
     exports: [
@@ -37,6 +39,7 @@ import {
         MatListModule,
         MatCardModule,
         MatButtonModule,
+        MatPaginatorModule,
         MatTableModule,
         MatDialogModule, 
         MatInputModule, 
