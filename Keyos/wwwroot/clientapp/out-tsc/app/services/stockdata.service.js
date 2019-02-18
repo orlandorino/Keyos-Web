@@ -14,11 +14,7 @@ var StockdataService = /** @class */ (function () {
         this.http = http;
     }
     StockdataService.prototype.getStockData = function () {
-        return this.http.get("http://localhost:5000/api/Stocks");
-        //.pipe(map(data => {
-        //    console.log(data.high);
-        //    return daa;
-        //}));
+        return this.http.get("http://localhost:5000/api/Stocks?stockID=aapl");
     };
     StockdataService = __decorate([
         Injectable({

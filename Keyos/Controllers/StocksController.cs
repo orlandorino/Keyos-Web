@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Keyos.Models;
 
+
 namespace Keyos.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class StocksController : ControllerBase
@@ -20,10 +22,23 @@ namespace Keyos.Controllers
             _context = context;
         }
 
-        // GET: api/Stocks
+        //original api
+        //// GET: api/Stocks
+        //[HttpGet]
+        //public IEnumerable<Stock> Getstocks()
+        //{
+        //    return _context.stocks;
+        //}
+
+        // GET: api/Stocks?stockID=fb
         [HttpGet]
-        public IEnumerable<Stock> Getstocks()
+        public IEnumerable<Stock> Getstocks(string stockID)
         {
+            if (stockID != null)
+            {
+                return _context.stocks.Where(c => c.Symbol == stockID);
+            }
+
             return _context.stocks;
         }
 

@@ -22,6 +22,7 @@ import { HeaderComponent } from './components/dashboard/subcomponents/header/hea
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './components/chart/chart.component';
 import { TableComponent } from './components/table/table.component';
+import { MillionPipe } from './pipes/MillionPipe';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -35,7 +36,8 @@ var AppModule = /** @class */ (function () {
                 DashboardComponent,
                 HeaderComponent,
                 ChartComponent,
-                TableComponent
+                TableComponent,
+                MillionPipe
             ],
             imports: [
                 BrowserModule,

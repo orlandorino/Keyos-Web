@@ -28,12 +28,7 @@ var ChartComponent = /** @class */ (function () {
         var _this = this;
         this.stockData.getStockData().subscribe(function (t) {
             _this.arr = t;
-            //console.log(this.arr);
-            //this.arr.forEach(data => { console.log(data.date) });
-            //{ Date:"",}
             _this.arr.forEach(function (data) { _this.arr1.push([Number(data.date), data.high]); });
-            //pricesList.push([3234234, 32.43])
-            //pricesList.push([3234234, 32.43])
             _this.chartOptions = {
                 series: [{
                         name: 'AAPL',
@@ -58,16 +53,6 @@ var ChartComponent = /** @class */ (function () {
                     }]
             };
         });
-        //this.stockData.getStockData().subscribe((Response) =>{this.arr =  Response})
-        //this.stockData.getStockData().subscribe((Response) => { Response})
-        //his.stockData.getStockData().subscribe((Response) => { this.arr = Response as StockModel[]; }, error => console.error(error));
-        //this.http.get("http://localhost:5000/api/Stocks").subscribe(result => {
-        //    this.apps = result as StockModel[];
-        //})
-        //for (var i = 0; i < this.apps.length; i++) {
-        //    console.log(this.apps[i].date);
-        //}
-        //console.log(this.apps);
         console.log(this.arr1);
     };
     ChartComponent = __decorate([
