@@ -23,20 +23,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { StocksummaryService } from '../../services/stocksummary.service';
 import { DataSource } from '@angular/cdk/table';
-var deh = [];
+var deh = [
+    { symbol: "AABA", companyName: "Altaba Inc.", sector: "Financial Services", change: -0.76, changePercent: -1.1079999999999999 },
+    { symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology", change: 0.76, changePercent: 1.1079999999999999 }
+];
 var TableComponent = /** @class */ (function () {
     function TableComponent(stocksummary) {
         this.stocksummary = stocksummary;
-        this.displayedColumns = ['symbol'];
+        this.displayedColumns = ['symbol', 'CompanyName', 'LatestPrice', 'PercentChange', 'avgTotalVolume', 'marketCap'];
         this.quote = [];
         this.dataSource = new QuoteDataSource(this.stocksummary);
     }
     TableComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.stocksummary.getStocks().subscribe(function (t) {
-            _this.quote = t;
-            console.log(_this.quote);
-        });
+        // this.stocksummary.getStocks().subscribe(t => {
+        // this.quote = t;
+        //    console.log(this.quote);
+        //  });   
+    };
+    TableComponent.prototype.getColor = function (percent) {
+        if (percent.toString().includes("-")) {
+            this.icon = 'arrow_downward';
+            return 'red';
+        }
+        else {
+            this.icon = 'arrow_upward';
+            return 'green';
+        }
     };
     TableComponent = __decorate([
         Component({
@@ -58,7 +70,6 @@ var QuoteDataSource = /** @class */ (function (_super) {
     }
     QuoteDataSource.prototype.connect = function () {
         return this.stocksummary.getStocks();
-        ;
     };
     QuoteDataSource.prototype.disconnect = function () { };
     return QuoteDataSource;

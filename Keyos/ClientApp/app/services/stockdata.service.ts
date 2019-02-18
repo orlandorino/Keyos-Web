@@ -11,7 +11,7 @@ export class StockdataService {
     constructor(private http: HttpClient) { }
 
     getStockData(): Observable<StockModel[]> {
-        return this.http.get<StockModel[]>("http://localhost:5000/api/Stocks");
+        return this.http.get<StockModel[]>("http://localhost:5000/api/Stocks?stockID=aapl");
     }
 
 }
