@@ -17,7 +17,11 @@ import { HeaderComponent } from './components/dashboard/subcomponents/header/hea
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './components/chart/chart.component';
 import { TableComponent } from './components/table/table.component';
-import {MillionPipe} from './pipes/MillionPipe'
+import {MillionPipe} from './pipes/MillionPipe';
+import { DetailComponent } from './components/dashboard/subcomponents/detail/detail.component';
+import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
+import { AuthGuard } from './services/auth-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,9 @@ import {MillionPipe} from './pipes/MillionPipe'
     HeaderComponent,
     ChartComponent,
     TableComponent,
-    MillionPipe
+    MillionPipe,
+    DetailComponent,
+    HomeComponent
   
   ],
   imports: [
@@ -41,7 +47,7 @@ import {MillionPipe} from './pipes/MillionPipe'
       FlexLayoutModule,
       HighchartsChartModule
   ],
-  providers: [JwtHelper],
+  providers: [JwtHelper,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

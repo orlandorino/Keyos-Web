@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthGuard } from './auth-guard.service';
+import { DetailstockService } from './detailstock.service';
 
-describe('AuthGuard', () => {
+describe('DetailstockService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AuthGuard = TestBed.get(AuthGuard);
+    const service: DetailstockService = TestBed.get(DetailstockService);
     expect(service).toBeTruthy();
   });
 });
