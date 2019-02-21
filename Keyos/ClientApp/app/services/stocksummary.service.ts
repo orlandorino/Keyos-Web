@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {merge, Observable, of as observableOf} from 'rxjs';
+import {merge, Observable, of as observableOf, forkJoin} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {StockSummary,Quote} from '../models/StockSummary';
+import {StockSummary,Quote, GlobalQuote, Dataset} from '../models/StockSummary';
 import { map } from 'rxjs/operators';
+import {formatDate } from '@angular/common';
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,5 +32,25 @@ export class StocksummaryService {
     }));
   }
 
+  getStockIndices()
+  {
+    
+    let today = new Date();
+    let week = new Date();
+    week.setDate(week.getDate()-7);
+   
+    let format = formatDate(week, "yyyy-MM-dd", 'en-US');
+    let format1 = formatDate(today, "yyyy-MM-dd", 'en-US');
 
-}
+    let nsdqUrl:string = 'https://www.quandl.com/api/v3/datasets/NASDAQOMX/COMP.json?';
+    let params = 'start_date=' + format + '&' + 'end_date=' + format1 + '&column_index=1&api_key=TAX7gBfuCSSCE8zy93Lj'
+    let sto1 = this.http.get<GlobalQuote>("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=dji&apikey=V64WLHT0MXEV21MT");
+    let sto2 =  this.http.get<GlobalQuote>("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=inx&apikey=V64WLHT0MXEV21MT");
+    
+    console.log(`${nsdqUrl}${params}`);
+
+    let sto3 =   this.http.get<Dataset>(`${nsdqUrl}${params}`);
+  
+    return forkJoin([sto1,sto2,sto3])
+  }
+  }

@@ -5,6 +5,8 @@ import { DataSource } from '@angular/cdk/table';
 import { Observable, merge } from 'rxjs';
 import {MatPaginator, MatSort} from '@angular/material';
 import { detachEmbeddedView } from '@angular/core/src/view';
+import { DetailstockService } from '../../services/detailstock.service';
+import {Router} from '@angular/router';
 const deh:Quote[] = [
 {symbol: "AABA", companyName: "Altaba Inc.",  sector: "Financial Services",change: -0.76,changePercent: -1.1079999999999999 },
 {symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology",change: 0.76,changePercent: 1.1079999999999999} ];
@@ -22,9 +24,10 @@ export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['symbol','CompanyName','LatestPrice','PercentChange','avgTotalVolume','marketCap'];
   quote:Quote[] = [];
-  dataSource = new QuoteDataSource(this.stocksummary);
+ // dataSource = new QuoteDataSource(this.stocksummary);
   icon: string;
-  constructor(private stocksummary:StocksummaryService) { }
+  dataSource = deh;
+  constructor(private stocksummary:StocksummaryService,private detailstock:DetailstockService,private router: Router) { }
 
   ngOnInit() {
 
@@ -34,6 +37,13 @@ export class TableComponent implements OnInit {
     //    console.log(this.quote);
     //  });   
 
+  }
+
+  getRecord(row)
+  {
+ 
+    this.detailstock.setSymbol(row.symbol);
+    this.router.navigate(["/detail"]);
   }
 
   getColor(percent:string) {   

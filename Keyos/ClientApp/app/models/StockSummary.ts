@@ -63,3 +63,40 @@ export enum PrimaryExchange {
     NasdaqGlobalSelect = "Nasdaq Global Select",
     NewYorkStockExchange = "New York Stock Exchange",
 }
+
+export interface GlobalQuote {
+    "01. symbol"?:             string;
+    "02. open"?:               string;
+    "03. high"?:               string;
+    "04. low"?:                string;
+    "05. price"?:              string;
+    "06. volume"?:             string;
+    "07. latest trading day"?: Date;
+    "08. previous close"?:     string;
+    "09. change"?:             string;
+    "10. change percent"?:     string;
+}
+
+export interface Dataset {
+    id?:                    number;
+    dataset_code?:          string;
+    database_code?:         string;
+    name?:                  string;
+    description?:           string;
+    refreshed_at?:          Date;
+    newest_available_date?: Date;
+    oldest_available_date?: Date;
+    column_names?:          string[];
+    frequency?:             string;
+    type?:                  string;
+    premium?:               boolean;
+    limit?:                 null;
+    transform?:             null;
+    column_index?:          number;
+    start_date?:            Date;
+    end_date?:              Date;
+    data?:                  Array<Array<Date | number>>;
+    collapse?:              null;
+    order?:                 null;
+    database_id?:           number;
+}
