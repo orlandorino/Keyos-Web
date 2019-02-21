@@ -23,22 +23,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { StocksummaryService } from '../../services/stocksummary.service';
 import { DataSource } from '@angular/cdk/table';
+import { DetailstockService } from '../../services/detailstock.service';
+import { Router } from '@angular/router';
 var deh = [
     { symbol: "AABA", companyName: "Altaba Inc.", sector: "Financial Services", change: -0.76, changePercent: -1.1079999999999999 },
     { symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology", change: 0.76, changePercent: 1.1079999999999999 }
 ];
 var TableComponent = /** @class */ (function () {
-    function TableComponent(stocksummary) {
+    function TableComponent(stocksummary, detailstock, router) {
         this.stocksummary = stocksummary;
+        this.detailstock = detailstock;
+        this.router = router;
         this.displayedColumns = ['symbol', 'CompanyName', 'LatestPrice', 'PercentChange', 'avgTotalVolume', 'marketCap'];
         this.quote = [];
-        this.dataSource = new QuoteDataSource(this.stocksummary);
+        this.dataSource = deh;
     }
     TableComponent.prototype.ngOnInit = function () {
         // this.stocksummary.getStocks().subscribe(t => {
         // this.quote = t;
         //    console.log(this.quote);
         //  });   
+    };
+    TableComponent.prototype.getRecord = function (row) {
+        this.detailstock.setSymbol(row.symbol);
+        this.router.navigate(["/detail"]);
     };
     TableComponent.prototype.getColor = function (percent) {
         if (percent.toString().includes("-")) {
@@ -56,7 +64,7 @@ var TableComponent = /** @class */ (function () {
             templateUrl: './table.component.html',
             styleUrls: ['./table.component.css']
         }),
-        __metadata("design:paramtypes", [StocksummaryService])
+        __metadata("design:paramtypes", [StocksummaryService, DetailstockService, Router])
     ], TableComponent);
     return TableComponent;
 }());

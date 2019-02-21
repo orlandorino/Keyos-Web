@@ -7,24 +7,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(router) {
-        this.router = router;
+import { Injectable } from '@angular/core';
+var DetailstockService = /** @class */ (function () {
+    function DetailstockService() {
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-        this.router.navigate(["/home"]);
+    DetailstockService.prototype.getDetails = function (symbol) {
+        console.log(symbol, "Works");
     };
-    DashboardComponent = __decorate([
-        Component({
-            selector: 'app-dashboard',
-            templateUrl: './dashboard.component.html',
-            styleUrls: ['./dashboard.component.css']
+    DetailstockService.prototype.setSymbol = function (symbol) {
+        this.symbol = symbol;
+    };
+    DetailstockService.prototype.getSymbol = function () {
+        return this.symbol;
+    };
+    DetailstockService = __decorate([
+        Injectable({
+            providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [Router])
-    ], DashboardComponent);
-    return DashboardComponent;
+        __metadata("design:paramtypes", [])
+    ], DetailstockService);
+    return DetailstockService;
 }());
-export { DashboardComponent };
-//# sourceMappingURL=dashboard.component.js.map
+export { DetailstockService };
+//# sourceMappingURL=detailstock.service.js.map

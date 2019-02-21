@@ -8,9 +8,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { DetailComponent } from './components/dashboard/subcomponents/detail/detail.component';
+import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
+import { AuthGuardService } from './services/auth-guard.service';
 var routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'signup', component: SignupComponent }
+    { path: 'signup', component: SignupComponent },
+    { path: 'detail', component: DetailComponent, canActivate: [AuthGuardService] },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

@@ -8,23 +8,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(router) {
-        this.router = router;
+var HomeComponent = /** @class */ (function () {
+    function HomeComponent() {
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-        this.router.navigate(["/home"]);
+    HomeComponent.prototype.ngOnInit = function () {
     };
-    DashboardComponent = __decorate([
+    HomeComponent = __decorate([
         Component({
-            selector: 'app-dashboard',
-            templateUrl: './dashboard.component.html',
-            styleUrls: ['./dashboard.component.css']
+            selector: 'app-home',
+            templateUrl: './home.component.html',
+            styleUrls: ['./home.component.css']
         }),
-        __metadata("design:paramtypes", [Router])
-    ], DashboardComponent);
-    return DashboardComponent;
+        __metadata("design:paramtypes", [])
+    ], HomeComponent);
+    return HomeComponent;
 }());
-export { DashboardComponent };
-//# sourceMappingURL=dashboard.component.js.map
+export { HomeComponent };
+//# sourceMappingURL=home.component.js.map

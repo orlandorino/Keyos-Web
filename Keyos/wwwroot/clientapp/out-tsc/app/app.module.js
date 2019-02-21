@@ -23,6 +23,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './components/chart/chart.component';
 import { TableComponent } from './components/table/table.component';
 import { MillionPipe } from './pipes/MillionPipe';
+import { DetailComponent } from './components/dashboard/subcomponents/detail/detail.component';
+import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -37,7 +39,9 @@ var AppModule = /** @class */ (function () {
                 HeaderComponent,
                 ChartComponent,
                 TableComponent,
-                MillionPipe
+                MillionPipe,
+                DetailComponent,
+                HomeComponent
             ],
             imports: [
                 BrowserModule,
