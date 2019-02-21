@@ -7,7 +7,7 @@ import {MatPaginator, MatSort} from '@angular/material';
 import { detachEmbeddedView } from '@angular/core/src/view';
 import { DetailstockService } from '../../services/detailstock.service';
 import {Router} from '@angular/router';
-const deh:Quote[] = [
+const mock:Quote[] = [
 {symbol: "AABA", companyName: "Altaba Inc.",  sector: "Financial Services",change: -0.76,changePercent: -1.1079999999999999 },
 {symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology",change: 0.76,changePercent: 1.1079999999999999} ];
 
@@ -24,9 +24,9 @@ export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['symbol','CompanyName','LatestPrice','PercentChange','avgTotalVolume','marketCap'];
   quote:Quote[] = [];
- // dataSource = new QuoteDataSource(this.stocksummary);
+  dataSource = new QuoteDataSource(this.stocksummary);
   icon: string;
-  dataSource = deh;
+  //dataSource = mock;
   constructor(private stocksummary:StocksummaryService,private detailstock:DetailstockService,private router: Router) { }
 
   ngOnInit() {
