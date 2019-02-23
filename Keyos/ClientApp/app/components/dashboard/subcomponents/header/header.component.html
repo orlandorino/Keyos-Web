@@ -1,0 +1,36 @@
+<div fxFlex fxLayout="row" style="background:inherit">
+
+<!-- eventually add ngfor -->
+    <mat-card fxFlex="33" *ngFor="let item of arr" class="example-card">
+        <mat-card-content>
+          <div fxLayout="row">
+            <span  class="mat-card-title" fxFlex="90">{{item.Symbol}} </span> <span  class="mat-card-title">{{item.price | number}}</span>
+          </div>
+          <div fxLayout="row">
+            <span  class="mat-card-subtitle" fxFlex="90">{{item.market}}</span><span class="mat-card-subtitle"  style="color:green;">{{item.change | number}}({{item.changepercent}})</span>
+          </div>
+        </mat-card-content>
+      
+      </mat-card>
+      <!-- <mat-card fxFlex="33" class="example-card">
+        <mat-card-content>
+                <div fxLayout="row">
+                  <span  class="mat-card-title" fxFlex="90">.INX  </span> <span  class="mat-card-title">22,706.53</span>
+                </div>
+                <div fxLayout="row">
+                  <span  class="mat-card-subtitle" fxFlex="90">S&P 500</span><span class="mat-card-subtitle"  style="color:green;">+2.43(0.90%)</span>
+                </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex ="33" class="example-card">
+            <mat-card-content>
+                  <div fxLayout="row">
+                    <span  class="mat-card-title" fxFlex="90">.IXIC </span> <span  class="mat-card-title">7,263.87</span>
+                  </div>
+                  <div fxLayout="row">
+                    <span  class="mat-card-subtitle" fxFlex="90">Nasdaq</span><span class="mat-card-subtitle"  style="color:red;">−17.87(0.25%)</span>
+                  </div>
+                   
+            </mat-card-content>
+          </mat-card> -->
+    </div>

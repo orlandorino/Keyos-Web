@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 //All Material Components will be defined here, so there is no need to import them for each component created.
-import { MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatCardModule, MatButtonModule, MatTableModule, } from '@angular/material';
+import { MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatCardModule, MatButtonModule, MatTableModule, MatDialogModule, MatInputModule, MatPaginatorModule, MatMenuModule, MatProgressSpinnerModule } from '@angular/material';
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {
     }
@@ -20,6 +20,11 @@ var MaterialModule = /** @class */ (function () {
                 MatCardModule,
                 MatButtonModule,
                 MatTableModule,
+                MatDialogModule,
+                MatInputModule,
+                MatMenuModule,
+                MatPaginatorModule,
+                MatProgressSpinnerModule
             ],
             exports: [
                 MatSidenavModule,
@@ -28,7 +33,12 @@ var MaterialModule = /** @class */ (function () {
                 MatListModule,
                 MatCardModule,
                 MatButtonModule,
+                MatPaginatorModule,
                 MatTableModule,
+                MatDialogModule,
+                MatInputModule,
+                MatMenuModule,
+                MatProgressSpinnerModule
             ]
         })
     ], MaterialModule);

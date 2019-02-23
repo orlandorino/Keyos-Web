@@ -1,0 +1,31 @@
+
+table {
+    width: 100%;
+  }
+
+  .example-container {
+    width: 96%;
+    margin-left: 2%;
+    margin-bottom: 5%;   
+    
+  }
+  td{
+    font-weight: 600
+  }
+  
+
+
+  .price-container {
+    position: relative;
+  }
+  
+  .price-bottom {
+    position: absolute;
+    bottom: 0;
+  }
+  
+
+
+
+
+

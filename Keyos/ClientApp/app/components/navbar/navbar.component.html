@@ -1,0 +1,25 @@
+<mat-toolbar *ngIf="!checkAuth()" style="background-color:white;" color="primary" class="mat-elevation-z4">
+
+    
+    <a routerLink="/" mat-button class="title">Keyos</a>
+    <span class="spacer"></span>
+
+    <span class="rightside">
+        <a routerLink="/login"  style="color:black"    mat-button id="login">Log In</a>
+        <a routerLink="/signup" color="accent" mat-flat-button>Sign Up</a>
+    </span>
+
+</mat-toolbar>
+
+
+<mat-toolbar *ngIf="checkAuth()" color="primary" class="mat-elevation-z4">
+
+    <span class="title">Keyos</span>
+    <span class="spacer"></span>
+    
+    <span class="rightside">
+        <a routerLink="/login" mat-button id="login">Home</a>
+        <a routerLink="/signup" mat-button id="login"> Notifications</a>
+        <a routerLink="/signup" mat-button id="login"> Account</a>
+    </span>
+</mat-toolbar>

@@ -1,0 +1,64 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+
+
+        <h2 class="title">Keyos</h2>
+
+        <div class="menu">
+            <div style="text-align: center">
+                <button mat-icon-button>
+                    <mat-icon class="icons"> show_chart</mat-icon>
+                </button>
+                <br>
+                <span>DASHBOARD</span>
+            </div>
+        </div>
+
+        <div class="menu">
+            <div style="text-align: center">
+                <button mat-icon-button>
+                    <mat-icon class="icons"> person</mat-icon>
+                </button>
+                <br>
+                <span> ACCOUNT </span>
+            </div>
+        </div>
+
+        <div class="menu">
+            <div style="text-align: center">
+                <button mat-icon-button>
+                    <mat-icon class="icons">notifications</mat-icon>
+                </button>
+                <br>
+                <span>NOTIFCATIONS </span>
+            </div>
+        </div>
+
+        <div class="menu">
+            <div style="text-align: center">
+                <button mat-icon-button>
+                    <mat-icon class="icons">power_settings_new</mat-icon>
+                </button>
+                <br>
+                <span>LOGOUT</span>
+            </div>
+
+        </div>
+        
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!-- <router-outlet></router-outlet> -->
+        <div fxLayout="column" style="width:100%;">
+            <app-header fxFlex="15"></app-header>
+
+            <div fxFlex="50">
+                <app-chart></app-chart>
+            </div>
+            <div fxFlex="35" style="margin-top:20px;">
+                    <app-table></app-table>
+                    
+            </div>
+        </div> 
+       
+    </mat-sidenav-content>
+</mat-sidenav-container>
