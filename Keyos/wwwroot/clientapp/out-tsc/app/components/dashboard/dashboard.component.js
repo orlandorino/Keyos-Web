@@ -14,7 +14,10 @@ var DashboardComponent = /** @class */ (function () {
         this.router = router;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.router.navigate(["/home"]);
+        //this.router.navigate(["/dashboard/home"]);
+    };
+    DashboardComponent.prototype.goToDashboard = function () {
+        this.router.navigate(["/dashboard/home"]);
     };
     DashboardComponent = __decorate([
         Component({

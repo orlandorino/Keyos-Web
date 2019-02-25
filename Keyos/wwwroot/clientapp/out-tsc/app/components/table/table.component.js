@@ -25,18 +25,19 @@ import { StocksummaryService } from '../../services/stocksummary.service';
 import { DataSource } from '@angular/cdk/table';
 import { DetailstockService } from '../../services/detailstock.service';
 import { Router } from '@angular/router';
-var deh = [
-    { symbol: "AABA", companyName: "Altaba Inc.", sector: "Financial Services", change: -0.76, changePercent: -1.1079999999999999 },
+var mock = [
+    { symbol: "AABA", companyName: "Altaba Inc.", sector: "Financial Services", change: -0.76, changePercent: -1.1079999999999999, marketCap: 10101010, avgTotalVolume: 1010000, latestVolume: 10000000, peRatio: 1001000, previousClose: 10.4 },
     { symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology", change: 0.76, changePercent: 1.1079999999999999 }
 ];
 var TableComponent = /** @class */ (function () {
+    //dataSource = mock;
     function TableComponent(stocksummary, detailstock, router) {
         this.stocksummary = stocksummary;
         this.detailstock = detailstock;
         this.router = router;
         this.displayedColumns = ['symbol', 'CompanyName', 'LatestPrice', 'PercentChange', 'avgTotalVolume', 'marketCap'];
         this.quote = [];
-        this.dataSource = deh;
+        this.dataSource = new QuoteDataSource(this.stocksummary);
     }
     TableComponent.prototype.ngOnInit = function () {
         // this.stocksummary.getStocks().subscribe(t => {
@@ -45,7 +46,7 @@ var TableComponent = /** @class */ (function () {
         //  });   
     };
     TableComponent.prototype.getRecord = function (row) {
-        this.detailstock.setSymbol(row.symbol);
+        this.detailstock.setStockInfo(row);
         this.router.navigate(["/detail"]);
     };
     TableComponent.prototype.getColor = function (percent) {

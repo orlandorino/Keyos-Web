@@ -8,7 +8,7 @@ import { detachEmbeddedView } from '@angular/core/src/view';
 import { DetailstockService } from '../../services/detailstock.service';
 import {Router} from '@angular/router';
 const mock:Quote[] = [
-{symbol: "AABA", companyName: "Altaba Inc.",  sector: "Financial Services",change: -0.76,changePercent: -1.1079999999999999 },
+{symbol: "AABA", companyName: "Altaba Inc.",  sector: "Financial Services",change: -0.76,changePercent: -1.1079999999999999,marketCap:10101010,avgTotalVolume:1010000,latestVolume:10000000,peRatio:1001000,previousClose:10.4 },
 {symbol: "AAPL", companyName: "Apple Inc.", sector: "Technology",change: 0.76,changePercent: 1.1079999999999999} ];
 
 
@@ -41,9 +41,8 @@ export class TableComponent implements OnInit {
 
   getRecord(row)
   {
- 
-    this.detailstock.setSymbol(row.symbol);
-    this.router.navigate(["/detail"]);
+    this.detailstock.setStockInfo(row);
+    this.router.navigate(["dashboard/detail"]);
   }
 
   getColor(percent:string) {   

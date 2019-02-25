@@ -10,24 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
-var AuthGuardService = /** @class */ (function () {
-    function AuthGuardService(jwtHelper, router) {
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(jwtHelper, router) {
         this.jwtHelper = jwtHelper;
         this.router = router;
     }
-    AuthGuardService.prototype.canActivate = function () {
+    AuthGuard.prototype.canActivate = function () {
+        //return true;
         var token = localStorage.getItem("jwt");
         if (token && !this.jwtHelper.isTokenExpired(token)) {
             return true;
         }
-        this.router.navigate(["login"]);
+        this.router.navigate(["/login"]);
         return false;
     };
-    AuthGuardService = __decorate([
+    AuthGuard = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [JwtHelper, Router])
-    ], AuthGuardService);
-    return AuthGuardService;
+    ], AuthGuard);
+    return AuthGuard;
 }());
-export { AuthGuardService };
+export { AuthGuard };
 //# sourceMappingURL=auth-guard.service.js.map

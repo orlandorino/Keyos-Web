@@ -25,6 +25,9 @@ import { TableComponent } from './components/table/table.component';
 import { MillionPipe } from './pipes/MillionPipe';
 import { DetailComponent } from './components/dashboard/subcomponents/detail/detail.component';
 import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
+import { BillionPipe } from './pipes/billion.pipe';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -41,7 +44,9 @@ var AppModule = /** @class */ (function () {
                 TableComponent,
                 MillionPipe,
                 DetailComponent,
-                HomeComponent
+                HomeComponent,
+                StocksummaryComponent,
+                BillionPipe
             ],
             imports: [
                 BrowserModule,
@@ -53,7 +58,7 @@ var AppModule = /** @class */ (function () {
                 FlexLayoutModule,
                 HighchartsChartModule
             ],
-            providers: [JwtHelper],
+            providers: [JwtHelper, AuthGuard],
             bootstrap: [AppComponent]
         })
     ], AppModule);

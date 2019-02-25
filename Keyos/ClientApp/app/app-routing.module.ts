@@ -11,8 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'detail', component: DetailComponent },
-    { path: 'dashboard', component: DashboardComponent, children: [{ path: 'home', component: HomeComponent }], canActivate:[AuthGuard] }
+    { path: 'dashboard', component: DashboardComponent, children: [{ path: 'home', component: HomeComponent },{ path: 'detail', component: DetailComponent }], canActivate:[AuthGuard] }
 ];
 
 @NgModule({

@@ -8,8 +8,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { formatDate } from '@angular/common';
 var httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -31,6 +33,20 @@ var StocksummaryService = /** @class */ (function () {
             }
             return _this.quote;
         }));
+    };
+    StocksummaryService.prototype.getStockIndices = function () {
+        var today = new Date();
+        var week = new Date();
+        week.setDate(week.getDate() - 7);
+        var format = formatDate(week, "yyyy-MM-dd", 'en-US');
+        var format1 = formatDate(today, "yyyy-MM-dd", 'en-US');
+        var nsdqUrl = 'https://www.quandl.com/api/v3/datasets/NASDAQOMX/COMP.json?';
+        var params = 'start_date=' + format + '&' + 'end_date=' + format1 + '&column_index=1&api_key=TAX7gBfuCSSCE8zy93Lj';
+        var sto1 = this.http.get("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=dji&apikey=V64WLHT0MXEV21MT");
+        var sto2 = this.http.get("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=inx&apikey=V64WLHT0MXEV21MT");
+        console.log("" + nsdqUrl + params);
+        var sto3 = this.http.get("" + nsdqUrl + params);
+        return forkJoin([sto1, sto2, sto3]);
     };
     StocksummaryService = __decorate([
         Injectable({

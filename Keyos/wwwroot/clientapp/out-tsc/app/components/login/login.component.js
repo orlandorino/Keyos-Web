@@ -29,7 +29,7 @@ var LoginComponent = /** @class */ (function () {
             var token = response.token;
             localStorage.setItem("jwt", token);
             _this.invalidLogin = false;
-            _this.router.navigate(["/"]);
+            _this.router.navigate(["/dashboard"]);
         }, function (err) {
             _this.invalidLogin = true;
         });

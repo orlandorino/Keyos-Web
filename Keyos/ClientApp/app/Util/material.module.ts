@@ -14,7 +14,9 @@ import {
     MatInputModule, 
     MatPaginatorModule,
     MatMenuModule, 
-    MatProgressSpinnerModule
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
 } from '@angular/material';
 
 @NgModule({
@@ -24,13 +26,15 @@ import {
         MatIconModule,
         MatListModule,
         MatCardModule,
+        MatExpansionModule,
         MatButtonModule,
         MatTableModule,
         MatDialogModule, 
         MatInputModule, 
         MatMenuModule, 
         MatPaginatorModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTabsModule
     ],
     exports: [
         MatSidenavModule,
@@ -38,12 +42,14 @@ import {
         MatIconModule,
         MatListModule,
         MatCardModule,
+        MatExpansionModule,
         MatButtonModule,
         MatPaginatorModule,
         MatTableModule,
         MatDialogModule, 
         MatInputModule, 
         MatMenuModule, 
+        MatTabsModule,
         MatProgressSpinnerModule
     ]
 })
