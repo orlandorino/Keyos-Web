@@ -1,0 +1,163 @@
+<div fxLayout="row">
+  <div fxLayout="column" fxLayoutAlign="space-evenly" style="display:inline-block"   fxFlex="50">
+    <p style="margin-top:2%">
+     {{CompanyInfo.description}}
+    
+     </p>
+
+     <div>
+      <h4>Exchange</h4>
+      <div style="font-weight:bold">
+      
+          {{CompanyInfo.exchange}}
+      </div>   
+     </div>
+
+    
+    <div fxLayout="row">
+   
+      <div fxLayout="column" fxFlex="50">
+        <div fxFlex="50">
+          <h4 style="margin-top:2%">FLOAT</h4>
+          <div style="font-weight:bold">
+          {{CompanyStats.float | billion}}B
+          
+          </div>
+        </div>
+       <div fxFlex="50">
+        <h4 style="margin-top:2%">Sector</h4>
+        <div style="font-weight:bold;margin-bottom: 5%;">
+          {{CompanyInfo.sector}}
+        </div>
+       </div>
+      </div>
+      
+        
+   
+
+      <div fxLayout="column" fxFlex="50">
+        <div fxFlex="50">
+          <h4 style="margin-top:2%">Shares Outstanding</h4>
+          <div style="font-weight:bold">
+          {{CompanyStats.sharesOutstanding | billion}}B
+          </div>
+        </div>
+       
+        <div fxFlex="50">
+          <h4 style="margin-top:2%">Industry</h4>
+          <div style="font-weight:bold;margin-bottom: 5%;">
+          
+            {{CompanyInfo.industry}}
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2%; margin-right:5%;" fxFlex>
+    <div fxLayout="column" fxLayoutGap="50px">
+      <div fxLayout="row" >
+      
+        <div fxFlex="33"> 
+          <h4>VOLUME</h4>
+          <span style="font-weight:bold">
+          {{StockQuote.latestVolume}}
+          </span>
+        </div>
+        <div fxFlex="33"> 
+          <h4>AVG DAILY VOLUME</h4>
+          <span style="font-weight:bold">
+          {{StockQuote.avgTotalVolume}}
+          </span>
+        </div>
+        
+
+        <div fxFlex="33"> 
+          <h4>OPEN</h4>
+          <span style="font-weight:bold">
+          {{StockQuote.open}}
+          </span>
+        </div>
+        
+      </div>
+      <div fxLayout="row">
+      
+        <div fxFlex="33"> 
+          <h4>52 WEEK RANGE</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.week52low}} -  {{CompanyStats.week52high}}
+          </span>
+        </div>
+        <div fxFlex="33"> 
+          <h4>MARKET CAP</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.marketcap | billion}}B
+          </span>
+        </div>
+        
+
+        <div fxFlex="33"> 
+          <h4>PREVIOUS CLOSE</h4>
+          <span style="font-weight:bold">
+          {{StockQuote.previousClose}}
+          </span>
+        </div>
+        
+      </div>
+      <div fxLayout="row">
+      
+        <div fxFlex="33"> 
+          <h4>BETA</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.beta | number}}
+          </span>
+        </div>
+        <div fxFlex="33"> 
+          <h4>LATEST EPS</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.latestEPS}}
+          </span>
+        </div>
+        
+
+        <div fxFlex="33"> 
+          <h4>LATEST EPS DATE</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.latestEPSDate | date}}
+          </span>
+        </div>
+        
+      </div>
+      <div fxLayout="row" >
+      
+        <div fxFlex="33"> 
+          <h4>DIVIDEND & YIELD</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.dividendRate}}({{CompanyStats.dividendYield}})
+          </span>
+        </div>
+        <div fxFlex="33"> 
+          <h4>EX-DIVIDEND DATE</h4>
+          <span style="font-weight:bold">
+          {{CompanyStats.exDividendDate}}
+          </span>
+        </div>
+        
+
+        <div fxFlex="33"> 
+          <h4>P/E RATIO</h4>
+          <span style="font-weight:bold">
+          {{StockQuote.peRatio}}
+          </span>
+        </div>
+        
+      </div>
+    </div>
+ 
+  </div>
+ 
+</div>
+
+
+

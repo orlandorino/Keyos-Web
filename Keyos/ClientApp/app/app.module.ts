@@ -21,6 +21,8 @@ import {MillionPipe} from './pipes/MillionPipe';
 import { DetailComponent } from './components/dashboard/subcomponents/detail/detail.component';
 import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
+import { BillionPipe } from './pipes/billion.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AuthGuard } from './services/auth-guard.service';
     TableComponent,
     MillionPipe,
     DetailComponent,
-    HomeComponent
+    HomeComponent,
+    StocksummaryComponent,
+    BillionPipe
   
   ],
   imports: [

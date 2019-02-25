@@ -8,23 +8,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 var DetailstockService = /** @class */ (function () {
-    function DetailstockService() {
+    function DetailstockService(http) {
+        this.http = http;
     }
-    DetailstockService.prototype.getDetails = function (symbol) {
-        console.log(symbol, "Works");
+    DetailstockService.prototype.setStockInfo = function (stock) {
+        this.stock = stock;
+        this.symbol = stock.symbol;
     };
-    DetailstockService.prototype.setSymbol = function (symbol) {
-        this.symbol = symbol;
+    DetailstockService.prototype.getStockInfo = function () {
+        return this.stock;
     };
-    DetailstockService.prototype.getSymbol = function () {
-        return this.symbol;
+    DetailstockService.prototype.getStockStats = function () {
+        return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/stats");
+    };
+    DetailstockService.prototype.getStockCompanyInfo = function () {
+        return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/company");
+    };
+    DetailstockService.prototype.getStockHistory = function () {
+        return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/chart/1y");
     };
     DetailstockService = __decorate([
         Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [HttpClient])
     ], DetailstockService);
     return DetailstockService;
 }());

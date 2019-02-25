@@ -6,7 +6,7 @@
 
         <div class="menu">
             <div style="text-align: center">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="goToDashboard()">
                     <mat-icon class="icons"> show_chart</mat-icon>
                 </button>
                 <br>
@@ -47,18 +47,6 @@
         
     </mat-sidenav>
     <mat-sidenav-content>
-        <!-- <router-outlet></router-outlet> -->
-        <div fxLayout="column" style="width:100%;">
-            <app-header fxFlex="15"></app-header>
-
-            <div fxFlex="50">
-                <app-chart></app-chart>
-            </div>
-            <div fxFlex="35" style="margin-top:20px;">
-                    <app-table></app-table>
-                    
-            </div>
-        </div> 
-       
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
