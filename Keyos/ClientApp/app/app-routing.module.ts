@@ -7,10 +7,11 @@ import {DetailComponent} from './components/dashboard/subcomponents/detail/detai
 import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
 import { AuthGuard} from './services/auth-guard.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'welcome', component: NavbarComponent },
     { path: 'dashboard', component: DashboardComponent, children: [{ path: 'home', component: HomeComponent },{ path: 'detail', component: DetailComponent }], canActivate:[AuthGuard] }
 ];
 
