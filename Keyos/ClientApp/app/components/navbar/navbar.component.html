@@ -1,25 +1,175 @@
-<mat-toolbar *ngIf="!checkAuth()" style="background-color:white;" color="primary" class="mat-elevation-z4">
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Keyos</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+    <!--<link href="css/mdb.min.css" rel="stylesheet">-->
+
+    <!-- Your custom styles (optional) -->
+    <!--<link href="css/style.css" rel="stylesheet">-->
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <header>
+        <mat-toolbar  style="background-color:white;" color="primary" class="mat-elevation-z4">
 
     
-    <a routerLink="/" mat-button class="title">Keyos</a>
-    <span class="spacer"></span>
+            <a routerLink="/" mat-button class="title">Keyos</a>
+            <span class="spacer"></span>
+        
+            <span class="rightside">
+                <a routerLink="/login"  style="color:black"    mat-button id="login">Log In</a>
+                <a routerLink="/signup" color="accent" mat-flat-button>Sign Up</a>
+            </span>
+        
+        </mat-toolbar>
+        
 
-    <span class="rightside">
-        <a routerLink="/login"  style="color:black"    mat-button id="login">Log In</a>
-        <a routerLink="/signup" color="accent" mat-flat-button>Sign Up</a>
-    </span>
+        
+        <!--Mask-->
+        <div id="intro" class="view">
 
-</mat-toolbar>
+            <div class="mask rgba-black-strong">
 
+                <div class="container-fluid d-flex align-items-center justify-content-center h-100">
 
-<mat-toolbar *ngIf="checkAuth()" color="primary" class="mat-elevation-z4">
+                    <div class="row d-flex justify-content-center text-center">
 
-    <span class="title">Keyos</span>
-    <span class="spacer"></span>
-    
-    <span class="rightside">
-        <a routerLink="/login" mat-button id="login">Home</a>
-        <a routerLink="/signup" mat-button id="login"> Notifications</a>
-        <a routerLink="/signup" mat-button id="login"> Account</a>
-    </span>
-</mat-toolbar>
+                        <div class="col-md-10">
+
+                            <!-- Heading -->
+                            <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">KEYOS</h2>
+
+                            <!-- Divider -->
+                            <hr class="hr-light">
+
+                            <!-- Description -->
+                            <h4 class="white-text my-4">Keyos uses custom designed algorithms to predict change in stock market fluctuations with mathematical precision and accuracy to make your money work for you.</h4>
+                            <button type="button" class="btn btn-outline-white">Read more<i class="fas fa-book ml-2"></i></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!--/.Mask-->
+    </header>
+    <!--Main Navigation-->
+    <!--Main layout-->
+    <main>
+        <!--Main layout-->
+        <main class="mt-5">
+            <div class="container">
+
+                <!--Section: Best Features-->
+                <section id="best-features">
+                    <section id="best-features" class="text-center">
+
+                        <!-- Heading -->
+                        <h2 class="mb-5">Best Features</h2>
+
+                        <!--Grid row-->
+                        <div class="row d-flex justify-content-center mb-4">
+
+                            <!--Grid column-->
+                            <div class="col-md-8">
+
+                                <!-- Description -->
+                                <p>We have a series of features depending on your choice of plan. Each plan provides detailed descriptions on the benefits and right fit for your stock needs</p>
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-4 mb-1">
+                                <i class="fas fa-camera-retro"></i>
+                                <h4 class="my-4">Experience</h4>
+                                <p>Combined our team has a total of 20 years of education and experience in computer science and programming.</p>
+                            </div>
+                            <!--Grid column-->
+                            <!--Grid column-->
+                            <div class="col-md-4 mb-1">
+                                <i class="fas fa-heart"></i>
+                                <h4 class="my-4">Happiness</h4>
+                                <p>Our customers have provided overwhelmingly conclusive evidence that our product is the best.</p>
+                            </div>
+                            <!--Grid column-->
+                            <!--Grid column-->
+                            <div class="col-md-4 mb-1">
+                                <i class="fas fa-bicycle"></i>
+                                <h4 class="my-4">Adventure</h4>
+                                <p>With the money you will save from our predictive software algorithms, you can start going on those adventures you always dreamed of.</p>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                    </section>
+                </section>
+                <!--Section: Best Features-->
+
+                <hr class="my-5">
+
+                <!--Section: Examples-->
+                <section id="examples"></section>
+                <!--Section: Examples-->
+
+                <hr class="my-5">
+
+                <!--Section: Gallery-->
+                <section id="gallery"></section>
+                <!--Section: Gallery-->
+
+                <hr class="my-5">
+
+                <!--Section: Contact-->
+                <section id="contact"></section>
+                <!--Section: Contact-->
+
+            </div>
+        </main>
+        <!--Main layout-->
+
+    </main>
+    <!--Main layout-->
+    <!--Footer-->
+    <footer></footer>
+    <!--Footer-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.js"></script>
+</body>
+
+</html>

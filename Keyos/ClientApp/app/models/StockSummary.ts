@@ -5,9 +5,9 @@ export interface StockSummary {
 export interface Quote {
     symbol?:                string;
     companyName?:           string;
-    //primaryExchange?:       PrimaryExchange;
+    primaryExchange?:       PrimaryExchange;
     sector?:                string;
-    //calculationPrice?:      CalculationPrice;
+    calculationPrice?:      CalculationPrice;
     open?:                  number;
     openTime?:              number;
     close?:                 number;
@@ -15,8 +15,8 @@ export interface Quote {
     high?:                  number;
     low?:                   number;
     latestPrice?:           number;
-  //  latestSource?:          LatestSource;
-    //latestTime?:            LatestTime;
+    latestSource?:          string;
+    latestTime?:            string;
     latestUpdate?:          number;
     latestVolume?:          number;
     iexRealtimePrice?:      null;
@@ -76,6 +76,18 @@ export interface GlobalQuote {
     "09. change"?:             string;
     "10. change percent"?:     string;
 }
+export interface CompanyInfo {
+    symbol?:      string;
+    companyName?: string;
+    exchange?:    string;
+    industry?:    string;
+    website?:     string;
+    description?: string;
+    CEO?:         string;
+    issueType?:   string;
+    sector?:      string;
+    tags?:        string[];
+}
 
 export interface Dataset {
     id?:                    number;
@@ -99,4 +111,57 @@ export interface Dataset {
     collapse?:              null;
     order?:                 null;
     database_id?:           number;
+}
+
+export interface StockStats {
+    companyName?:         string;
+    marketcap?:           number;
+    beta?:                number;
+    week52high?:          number;
+    week52low?:           number;
+    week52change?:        number;
+    shortInterest?:       number;
+    shortDate?:           Date;
+    dividendRate?:        number;
+    dividendYield?:       number;
+    exDividendDate?:      Date;
+    latestEPS?:           number;
+    latestEPSDate?:       Date;
+    sharesOutstanding?:   number;
+    float?:               number;
+    returnOnEquity?:      number;
+    consensusEPS?:        number;
+    numberOfEstimates?:   number;
+    EPSSurpriseDollar?:   null;
+    EPSSurprisePercent?:  number;
+    symbol?:              string;
+    EBITDA?:              number;
+    revenue?:             number;
+    grossProfit?:         number;
+    cash?:                number;
+    debt?:                number;
+    ttmEPS?:              number;
+    revenuePerShare?:     number;
+    revenuePerEmployee?:  number;
+    peRatioHigh?:         number;
+    peRatioLow?:          number;
+    returnOnAssets?:      number;
+    returnOnCapital?:     null;
+    profitMargin?:        number;
+    priceToSales?:        number;
+    priceToBook?:         number;
+    day200MovingAvg?:     number;
+    day50MovingAvg?:      number;
+    institutionPercent?:  number;
+    insiderPercent?:      null;
+    shortRatio?:          number;
+    year5ChangePercent?:  number;
+    year2ChangePercent?:  number;
+    year1ChangePercent?:  number;
+    ytdChangePercent?:    number;
+    month6ChangePercent?: number;
+    month3ChangePercent?: number;
+    month1ChangePercent?: number;
+    day5ChangePercent?:   number;
+    day30ChangePercent?:  number;
 }
