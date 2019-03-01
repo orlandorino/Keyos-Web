@@ -28,13 +28,14 @@ var AppComponent = /** @class */ (function () {
             ;
         }
     };
+    var _a, _b;
     AppComponent = __decorate([
         Component({
             selector: 'app-root',
             templateUrl: './app.component.html',
             styleUrls: ['./app.component.css']
         }),
-        __metadata("design:paramtypes", [JwtHelper, Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof JwtHelper !== "undefined" && JwtHelper) === "function" ? _a : Object, typeof (_b = typeof Router !== "undefined" && Router) === "function" ? _b : Object])
     ], AppComponent);
     return AppComponent;
 }());
