@@ -14,18 +14,19 @@ var DashboardComponent = /** @class */ (function () {
         this.router = router;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        //this.router.navigate(["/dashboard/home"]);
+        this.router.navigate(["/dashboard/home"]);
     };
     DashboardComponent.prototype.goToDashboard = function () {
         this.router.navigate(["/dashboard/home"]);
     };
+    var _a;
     DashboardComponent = __decorate([
         Component({
             selector: 'app-dashboard',
             templateUrl: './dashboard.component.html',
             styleUrls: ['./dashboard.component.css']
         }),
-        __metadata("design:paramtypes", [Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
     ], DashboardComponent);
     return DashboardComponent;
 }());

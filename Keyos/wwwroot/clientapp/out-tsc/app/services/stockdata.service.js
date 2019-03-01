@@ -16,11 +16,12 @@ var StockdataService = /** @class */ (function () {
     StockdataService.prototype.getStockData = function () {
         return this.http.get("http://localhost:5000/api/Stocks?stockID=aapl");
     };
+    var _a;
     StockdataService = __decorate([
         Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [HttpClient])
+        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object])
     ], StockdataService);
     return StockdataService;
 }());

@@ -12,11 +12,12 @@ import { DetailComponent } from './components/dashboard/subcomponents/detail/det
 import { HomeComponent } from './components/dashboard/subcomponents/home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 var routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'detail', component: DetailComponent },
-    { path: 'dashboard', component: DashboardComponent, children: [{ path: 'home', component: HomeComponent }], canActivate: [AuthGuard] }
+    { path: 'welcome', component: NavbarComponent },
+    { path: 'dashboard', component: DashboardComponent, children: [{ path: 'home', component: HomeComponent }, { path: 'detail', component: DetailComponent }], canActivate: [AuthGuard] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
