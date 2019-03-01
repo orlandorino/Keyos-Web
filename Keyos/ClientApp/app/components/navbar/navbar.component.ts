@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Button } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
   checkAuth() {
-    return this.auth.isUserAuthenticated();
+      return this.auth.isUserAuthenticated();
   }
 }
