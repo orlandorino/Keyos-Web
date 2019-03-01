@@ -47,7 +47,7 @@ var TableComponent = /** @class */ (function () {
     };
     TableComponent.prototype.getRecord = function (row) {
         this.detailstock.setStockInfo(row);
-        this.router.navigate(["/detail"]);
+        this.router.navigate(["dashboard/detail"]);
     };
     TableComponent.prototype.getColor = function (percent) {
         if (percent.toString().includes("-")) {
@@ -59,13 +59,14 @@ var TableComponent = /** @class */ (function () {
             return 'green';
         }
     };
+    var _a;
     TableComponent = __decorate([
         Component({
             selector: 'app-table',
             templateUrl: './table.component.html',
             styleUrls: ['./table.component.css']
         }),
-        __metadata("design:paramtypes", [StocksummaryService, DetailstockService, Router])
+        __metadata("design:paramtypes", [StocksummaryService, DetailstockService, typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
     ], TableComponent);
     return TableComponent;
 }());

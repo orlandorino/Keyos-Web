@@ -48,11 +48,12 @@ var StocksummaryService = /** @class */ (function () {
         var sto3 = this.http.get("" + nsdqUrl + params);
         return forkJoin([sto1, sto2, sto3]);
     };
+    var _a;
     StocksummaryService = __decorate([
         Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [HttpClient])
+        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object])
     ], StocksummaryService);
     return StocksummaryService;
 }());

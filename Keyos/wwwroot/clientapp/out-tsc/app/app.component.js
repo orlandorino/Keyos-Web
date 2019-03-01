@@ -16,23 +16,26 @@ var AppComponent = /** @class */ (function () {
         this.router = router;
     }
     AppComponent.prototype.ngOnInit = function () {
+        this.isUserAuthenticated();
     };
     AppComponent.prototype.isUserAuthenticated = function () {
         var token = localStorage.getItem("jwt");
         if (token && !this.jwtHelper.isTokenExpired(token)) {
-            return true;
+            this.router.navigate(["/dashboard/home"]);
         }
         else {
-            return false;
+            this.router.navigate(["/welcome"]);
+            ;
         }
     };
+    var _a, _b;
     AppComponent = __decorate([
         Component({
             selector: 'app-root',
             templateUrl: './app.component.html',
             styleUrls: ['./app.component.css']
         }),
-        __metadata("design:paramtypes", [JwtHelper, Router])
+        __metadata("design:paramtypes", [typeof (_a = typeof JwtHelper !== "undefined" && JwtHelper) === "function" ? _a : Object, typeof (_b = typeof Router !== "undefined" && Router) === "function" ? _b : Object])
     ], AppComponent);
     return AppComponent;
 }());
