@@ -29,12 +29,11 @@ var DetailstockService = /** @class */ (function () {
     DetailstockService.prototype.getStockHistory = function () {
         return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/chart/1y");
     };
-    var _a;
     DetailstockService = __decorate([
         Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [HttpClient])
     ], DetailstockService);
     return DetailstockService;
 }());

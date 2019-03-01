@@ -19,14 +19,13 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.goToDashboard = function () {
         this.router.navigate(["/dashboard/home"]);
     };
-    var _a;
     DashboardComponent = __decorate([
         Component({
             selector: 'app-dashboard',
             templateUrl: './dashboard.component.html',
             styleUrls: ['./dashboard.component.css']
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [Router])
     ], DashboardComponent);
     return DashboardComponent;
 }());

@@ -55,14 +55,13 @@ var ChartComponent = /** @class */ (function () {
         });
         console.log(this.arr1);
     };
-    var _a;
     ChartComponent = __decorate([
         Component({
             selector: 'app-chart',
             templateUrl: './chart.component.html',
             styleUrls: ['./chart.component.css']
         }),
-        __metadata("design:paramtypes", [StockdataService, typeof (_a = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [StockdataService, HttpClient])
     ], ChartComponent);
     return ChartComponent;
 }());

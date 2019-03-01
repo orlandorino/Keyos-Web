@@ -59,14 +59,13 @@ var TableComponent = /** @class */ (function () {
             return 'green';
         }
     };
-    var _a;
     TableComponent = __decorate([
         Component({
             selector: 'app-table',
             templateUrl: './table.component.html',
             styleUrls: ['./table.component.css']
         }),
-        __metadata("design:paramtypes", [StocksummaryService, DetailstockService, typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [StocksummaryService, DetailstockService, Router])
     ], TableComponent);
     return TableComponent;
 }());

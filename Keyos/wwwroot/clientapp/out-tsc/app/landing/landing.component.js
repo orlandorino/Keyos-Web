@@ -7,22 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-var StockdataService = /** @class */ (function () {
-    function StockdataService(http) {
-        this.http = http;
+import { Component } from '@angular/core';
+var LandingComponent = /** @class */ (function () {
+    function LandingComponent() {
     }
-    StockdataService.prototype.getStockData = function () {
-        return this.http.get("http://localhost:5000/api/Stocks?stockID=aapl");
+    LandingComponent.prototype.ngOnInit = function () {
     };
-    StockdataService = __decorate([
-        Injectable({
-            providedIn: 'root'
+    LandingComponent = __decorate([
+        Component({
+            selector: 'app-landing',
+            templateUrl: './landing.component.html',
+            styleUrls: ['./landing.component.css']
         }),
-        __metadata("design:paramtypes", [HttpClient])
-    ], StockdataService);
-    return StockdataService;
+        __metadata("design:paramtypes", [])
+    ], LandingComponent);
+    return LandingComponent;
 }());
-export { StockdataService };
-//# sourceMappingURL=stockdata.service.js.map
+export { LandingComponent };
+//# sourceMappingURL=landing.component.js.map
