@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Keyos.Models;
+using Microsoft.Extensions.Configuration;
 
-namespace Keyos.Models
+namespace Keyos.Database
 {
     public class DatabaseContext : DbContext
     {
@@ -11,10 +13,11 @@ namespace Keyos.Models
 
         public DbSet<Stock> stocks { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=sqlDatabase.db");
+
+
+        optionsBuilder.UseSqlServer();
         }
     }
 }

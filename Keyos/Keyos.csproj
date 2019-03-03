@@ -10,9 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Services\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Database\" />
   </ItemGroup>
 
   <ItemGroup>
