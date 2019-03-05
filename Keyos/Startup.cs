@@ -72,10 +72,11 @@ namespace Keyos
                 configuration.RootPath = "wwwroot/clientapp/dist";
             });
 
-            services.AddEntityFrameworkSqlite().AddDbContext<DatabaseContext>();
+            services.AddEntityFrameworkSqlServer().AddDbContext<DatabaseContext>();
 
 
             //AUth Change below
+
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
