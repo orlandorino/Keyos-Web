@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190302030020_moveToSqlServer")]
-    partial class moveToSqlServer
+    [Migration("20190307225320_changedLoginTable")]
+    partial class changedLoginTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,48 +20,15 @@ namespace Keyos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Keyos.Models.Stock", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Symbol");
-
-                    b.Property<int>("change");
-
-                    b.Property<int>("changeOverTime");
-
-                    b.Property<int>("changePercent");
-
-                    b.Property<int>("close");
-
-                    b.Property<string>("date");
-
-                    b.Property<int>("high");
-
-                    b.Property<string>("label");
-
-                    b.Property<int>("low");
-
-                    b.Property<int>("open");
-
-                    b.Property<int>("unadjustedVolume");
-
-                    b.Property<int>("volume");
-
-                    b.Property<int>("vwap");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("stocks");
-                });
 
             modelBuilder.Entity("Keyos.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
 

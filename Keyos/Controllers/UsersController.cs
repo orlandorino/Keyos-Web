@@ -32,34 +32,5 @@ namespace Keyos.Controllers
         }
 
 
-        //[Authorize]
-        [Authorize(Roles = Role.Admin)]
-        [HttpGet, Route("users")]
-        //[HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var user = _userService.GetById(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            // only allow admins to access other user records
-            var currentUserId = int.Parse(User.Identity.Name);
-            if (id != currentUserId && !User.IsInRole(Role.Admin))
-            {
-                return Forbid();
-            }
-
-            return Ok(user);
-        }
     }
 }

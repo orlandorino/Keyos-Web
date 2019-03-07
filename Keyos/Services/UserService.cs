@@ -17,22 +17,10 @@ namespace Keyos.Services
     public interface IUserService
     {
         User Authenticate(string username, string password);
-        IEnumerable<Models.User> GetAll();
-        User GetById(int id);
     }
 
     public class UserService : IUserService
     {
-
-        
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
-        {
-            new User { Id = 1, FirstName = "Admin", LastName = "User", Username = "admin", Password = "admin", Role = Role.Admin },
-            new User { Id = 2, FirstName = "Normal", LastName = "User", Username = "user", Password = "user", Role = Role.User },
-            //new User { Id = 3, FirstName = "Normal", LastName = "User", Username = "test12", Password = "test123", Role = Role.User }
-
-        };
 
         private readonly AppSettings _appSettings;
 
@@ -52,9 +40,6 @@ namespace Keyos.Services
             var Logins = _context.Logins.ToList();
 
             var user = Logins.SingleOrDefault(x => x.Username == username && x.Password == password);
-
-
-            //var user1 = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
 
             // return null if user not found
             if (user == null)
@@ -88,34 +73,12 @@ namespace Keyos.Services
                 Username = user.Username,
                 Password = user.Password,
                 Token = user.Token,
-                Role = user.Role
+                Role = user.Role,
+                Email = user.Email
             };
             //return user;
         }
 
-        public IEnumerable<Models.User> GetAll()
-        {
-            var Logins = _context.Logins.ToList();
-            // return users without passwords
-            return Logins.Select(x => {
-                x.Password = null;
-                return x;
-            });
 
-
-
-
-        }
-
-        public User GetById(int id)
-        {
-            var user = _users.FirstOrDefault(x => x.Id == id);
-
-            // return user without password
-            if (user != null)
-                user.Password = null;
-
-            return user;
-        }
     }
 }

@@ -33,7 +33,7 @@ namespace Keyos.Controllers
         //}
 
         // GET: api/Stocks?stockID=fb
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.PremiumUser)]
         [HttpGet]
         public IEnumerable<Stock> Getstocks(string stockID)
         {
