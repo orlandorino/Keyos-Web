@@ -21,12 +21,20 @@
       [options]="chartOptions">
     </highcharts-chart>
     </mat-tab>
-    <mat-tab label="Forecasted"> 
-    <p style="margin:20%">
-      You are a free user. You must become a premium user for this stock to access forcasted data.
-      <br>
-      <button mat-raised-button color="primary">Buy Now</button>
-    </p>  
+    <mat-tab label="Forecasted">
+      <div *ngIf="UserRole == 'User' || TempUserRole =='User'">
+          <p style="margin:20%">
+              You are a free user. You must become a premium user for this stock to access forcasted data.
+
+            </p>  
+              <br>
+              <button mat-raised-button color="primary" (click)="OnClick()">Buy Now</button>
+      </div> 
+      <div *ngIf="UserRole =='PremiumUser'">
+        <p>Subscribed</p>
+      </div>
+    
+   
   </mat-tab>
     
   </mat-tab-group>

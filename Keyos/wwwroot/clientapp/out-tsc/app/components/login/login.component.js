@@ -21,7 +21,7 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.login = function (form) {
         var _this = this;
         var credentials = JSON.stringify(form.value);
-        this.http.post("http://localhost:5000/api/auth/login", credentials, {
+        this.http.post("http://localhost:5000/api/user/login", credentials, {
             headers: new HttpHeaders({
                 "Content-Type": "application/json"
             })
@@ -34,14 +34,13 @@ var LoginComponent = /** @class */ (function () {
             _this.invalidLogin = true;
         });
     };
-    var _a, _b;
     LoginComponent = __decorate([
         Component({
             selector: 'app-login',
             templateUrl: './login.component.html',
             styleUrls: ['./login.component.css']
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _b : Object])
+        __metadata("design:paramtypes", [Router, HttpClient])
     ], LoginComponent);
     return LoginComponent;
 }());

@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { DetailstockService } from '../../../../services/detailstock.service';
 import * as Highcharts from 'highcharts/highstock';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 var DetailComponent = /** @class */ (function () {
-    function DetailComponent(detailservice) {
+    function DetailComponent(detailservice, router, auth) {
         this.detailservice = detailservice;
+        this.router = router;
+        this.auth = auth;
         this.Highcharts = Highcharts;
         this.displayedColumns = ['date', 'open', 'high', 'low', 'close'];
         this.Chart = [];
@@ -27,9 +31,13 @@ var DetailComponent = /** @class */ (function () {
             latestSource: "Close",
             latestTime: "February 22, 2019",
             previousClose: 10.4 };
+        this.UserRole = 'User';
+        this.TempUserRole = this.auth.UserRole;
     }
     DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.jwtToken = this.auth.getDecodedAccessToken();
+        this.UserRole = this.jwtToken.role;
         var seriesOptions = [];
         seriesOptions[0] = {
             name: 'aapl',
@@ -139,13 +147,16 @@ var DetailComponent = /** @class */ (function () {
             return 'green';
         }
     };
+    DetailComponent.prototype.OnClick = function () {
+        this.router.navigate(["dashboard/payment"]);
+    };
     DetailComponent = __decorate([
         Component({
             selector: 'app-detail',
             templateUrl: './detail.component.html',
             styleUrls: ['./detail.component.css']
         }),
-        __metadata("design:paramtypes", [DetailstockService])
+        __metadata("design:paramtypes", [DetailstockService, Router, AuthService])
     ], DetailComponent);
     return DetailComponent;
 }());

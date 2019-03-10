@@ -23,6 +23,7 @@ import { HomeComponent } from './components/dashboard/subcomponents/home/home.co
 import { AuthGuard } from './services/auth-guard.service';
 import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
 import { BillionPipe } from './pipes/billion.pipe';
+import { PaymentRequestComponent } from './payment-request/payment-request.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BillionPipe } from './pipes/billion.pipe';
     DetailComponent,
     HomeComponent,
     StocksummaryComponent,
-    BillionPipe
+    BillionPipe,
+    PaymentRequestComponent
   
   ],
   imports: [

@@ -1,12 +1,12 @@
-﻿using System;
-using Keyos.Entities;
+﻿using Keyos.Entities;
 using Keyos.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace Keyos.Controllers
 {
-    [Authorize]
+    //[Authorize]
     //[ApiController]
     [Route("api/user")]
     //[Route("[controller]")]
@@ -14,9 +14,15 @@ namespace Keyos.Controllers
     {
         private IUserService _userService;
 
+
+
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
+
+            //need to hide this key
+            StripeConfiguration.SetApiKey("");
         }
 
         [AllowAnonymous]
@@ -30,7 +36,55 @@ namespace Keyos.Controllers
 
             return Ok(user);
         }
+        [HttpPost, Route("processpayment")]
+        public IActionResult ProcessPayment([FromBody] Models.Payment.Token token)
+        {
 
 
+            var CustomerOptions = new CustomerCreateOptions
+            {
+                Description = "Customer for " + token.Email,
+                SourceToken = token.Id,
+                Email = token.Email,
+                PlanId = "plan_EfXRQVA1sN7KXn"
+            };
+
+            var service = new CustomerService();
+            Customer customer = service.Create(CustomerOptions);
+
+            //Creating a plan for users to pay monthly
+
+
+            //var PlanOptions = new PlanCreateOptions
+            //{
+            //    Product = new PlanProductCreateOptions
+            //    {
+            //        Name = "Premium"
+            //    },
+            //    Amount = 5000,
+            //    Currency = "usd",
+            //    Interval = "month",
+            //};
+
+            //var PlanService = new PlanService();
+            //Plan plan = PlanService.Create(PlanOptions);
+
+            //var items = new List<SubscriptionItemOption> {
+            //new SubscriptionItemOption {
+            //    PlanId ="Premium"
+            // }
+            //};
+            //var SubscriptionOptions = new SubscriptionCreateOptions
+            //{
+            //    CustomerId = customer.Id,
+            //    Items = items
+            //};
+
+            //var SubscriptionService = new SubscriptionService();
+            //Subscription subscription = SubscriptionService.Create(SubscriptionOptions);
+
+            return Ok(token);
+        }
     }
+
 }
