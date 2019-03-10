@@ -1,7 +1,10 @@
-﻿using Keyos.Entities;
+﻿using System;
+using Keyos.Entities;
 using Keyos.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Stripe;
 
 namespace Keyos.Controllers
@@ -21,8 +24,16 @@ namespace Keyos.Controllers
         {
             _userService = userService;
 
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+            string apiKey = configuration.GetConnectionString("Stripe");
             //need to hide this key
-            StripeConfiguration.SetApiKey("");
+            StripeConfiguration.SetApiKey(apiKey);
+
+
         }
 
         [AllowAnonymous]
