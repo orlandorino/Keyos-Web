@@ -13,6 +13,10 @@ namespace Keyos.Database
 
         public DbSet<Stock> stocks { get; set; }
 
+        public DbSet<Forecast> forecastTable { get; set; }
+
+        public DbSet<buySellList> buySellTable { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()

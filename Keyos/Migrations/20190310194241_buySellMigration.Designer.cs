@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190307225320_changedLoginTable")]
-    partial class changedLoginTable
+    [Migration("20190310194241_buySellMigration")]
+    partial class buySellMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,32 +20,43 @@ namespace Keyos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-
-
-            modelBuilder.Entity("Keyos.Models.User", b =>
+            modelBuilder.Entity("Keyos.Models.buySellList", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Symbol");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("buySell");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("date");
 
-                    b.Property<string>("Password");
+                    b.Property<int>("price");
 
-                    b.Property<string>("Role");
+                    b.HasKey("ID");
 
-                    b.Property<string>("Token");
-
-                    b.Property<string>("Username");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logins");
+                    b.ToTable("buySell");
                 });
+
+            modelBuilder.Entity("Keyos.Models.Forecast", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Symbol");
+
+                    b.Property<string>("date");
+
+                    b.Property<int>("price");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("forecast");
+                });
+
+          
 #pragma warning restore 612, 618
         }
     }
