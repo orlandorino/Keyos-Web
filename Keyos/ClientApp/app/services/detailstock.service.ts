@@ -30,12 +30,12 @@ symbol:string;
   }
   getStockCompanyInfo():Observable<CompanyInfo>
   {
-    return this.http.get<CompanyInfo>("https://api.iextrading.com/1.0/stock/" +this.symbol +"/company");
+    return this.http.get<CompanyInfo>("https://api.iextrading.com/1.0/stock/" +this.symbol + "/company");
   }
 
   getStockHistory():Observable<StockTable[]>
   {
-    return this.http.get<StockTable[]>("https://api.iextrading.com/1.0/stock/"+  +"/chart/1y");
+    return this.http.get<StockTable[]>("https://api.iextrading.com/1.0/stock/"+ this.symbol +"/chart/1y");
   }
 
   GetBuySellInitial(): Observable<BuySell[]> {

@@ -28,6 +28,7 @@ import { HomeComponent } from './components/dashboard/subcomponents/home/home.co
 import { AuthGuard } from './services/auth-guard.service';
 import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
 import { BillionPipe } from './pipes/billion.pipe';
+import { PremiumUserComponent } from './components/premium-user/premium-user.component';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -46,7 +47,8 @@ var AppModule = /** @class */ (function () {
                 DetailComponent,
                 HomeComponent,
                 StocksummaryComponent,
-                BillionPipe
+                BillionPipe,
+                PremiumUserComponent
             ],
             imports: [
                 BrowserModule,
