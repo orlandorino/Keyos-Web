@@ -31,12 +31,16 @@ export class DetailComponent implements OnInit {
   latestSource: "Close",
   latestTime:"February 22, 2019"
   ,previousClose:10.4};
+  BuyOrSell:string = '';
   
   constructor(private detailservice:DetailstockService) { }
 
 
   ngOnInit() {
-
+    this.detailservice.symbol ='aapl'
+      this.detailservice.GetBuySellInitial().subscribe(x=>{
+        
+        console.log(x)})
 
     var seriesOptions = [];
 
@@ -55,77 +59,77 @@ export class DetailComponent implements OnInit {
     };
 
 
-      this.detailservice.getStockHistory().subscribe (t =>{
-        this.Chart = t;
-        this.dataSource = this.Chart;
-        let data = [];
-          let data2 = [];
-        this.dataSource.forEach(element => {
-          var arr = [new Date(element.date).getTime() / 1000,element.close];
-          var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
-          data.push(arr);
-          data2.push(arr1);
+  //     this.detailservice.getStockHistory().subscribe (t =>{
+  //       this.Chart = t;
+  //       this.dataSource = this.Chart;
+  //       let data = [];
+  //         let data2 = [];
+  //       this.dataSource.forEach(element => {
+  //         var arr = [new Date(element.date).getTime() / 1000,element.close];
+  //         var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
+  //         data.push(arr);
+  //         data2.push(arr1);
 
-        });
+  //       });
 
        
         
 
 
 
-        this.chartOptions = {
+  //       this.chartOptions = {
 
-          series: [{
-              name: 'AAPL',
-              type: 'line',
-              data: data,
-              gapSize: 5,
-              tooltip: {
-                  valueDecimals: 2
-              },
-              fillColor: {
-                  linearGradient: {
-                      x1: 0,
-                      y1: 0,
-                      x2: 0,
-                      y2: 1
-                  },
+  //         series: [{
+  //             name: 'AAPL',
+  //             type: 'line',
+  //             data: data,
+  //             gapSize: 5,
+  //             tooltip: {
+  //                 valueDecimals: 2
+  //             },
+  //             fillColor: {
+  //                 linearGradient: {
+  //                     x1: 0,
+  //                     y1: 0,
+  //                     x2: 0,
+  //                     y2: 1
+  //                 },
 
-                  stops: [
-                      [0, Highcharts.getOptions().colors[0]]
-                  ]
+  //                 stops: [
+  //                     [0, Highcharts.getOptions().colors[0]]
+  //                 ]
 
-              }},
-              {
-                name: 'AAPL',
-                type: 'line',
-                data: data2,
-                gapSize: 5,
-                tooltip: {
-                    valueDecimals: 2
-                },
-                fillColor: {
-                    linearGradient: {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
+  //             }},
+  //             {
+  //               name: 'AAPL',
+  //               type: 'line',
+  //               data: data2,
+  //               gapSize: 5,
+  //               tooltip: {
+  //                   valueDecimals: 2
+  //               },
+  //               fillColor: {
+  //                   linearGradient: {
+  //                       x1: 0,
+  //                       y1: 0,
+  //                       x2: 0,
+  //                       y2: 1
+  //                   },
   
-                    stops: [
-                        [0, Highcharts.getOptions().colors[0]]
-                    ]
+  //                   stops: [
+  //                       [0, Highcharts.getOptions().colors[0]]
+  //                   ]
   
-                }},
+  //               }},
               
-        ]
-      };
-  });
+  //       ]
+  //     };
+  // });
 
      
 
       
-   this.StockQuote = this.detailservice.getStockInfo();
+  //  this.StockQuote = this.detailservice.getStockInfo();
 
 
 

@@ -41,14 +41,13 @@ var SignupComponent = /** @class */ (function () {
         return this.email.hasError('email') ? 'Not a valid email' : this.email.hasError('required') ? 'You must enter a valid email'
             : '';
     };
-    var _a, _b;
     SignupComponent = __decorate([
         Component({
             selector: 'app-signup',
             templateUrl: './signup.component.html',
             styleUrls: ['./signup.component.css']
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof Router !== "undefined" && Router) === "function" ? _a : Object, typeof (_b = typeof HttpClient !== "undefined" && HttpClient) === "function" ? _b : Object])
+        __metadata("design:paramtypes", [Router, HttpClient])
     ], SignupComponent);
     return SignupComponent;
 }());

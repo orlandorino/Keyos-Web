@@ -63,6 +63,20 @@ export enum PrimaryExchange {
     NasdaqGlobalSelect = "Nasdaq Global Select",
     NewYorkStockExchange = "New York Stock Exchange",
 }
+export interface ForecastedData {
+    id?:     number;
+    symbol?: string;
+    date?:   Date;
+    price?:  number;
+}
+export interface BuySell {
+    id?:      number;
+    symbol?:  string;
+    date?:    Date;
+    price?:   number;
+    buySell?: string;
+}
+
 
 export interface GlobalQuote {
     "01. symbol"?:             string;

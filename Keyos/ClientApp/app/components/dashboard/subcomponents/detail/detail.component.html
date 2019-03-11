@@ -8,7 +8,11 @@
           <mat-card-subtitle >{{StockQuote.latestPrice}} <span  [ngStyle]="{'color': getColor(StockQuote.change)}">{{StockQuote.change}}({{StockQuote.changePercent | number}}%)</span></mat-card-subtitle>
           <mat-card-subtitle ><span style="font-size:10px"> {{StockQuote.latestSource}} as of {{StockQuote.latestTime}} </span></mat-card-subtitle>
       </div>
-      <span fxFlex="11">Forecast Accuracy:<span style="color:green">78% <mat-icon>arrow_upward</mat-icon></span> </span>
+      <div fxFlex="11">
+        <span>Forecast Accuracy:<span style="color:green">78%</span> </span>
+        <button class="buysell" mat-flat-button color="primary" > BUY</button>
+      </div>
+      
      </div>   
   </mat-card-header>
 

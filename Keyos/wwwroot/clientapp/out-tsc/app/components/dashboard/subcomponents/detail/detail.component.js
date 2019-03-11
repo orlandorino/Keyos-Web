@@ -27,9 +27,13 @@ var DetailComponent = /** @class */ (function () {
             latestSource: "Close",
             latestTime: "February 22, 2019",
             previousClose: 10.4 };
+        this.BuyOrSell = '';
     }
     DetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
+        this.detailservice.symbol = 'aapl';
+        this.detailservice.GetBuySellInitial().subscribe(function (x) {
+            console.log(x);
+        });
         var seriesOptions = [];
         seriesOptions[0] = {
             name: 'aapl',
@@ -43,62 +47,60 @@ var DetailComponent = /** @class */ (function () {
                 [1293667200000, 100.24],
                 [1293753600000, 20.08]]
         };
-        this.detailservice.getStockHistory().subscribe(function (t) {
-            _this.Chart = t;
-            _this.dataSource = _this.Chart;
-            var data = [];
-            var data2 = [];
-            _this.dataSource.forEach(function (element) {
-                var arr = [new Date(element.date).getTime() / 1000, element.close];
-                var arr1 = [new Date(element.date).getTime() / 1000, element.close * 2];
-                data.push(arr);
-                data2.push(arr1);
-            });
-            _this.chartOptions = {
-                series: [{
-                        name: 'AAPL',
-                        type: 'line',
-                        data: data,
-                        gapSize: 5,
-                        tooltip: {
-                            valueDecimals: 2
-                        },
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]]
-                            ]
-                        }
-                    },
-                    {
-                        name: 'AAPL',
-                        type: 'line',
-                        data: data2,
-                        gapSize: 5,
-                        tooltip: {
-                            valueDecimals: 2
-                        },
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]]
-                            ]
-                        }
-                    },
-                ]
-            };
-        });
-        this.StockQuote = this.detailservice.getStockInfo();
+        //     this.detailservice.getStockHistory().subscribe (t =>{
+        //       this.Chart = t;
+        //       this.dataSource = this.Chart;
+        //       let data = [];
+        //         let data2 = [];
+        //       this.dataSource.forEach(element => {
+        //         var arr = [new Date(element.date).getTime() / 1000,element.close];
+        //         var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
+        //         data.push(arr);
+        //         data2.push(arr1);
+        //       });
+        //       this.chartOptions = {
+        //         series: [{
+        //             name: 'AAPL',
+        //             type: 'line',
+        //             data: data,
+        //             gapSize: 5,
+        //             tooltip: {
+        //                 valueDecimals: 2
+        //             },
+        //             fillColor: {
+        //                 linearGradient: {
+        //                     x1: 0,
+        //                     y1: 0,
+        //                     x2: 0,
+        //                     y2: 1
+        //                 },
+        //                 stops: [
+        //                     [0, Highcharts.getOptions().colors[0]]
+        //                 ]
+        //             }},
+        //             {
+        //               name: 'AAPL',
+        //               type: 'line',
+        //               data: data2,
+        //               gapSize: 5,
+        //               tooltip: {
+        //                   valueDecimals: 2
+        //               },
+        //               fillColor: {
+        //                   linearGradient: {
+        //                       x1: 0,
+        //                       y1: 0,
+        //                       x2: 0,
+        //                       y2: 1
+        //                   },
+        //                   stops: [
+        //                       [0, Highcharts.getOptions().colors[0]]
+        //                   ]
+        //               }},
+        //       ]
+        //     };
+        // });
+        //  this.StockQuote = this.detailservice.getStockInfo();
         //     this.chartOptions= {
         //       rangeSelector: {
         //         selected: 2

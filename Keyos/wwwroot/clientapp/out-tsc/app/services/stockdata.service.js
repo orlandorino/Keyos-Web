@@ -8,13 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 var StockdataService = /** @class */ (function () {
     function StockdataService(http) {
         this.http = http;
     }
     StockdataService.prototype.getStockData = function () {
-        return this.http.get("http://localhost:5000/api/Stocks?stockID=aapl");
+        var headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+        return this.http.get("http://localhost:5000/api/Stocks?stockID=msft", { headers: headers });
     };
     StockdataService = __decorate([
         Injectable({

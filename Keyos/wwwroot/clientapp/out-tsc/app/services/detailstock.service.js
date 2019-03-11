@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 var DetailstockService = /** @class */ (function () {
     function DetailstockService(http) {
         this.http = http;
@@ -27,7 +27,19 @@ var DetailstockService = /** @class */ (function () {
         return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/company");
     };
     DetailstockService.prototype.getStockHistory = function () {
-        return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/chart/1y");
+        return this.http.get("https://api.iextrading.com/1.0/stock/" + +"/chart/1y");
+    };
+    DetailstockService.prototype.GetBuySellInitial = function () {
+        var headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+        return this.http.get("http://localhost:5000/api/buySell/buySellList?stockID=" + this.symbol, { headers: headers });
+    };
+    DetailstockService.prototype.GetBuySellLatest = function () {
+        var headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+        return this.http.get("http://localhost:5000/api/buySell/buySellLatest?stockID=" + this.symbol, { headers: headers });
+    };
+    DetailstockService.prototype.GetForecastedData = function () {
+        var headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+        return this.http.get("http://localhost:5000/api/buySell/forecastList?stockID=" + this.symbol, { headers: headers });
     };
     DetailstockService = __decorate([
         Injectable({

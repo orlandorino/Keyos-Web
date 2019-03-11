@@ -19,6 +19,11 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.goToDashboard = function () {
         this.router.navigate(["/dashboard/home"]);
     };
+    DashboardComponent.prototype.logout = function () {
+        // remove user from local storage to log user out
+        localStorage.removeItem('jwt');
+        location.reload();
+    };
     DashboardComponent = __decorate([
         Component({
             selector: 'app-dashboard',

@@ -22,12 +22,11 @@ var AuthService = /** @class */ (function () {
             return false;
         }
     };
-    var _a;
     AuthService = __decorate([
         Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof JwtHelper !== "undefined" && JwtHelper) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [JwtHelper])
     ], AuthService);
     return AuthService;
 }());
