@@ -23,6 +23,7 @@ import { HomeComponent } from './components/dashboard/subcomponents/home/home.co
 import { AuthGuard } from './services/auth-guard.service';
 import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
 import { BillionPipe } from './pipes/billion.pipe';
+import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { PremiumUserComponent } from './components/premium-user/premium-user.component';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { PremiumUserComponent } from './components/premium-user/premium-user.com
     HomeComponent,
     StocksummaryComponent,
     BillionPipe,
+    PaymentRequestComponent,
     PremiumUserComponent
   
   ],

@@ -1,1 +1,1 @@
-{"version":3,"file":"User.js","sourceRoot":"","sources":["../../../../../ClientApp/app/models/User.ts"],"names":[],"mappings":"AAAA;IAAA;IAQA,CAAC;IAAD,WAAC;AAAD,CAAC,AARD,IAQC"}
+{"version":3,"file":"user.js","sourceRoot":"","sources":["../../../../../ClientApp/app/models/user.ts"],"names":[],"mappings":"AAAA;IACI,cAAmB,IAAW,EAAQ,KAAY,EAAQ,WAAkB;QAAzD,SAAI,GAAJ,IAAI,CAAO;QAAQ,UAAK,GAAL,KAAK,CAAO;QAAQ,gBAAW,GAAX,WAAW,CAAO;IAAE,CAAC;IACnF,WAAC;AAAD,CAAC,AAFD,IAEC"}

@@ -8,6 +8,8 @@ import { Quote, LatestSource, LatestTime } from '../../../../models/StockSummary
 import { StocksummaryService } from '../../../../services/stocksummary.service';
 import { StockTable } from '../../../../models/StockModel';
 import { StockdataService } from '../../../../services/stockdata.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 
 @Component({
@@ -31,12 +33,21 @@ export class DetailComponent implements OnInit {
   latestSource: "Close",
   latestTime:"February 22, 2019"
   ,previousClose:10.4};
+
+  UserRole ='User';
+  TempUserRole = this.auth.UserRole;
+  jwtToken;
+  constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';
   
-  constructor(private detailservice:DetailstockService) { }
 
 
   ngOnInit() {
+
+    this.jwtToken = this.auth.getDecodedAccessToken();
+    this.UserRole = this.jwtToken.role;
+  
+
 
     this.detailservice.GetBuySellLatest().subscribe(x=>{
         if(x.buySell == "true")
@@ -185,6 +196,8 @@ export class DetailComponent implements OnInit {
       return 'green';
     }
 }
+OnClick()
+{
+  this.router.navigate(["dashboard/payment"]);
 }
-
-
+}

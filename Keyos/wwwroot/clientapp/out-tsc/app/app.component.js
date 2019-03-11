@@ -24,8 +24,8 @@ var AppComponent = /** @class */ (function () {
             this.router.navigate(["/dashboard/home"]);
         }
         else {
+            console.log("test");
             this.router.navigate(["/welcome"]);
-            ;
         }
     };
     AppComponent = __decorate([

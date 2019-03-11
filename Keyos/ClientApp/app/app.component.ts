@@ -20,7 +20,8 @@ export class AppComponent {
      this.router.navigate(["/dashboard/home"]);
     }
     else {
-      this.router.navigate(["/welcome"]);;
+      console.log("test")
+     this.router.navigate(["/welcome"]);
     }
   }
 
