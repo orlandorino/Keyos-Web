@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { DetailstockService } from '../../../../services/detailstock.service';
 import * as Highcharts from 'highcharts/highstock';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 var DetailComponent = /** @class */ (function () {
-    function DetailComponent(detailservice) {
+    function DetailComponent(detailservice, router, auth) {
         this.detailservice = detailservice;
+        this.router = router;
+        this.auth = auth;
         this.Highcharts = Highcharts;
         this.displayedColumns = ['date', 'open', 'high', 'low', 'close'];
         this.Chart = [];
@@ -27,10 +31,22 @@ var DetailComponent = /** @class */ (function () {
             latestSource: "Close",
             latestTime: "February 22, 2019",
             previousClose: 10.4 };
+        this.UserRole = 'User';
+        this.TempUserRole = this.auth.UserRole;
         this.BuyOrSell = '';
     }
     DetailComponent.prototype.ngOnInit = function () {
-        this.detailservice.symbol = 'aapl';
+        var _this = this;
+        this.jwtToken = this.auth.getDecodedAccessToken();
+        this.UserRole = this.jwtToken.role;
+        this.detailservice.GetBuySellLatest().subscribe(function (x) {
+            if (x.buySell == "true") {
+                _this.BuyOrSell = "BUY";
+            }
+            else {
+                _this.BuyOrSell = "SELL";
+            }
+        });
         this.detailservice.GetBuySellInitial().subscribe(function (x) {
             console.log(x);
         });
@@ -47,60 +63,42 @@ var DetailComponent = /** @class */ (function () {
                 [1293667200000, 100.24],
                 [1293753600000, 20.08]]
         };
-        //     this.detailservice.getStockHistory().subscribe (t =>{
-        //       this.Chart = t;
-        //       this.dataSource = this.Chart;
-        //       let data = [];
-        //         let data2 = [];
-        //       this.dataSource.forEach(element => {
-        //         var arr = [new Date(element.date).getTime() / 1000,element.close];
-        //         var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
-        //         data.push(arr);
-        //         data2.push(arr1);
-        //       });
-        //       this.chartOptions = {
-        //         series: [{
-        //             name: 'AAPL',
-        //             type: 'line',
-        //             data: data,
-        //             gapSize: 5,
-        //             tooltip: {
-        //                 valueDecimals: 2
-        //             },
-        //             fillColor: {
-        //                 linearGradient: {
-        //                     x1: 0,
-        //                     y1: 0,
-        //                     x2: 0,
-        //                     y2: 1
-        //                 },
-        //                 stops: [
-        //                     [0, Highcharts.getOptions().colors[0]]
-        //                 ]
-        //             }},
-        //             {
-        //               name: 'AAPL',
-        //               type: 'line',
-        //               data: data2,
-        //               gapSize: 5,
-        //               tooltip: {
-        //                   valueDecimals: 2
-        //               },
-        //               fillColor: {
-        //                   linearGradient: {
-        //                       x1: 0,
-        //                       y1: 0,
-        //                       x2: 0,
-        //                       y2: 1
-        //                   },
-        //                   stops: [
-        //                       [0, Highcharts.getOptions().colors[0]]
-        //                   ]
-        //               }},
-        //       ]
-        //     };
-        // });
-        //  this.StockQuote = this.detailservice.getStockInfo();
+        this.detailservice.getStockHistory().subscribe(function (t) {
+            _this.Chart = t;
+            _this.dataSource = _this.Chart;
+            var data = [];
+            var data2 = [];
+            _this.dataSource.forEach(function (element) {
+                var arr = [new Date(element.date).getTime(), element.close];
+                var arr1 = [new Date(element.date).getTime(), element.close * 2];
+                data.push(arr);
+                data2.push(arr1);
+            });
+            _this.chartOptions = {
+                series: [{
+                        name: 'AAPL',
+                        type: 'line',
+                        data: data,
+                        gapSize: 5,
+                        tooltip: {
+                            valueDecimals: 2
+                        },
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]]
+                            ]
+                        }
+                    },
+                ]
+            };
+        });
+        this.StockQuote = this.detailservice.getStockInfo();
         //     this.chartOptions= {
         //       rangeSelector: {
         //         selected: 2
@@ -141,13 +139,16 @@ var DetailComponent = /** @class */ (function () {
             return 'green';
         }
     };
+    DetailComponent.prototype.OnClick = function () {
+        this.router.navigate(["dashboard/payment"]);
+    };
     DetailComponent = __decorate([
         Component({
             selector: 'app-detail',
             templateUrl: './detail.component.html',
             styleUrls: ['./detail.component.css']
         }),
-        __metadata("design:paramtypes", [DetailstockService])
+        __metadata("design:paramtypes", [DetailstockService, Router, AuthService])
     ], DetailComponent);
     return DetailComponent;
 }());

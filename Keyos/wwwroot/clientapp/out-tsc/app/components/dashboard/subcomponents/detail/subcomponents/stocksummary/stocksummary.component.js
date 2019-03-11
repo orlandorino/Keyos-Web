@@ -28,13 +28,16 @@ var StocksummaryComponent = /** @class */ (function () {
     }
     StocksummaryComponent.prototype.ngOnInit = function () {
         // if IEX api is being use comment out to not waste api calls 
-        // this.detailstock.getStockCompanyInfo().subscribe( val =>{this.CompanyInfo = val
-        // console.log(this.CompanyInfo,"test")
-        // });
-        // this.detailstock.getStockStats().subscribe(val1 => {this.CompanyStats = val1
-        //   console.log(this.CompanyStats)
-        // });
-        // this.StockQuote = this.detailstock.getStockInfo();
+        var _this = this;
+        this.detailstock.getStockCompanyInfo().subscribe(function (val) {
+            _this.CompanyInfo = val;
+            console.log(_this.CompanyInfo, "test");
+        });
+        this.detailstock.getStockStats().subscribe(function (val1) {
+            _this.CompanyStats = val1;
+            console.log(_this.CompanyStats);
+        });
+        this.StockQuote = this.detailstock.getStockInfo();
     };
     StocksummaryComponent = __decorate([
         Component({

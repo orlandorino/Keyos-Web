@@ -27,7 +27,7 @@ var DetailstockService = /** @class */ (function () {
         return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/company");
     };
     DetailstockService.prototype.getStockHistory = function () {
-        return this.http.get("https://api.iextrading.com/1.0/stock/" + +"/chart/1y");
+        return this.http.get("https://api.iextrading.com/1.0/stock/" + this.symbol + "/chart/1y");
     };
     DetailstockService.prototype.GetBuySellInitial = function () {
         var headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');

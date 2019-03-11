@@ -10,7 +10,7 @@
       </div>
       <div fxFlex="11">
         <span>Forecast Accuracy:<span style="color:green">78%</span> </span>
-        <button class="buysell" mat-flat-button color="primary" > BUY</button>
+        <button class="buysell" mat-flat-button color="primary" *ngIf="TempUserRole =='PremiumUser'">{{BuyOrSell}}</button>
       </div>
       
      </div>   
@@ -26,15 +26,15 @@
     </highcharts-chart>
     </mat-tab>
     <mat-tab label="Forecasted">
-      <div *ngIf="UserRole == 'User' || TempUserRole =='User'">
-          <p style="margin:20%">
+      <div *ngIf="TempUserRole =='User'">
+          <p style="margin:5%;margin-bottom:2%;text-align:center">
               You are a free user. You must become a premium user for this stock to access forcasted data.
 
             </p>  
-              <br>
-              <button mat-raised-button color="primary" (click)="OnClick()">Buy Now</button>
+              
+              <button mat-raised-button color="primary" style="margin-left:50%" (click)="OnClick()">Buy Now</button>
       </div> 
-      <div *ngIf="UserRole =='PremiumUser'">
+      <div *ngIf="TempUserRole =='PremiumUser'">
           <app-premium-user></app-premium-user>
       </div>
     

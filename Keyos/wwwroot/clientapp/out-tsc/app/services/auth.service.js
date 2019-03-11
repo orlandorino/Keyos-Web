@@ -9,17 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
+import * as jwt_decode from "jwt-decode";
 var AuthService = /** @class */ (function () {
     function AuthService(jwtHelper) {
         this.jwtHelper = jwtHelper;
+        this.token = localStorage.getItem("jwt");
+        this.UserRole = 'User';
     }
     AuthService.prototype.isUserAuthenticated = function () {
-        var token = localStorage.getItem("jwt");
-        if (token && !this.jwtHelper.isTokenExpired(token)) {
+        if (this.token && !this.jwtHelper.isTokenExpired(this.token)) {
             return true;
         }
         else {
             return false;
+        }
+    };
+    AuthService.prototype.getDecodedAccessToken = function () {
+        try {
+            console.log(jwt_decode(this.token));
+            return jwt_decode(this.token);
+        }
+        catch (Error) {
+            return null;
         }
     };
     AuthService = __decorate([

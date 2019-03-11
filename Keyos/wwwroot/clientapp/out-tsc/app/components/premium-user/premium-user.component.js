@@ -34,17 +34,18 @@ var PremiumUserComponent = /** @class */ (function () {
                 [1293753600000, 20.08]]
         };
         this.detailservice.GetForecastedData().subscribe(function (t) {
-            // this.Chart = t;
-            // this.dataSource = this.Chart;
             var data = [];
             // let data2 = [];
-            _this.dataSource.forEach(function (element) {
-                var arr = [new Date(element.date).getTime(), element.close];
+            t.forEach(function (element) {
+                var arr = [element.date, element.price];
                 // var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
                 data.push(arr);
                 // data2.push(arr1);
             });
             _this.chartOptions = {
+                title: {
+                    text: "Forecast"
+                },
                 series: [{
                         name: 'AAPL',
                         type: 'line',
@@ -54,32 +55,6 @@ var PremiumUserComponent = /** @class */ (function () {
                             valueDecimals: 2
                         },
                         fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]]
-                            ]
-                        }
-                    },
-                    {
-                        name: 'AAPL',
-                        type: 'line',
-                        data: data,
-                        gapSize: 5,
-                        tooltip: {
-                            valueDecimals: 2
-                        },
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
                             stops: [
                                 [0, Highcharts.getOptions().colors[0]]
                             ]
@@ -88,55 +63,43 @@ var PremiumUserComponent = /** @class */ (function () {
                 ]
             };
         });
-        //  this.chartOptions = {   
-        //     chart: {
-        //        type: "spline"
-        //     },
-        //     title: {
-        //        text: "Monthly Average Temperature"
-        //     },
-        //     subtitle: {
-        //        text: "Source: WorldClimate.com"
-        //     },
-        //     xAxis:{
-        //        categories:["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        //           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        //     },
-        //     yAxis: {          
-        //        title:{
-        //           text:"Temperature °C"
-        //        } 
-        //     },
-        //     tooltip: {
-        //        valueSuffix:" °C"
-        //     },
-        //     series: [
-        //       {
-        //         name: 'Tokyo',
-        //         marker: {
-        //            symbol: 'square'
-        //         },
-        //         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
-        //            y: 26.5,
-        //            marker: {
-        //               symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
-        //            }
-        //         }, 23.3, 18.3, 13.9, 9.6]
-        //      }, 
-        //      {
-        //         name: 'London',
-        //         marker: {
-        //            symbol: 'diamond'
-        //         },
-        //         data: [{
-        //            y: 3.9,
-        //            marker: {
-        //               symbol: 'url(http://www.highcharts.com/demo/gfx/snow.png)'
-        //            }
-        //         }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        //      }
-        //     ]
-        //  };
+        var buysell = [];
+        var dates = [];
+        this.detailservice.GetBuySellInitial().subscribe(function (data) {
+            data.forEach(function (element) {
+                var arr = {
+                    y: element.price,
+                    marker: {
+                        symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
+                    }
+                };
+                dates.push(element.date);
+                buysell.push(arr);
+            });
+            _this.chartOptions2 = {
+                chart: {
+                    type: "spline"
+                },
+                title: {
+                    text: "Buy/Sell Chart"
+                },
+                tooltip: {
+                    valueDecimals: 2
+                },
+                xAxis: {
+                    date: dates
+                },
+                series: [
+                    {
+                        name: 'AAPL',
+                        marker: {
+                            symbol: 'square'
+                        },
+                        data: buysell
+                    },
+                ]
+            };
+        });
     };
     PremiumUserComponent = __decorate([
         Component({
