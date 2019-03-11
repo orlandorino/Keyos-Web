@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StockTable } from '../../models/StockModel';
 import * as Highcharts from 'highcharts/highstock';
 import { DetailstockService } from '../../services/detailstock.service';
+import { BuySell } from '../../models/StockSummary';
 @Component({
   selector: 'app-premium-user',
   templateUrl: './premium-user.component.html',
@@ -14,6 +15,7 @@ export class PremiumUserComponent implements OnInit {
   dataSource = this.Chart;
   //chartConstructor = 'stockChart';
  chartOptions: any;
+ chartOptions2:any;
 
  
 
@@ -48,6 +50,9 @@ export class PremiumUserComponent implements OnInit {
           // data2.push(arr1);
         });
         this.chartOptions = {
+          title: {
+            text: "Forecast"
+          }, 
           series: [{
               name: 'AAPL',
               type: 'line',
@@ -56,68 +61,57 @@ export class PremiumUserComponent implements OnInit {
               tooltip: {
                   valueDecimals: 2
               },
-              title: {
-                text: "Forecast"
-            }, 
+              
               fillColor: {
                   stops: [
                       [0, Highcharts.getOptions().colors[0]]
                   ]
-              }},   
-        ]
+              }},
+            ]
       };
   });
-
-
+let buysell = [];
+let dates =[];
+this.detailservice.GetBuySellInitial().subscribe(data => 
+  {
+    data.forEach(element => {
+      var arr = {
+        y: element.price,
+        marker: {
+           symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
+        }
+     };
+     dates.push(element.date)
+     
+      buysell.push(arr);
+   
+    });
+    this.chartOptions2 = {   
+      chart: {
+         type: "spline"
+      },
+      title: {
+         text: "Buy/Sell Chart"
+      },
+      tooltip: {
+        valueDecimals: 2
+      },
+      xAxis:{
+        date:dates
+     },
+      series: [
+        {
+          name: 'AAPL',
+          marker: {
+             symbol: 'square'
+          },
+          data:buysell
+       },
+      ]
+   };
+  }
+);
   
-//  this.chartOptions = {   
-//     chart: {
-//        type: "spline"
-//     },
-//     title: {
-//        text: "Monthly Average Temperature"
-//     },
-//     subtitle: {
-//        text: "Source: WorldClimate.com"
-//     },
-//     xAxis:{
-//        categories:["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-//           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-//     },
-//     yAxis: {          
-//        title:{
-//           text:"Temperature °C"
-//        } 
-//     },
-//     tooltip: {
-//        valueSuffix:" °C"
-//     },
-//     series: [
-//       {
-//         name: 'Tokyo',
-//         marker: {
-//            symbol: 'square'
-//         },
-//         data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
-//            y: 26.5,
-//            marker: {
-//               symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
-//            }
-//         }, 23.3, 18.3, 13.9, 9.6]
-//      }, 
-//      {
-//         name: 'London',
-//         marker: {
-//            symbol: 'diamond'
-//         },
-//         data: [{
-//            y: 3.9,
-//            marker: {
-//               symbol: 'url(http://www.highcharts.com/demo/gfx/snow.png)'
-//            }
-//         }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-//      }
-//     ]
-//  };
+
   }
 }

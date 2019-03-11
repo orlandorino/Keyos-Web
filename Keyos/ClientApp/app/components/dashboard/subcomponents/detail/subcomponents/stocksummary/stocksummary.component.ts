@@ -33,13 +33,13 @@ export class StocksummaryComponent implements OnInit {
 
     // if IEX api is being use comment out to not waste api calls 
 
-      // this.detailstock.getStockCompanyInfo().subscribe( val =>{this.CompanyInfo = val
-      // console.log(this.CompanyInfo,"test")
-      // });
-      // this.detailstock.getStockStats().subscribe(val1 => {this.CompanyStats = val1
-      //   console.log(this.CompanyStats)
-      // });
-      // this.StockQuote = this.detailstock.getStockInfo();
+      this.detailstock.getStockCompanyInfo().subscribe( val =>{this.CompanyInfo = val
+      console.log(this.CompanyInfo,"test")
+      });
+      this.detailstock.getStockStats().subscribe(val1 => {this.CompanyStats = val1
+        console.log(this.CompanyStats)
+      });
+      this.StockQuote = this.detailstock.getStockInfo();
   
   }
 

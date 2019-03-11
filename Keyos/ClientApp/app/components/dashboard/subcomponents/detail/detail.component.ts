@@ -37,7 +37,15 @@ export class DetailComponent implements OnInit {
 
 
   ngOnInit() {
-    this.detailservice.symbol ='aapl'
+
+    this.detailservice.GetBuySellLatest().subscribe(x=>{
+        if(x.buySell == "true")
+        {
+          this.BuyOrSell = "BUY"
+        }else{
+          this.BuyOrSell ="SELL"
+        }
+    });
       this.detailservice.GetBuySellInitial().subscribe(x=>{
         
         console.log(x)})
@@ -129,7 +137,7 @@ export class DetailComponent implements OnInit {
      
 
       
-  //  this.StockQuote = this.detailservice.getStockInfo();
+  this.StockQuote = this.detailservice.getStockInfo();
 
 
 
