@@ -23,13 +23,12 @@ export class ChartComponent implements OnInit {
     arr: StockModel[] = [];
     arr1: any[] = [];
     Highcharts = Highcharts;
+    loading = true;
 
     chartConstructor = 'stockChart';
     chartOptions: any;
     public apps: StockModel[];
     ngOnInit() {
-
-
 
         this.stockData.getStockData().subscribe(t => {
             this.arr = t as StockModel[];
@@ -64,6 +63,7 @@ export class ChartComponent implements OnInit {
                 }]
             };
         });
+        this.loading = false;
         console.log(this.arr1);
     }
 }

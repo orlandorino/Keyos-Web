@@ -35,7 +35,8 @@ export class DetailComponent implements OnInit {
   ,previousClose:10.4};
 
   UserRole ='';
-  jwtToken;
+    jwtToken;
+    loading = true;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';
   
@@ -116,7 +117,7 @@ export class DetailComponent implements OnInit {
                   stops: [
                       [0, Highcharts.getOptions().colors[0]]
                   ]
-
+                  
               }},
               // {
               //   name: 'AAPL',
@@ -141,7 +142,8 @@ export class DetailComponent implements OnInit {
               //   }},
               
         ]
-      };
+          };
+          this.loading = false;
   });
 
      

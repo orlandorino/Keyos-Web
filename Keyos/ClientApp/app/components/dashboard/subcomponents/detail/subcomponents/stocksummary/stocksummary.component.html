@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<div fxLayout="row" *ngIf="!loading">
   <div fxLayout="column" fxLayoutAlign="space-evenly" style="display:inline-block"   fxFlex="50">
     <p style="margin-top:2%">
      {{CompanyInfo.description}}

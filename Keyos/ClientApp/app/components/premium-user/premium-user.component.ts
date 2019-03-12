@@ -15,8 +15,8 @@ export class PremiumUserComponent implements OnInit {
   dataSource = this.Chart;
   //chartConstructor = 'stockChart';
  chartOptions: any;
- chartOptions2:any;
-
+    chartOptions2: any;
+    loading = true;
  
 
   constructor(private detailservice:DetailstockService) { }
@@ -111,7 +111,7 @@ this.detailservice.GetBuySellInitial().subscribe(data =>
    };
   }
 );
-  
+      this.loading = false;
 
   }
 }
