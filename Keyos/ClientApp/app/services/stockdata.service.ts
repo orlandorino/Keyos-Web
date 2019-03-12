@@ -15,5 +15,5 @@ export class StockdataService {
         let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
         return this.http.get<StockModel[]>("http://localhost:5000/api/Stocks?stockID=msft", { headers });
     }
-
+   
 }

@@ -38,6 +38,8 @@ export class DetailComponent implements OnInit {
   TempUserRole = this.auth.UserRole;
   jwtToken;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
+  BuyOrSell:string = '';
+  
 
 
   ngOnInit() {
@@ -46,6 +48,18 @@ export class DetailComponent implements OnInit {
     this.UserRole = this.jwtToken.role;
   
 
+
+    this.detailservice.GetBuySellLatest().subscribe(x=>{
+        if(x.buySell == "true")
+        {
+          this.BuyOrSell = "BUY"
+        }else{
+          this.BuyOrSell ="SELL"
+        }
+    });
+      this.detailservice.GetBuySellInitial().subscribe(x=>{
+        
+        console.log(x)})
 
     var seriesOptions = [];
 
@@ -70,8 +84,8 @@ export class DetailComponent implements OnInit {
         let data = [];
           let data2 = [];
         this.dataSource.forEach(element => {
-          var arr = [new Date(element.date).getTime() / 1000,element.close];
-          var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
+          var arr = [new Date(element.date).getTime(),element.close];
+          var arr1 = [new Date(element.date).getTime(),element.close * 2];
           data.push(arr);
           data2.push(arr1);
 
@@ -105,27 +119,27 @@ export class DetailComponent implements OnInit {
                   ]
 
               }},
-              {
-                name: 'AAPL',
-                type: 'line',
-                data: data2,
-                gapSize: 5,
-                tooltip: {
-                    valueDecimals: 2
-                },
-                fillColor: {
-                    linearGradient: {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
+              // {
+              //   name: 'AAPL',
+              //   type: 'line',
+              //   data: data2,
+              //   gapSize: 5,
+              //   tooltip: {
+              //       valueDecimals: 2
+              //   },
+              //   fillColor: {
+              //       linearGradient: {
+              //           x1: 0,
+              //           y1: 0,
+              //           x2: 0,
+              //           y2: 1
+              //       },
   
-                    stops: [
-                        [0, Highcharts.getOptions().colors[0]]
-                    ]
+              //       stops: [
+              //           [0, Highcharts.getOptions().colors[0]]
+              //       ]
   
-                }},
+              //   }},
               
         ]
       };
@@ -134,7 +148,7 @@ export class DetailComponent implements OnInit {
      
 
       
-   this.StockQuote = this.detailservice.getStockInfo();
+  this.StockQuote = this.detailservice.getStockInfo();
 
 
 

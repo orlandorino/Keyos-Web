@@ -8,7 +8,11 @@
           <mat-card-subtitle >{{StockQuote.latestPrice}} <span  [ngStyle]="{'color': getColor(StockQuote.change)}">{{StockQuote.change}}({{StockQuote.changePercent | number}}%)</span></mat-card-subtitle>
           <mat-card-subtitle ><span style="font-size:10px"> {{StockQuote.latestSource}} as of {{StockQuote.latestTime}} </span></mat-card-subtitle>
       </div>
-      <span fxFlex="11">Forecast Accuracy:<span style="color:green">78% <mat-icon>arrow_upward</mat-icon></span> </span>
+      <div fxFlex="11">
+        <span>Forecast Accuracy:<span style="color:green">78%</span> </span>
+        <button class="buysell" mat-flat-button color="primary" *ngIf="TempUserRole =='PremiumUser'">{{BuyOrSell}}</button>
+      </div>
+      
      </div>   
   </mat-card-header>
 
@@ -22,16 +26,16 @@
     </highcharts-chart>
     </mat-tab>
     <mat-tab label="Forecasted">
-      <div *ngIf="UserRole == 'User' || TempUserRole =='User'">
-          <p style="margin:20%">
+      <div *ngIf="TempUserRole =='User'">
+          <p style="margin:5%;margin-bottom:2%;text-align:center">
               You are a free user. You must become a premium user for this stock to access forcasted data.
 
             </p>  
-              <br>
-              <button mat-raised-button color="primary" (click)="OnClick()">Buy Now</button>
+              
+              <button mat-raised-button color="primary" style="margin-left:50%" (click)="OnClick()">Buy Now</button>
       </div> 
-      <div *ngIf="UserRole =='PremiumUser'">
-        <p>Subscribed</p>
+      <div *ngIf="TempUserRole =='PremiumUser'">
+          <app-premium-user></app-premium-user>
       </div>
     
    

@@ -33,11 +33,23 @@ var DetailComponent = /** @class */ (function () {
             previousClose: 10.4 };
         this.UserRole = 'User';
         this.TempUserRole = this.auth.UserRole;
+        this.BuyOrSell = '';
     }
     DetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.jwtToken = this.auth.getDecodedAccessToken();
         this.UserRole = this.jwtToken.role;
+        this.detailservice.GetBuySellLatest().subscribe(function (x) {
+            if (x.buySell == "true") {
+                _this.BuyOrSell = "BUY";
+            }
+            else {
+                _this.BuyOrSell = "SELL";
+            }
+        });
+        this.detailservice.GetBuySellInitial().subscribe(function (x) {
+            console.log(x);
+        });
         var seriesOptions = [];
         seriesOptions[0] = {
             name: 'aapl',
@@ -57,8 +69,8 @@ var DetailComponent = /** @class */ (function () {
             var data = [];
             var data2 = [];
             _this.dataSource.forEach(function (element) {
-                var arr = [new Date(element.date).getTime() / 1000, element.close];
-                var arr1 = [new Date(element.date).getTime() / 1000, element.close * 2];
+                var arr = [new Date(element.date).getTime(), element.close];
+                var arr1 = [new Date(element.date).getTime(), element.close * 2];
                 data.push(arr);
                 data2.push(arr1);
             });
@@ -67,26 +79,6 @@ var DetailComponent = /** @class */ (function () {
                         name: 'AAPL',
                         type: 'line',
                         data: data,
-                        gapSize: 5,
-                        tooltip: {
-                            valueDecimals: 2
-                        },
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]]
-                            ]
-                        }
-                    },
-                    {
-                        name: 'AAPL',
-                        type: 'line',
-                        data: data2,
                         gapSize: 5,
                         tooltip: {
                             valueDecimals: 2

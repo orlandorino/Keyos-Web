@@ -42,7 +42,7 @@ namespace Keyos.Controllers
                 return _context.stocks.Where(c => c.Symbol == stockID);
             }
 
-            return _context.stocks;
+            return null;
         }
 
         //// GET: api/Stocks/5
