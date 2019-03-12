@@ -1,0 +1,5 @@
+stocks:
+    - 'amzn'
+    - 'ROKU'
+    - '%5EDJI'
+interval: '1d'
