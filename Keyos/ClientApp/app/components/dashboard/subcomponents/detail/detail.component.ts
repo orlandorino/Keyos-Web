@@ -10,7 +10,7 @@ import { StockTable } from '../../../../models/StockModel';
 import { StockdataService } from '../../../../services/stockdata.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
-
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-detail',
@@ -33,33 +33,33 @@ export class DetailComponent implements OnInit {
   latestSource: "Close",
   latestTime:"February 22, 2019"
   ,previousClose:10.4};
-
+  token: string = localStorage.getItem("jwt");
   UserRole ='';
-    jwtToken;
-    loading = true;
+  loading = true;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';
   
 
 
   ngOnInit() {
+    let jwtToken = jwt_decode(this.token);
+    this.UserRole = jwtToken.role; 
 
-    this.jwtToken = this.auth.getDecodedAccessToken();
-    this.UserRole = this.jwtToken.role;
+      if (this.UserRole == 'PremiumUser') {
+          this.detailservice.GetBuySellLatest().subscribe(x => {
+              if (x.buySell == "true") {
+                  this.BuyOrSell = "BUY"
+              } else {
+                  this.BuyOrSell = "SELL"
+              }
+          });
+          this.detailservice.GetBuySellInitial().subscribe(x => {
+
+              console.log(x)
+          })
+      }
+
   
-
-
-    this.detailservice.GetBuySellLatest().subscribe(x=>{
-        if(x.buySell == "true")
-        {
-          this.BuyOrSell = "BUY"
-        }else{
-          this.BuyOrSell ="SELL"
-        }
-    });
-      this.detailservice.GetBuySellInitial().subscribe(x=>{
-        
-        console.log(x)})
 
     var seriesOptions = [];
 
