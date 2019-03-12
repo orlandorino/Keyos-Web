@@ -34,8 +34,7 @@ export class DetailComponent implements OnInit {
   latestTime:"February 22, 2019"
   ,previousClose:10.4};
 
-  UserRole ='User';
-  TempUserRole = this.auth.UserRole;
+  UserRole ='';
   jwtToken;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';

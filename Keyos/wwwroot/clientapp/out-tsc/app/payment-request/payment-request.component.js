@@ -118,6 +118,8 @@ var PaymentRequestComponent = /** @class */ (function () {
                             // this.Success = true;
                             // Processing charge in backend
                             this.payment.SendToken(token).subscribe(function (response) {
+                                var token = response.token;
+                                localStorage.setItem("jwt", token);
                                 _this.Success = true;
                                 _this.Auth.UserRole = 'PremiumUser';
                             }), function (err) {

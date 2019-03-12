@@ -91,7 +91,9 @@ export class PaymentRequestComponent implements AfterViewInit, OnDestroy {
      // Processing charge in backend
       this.payment.SendToken(token).subscribe(response =>
         
-        {
+      {
+          let token = (<any>response).token;
+          localStorage.setItem("jwt", token);
           this.Success = true;
           this.Auth.UserRole = 'PremiumUser';
         }),err =>{
