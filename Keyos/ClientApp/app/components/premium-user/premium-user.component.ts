@@ -16,7 +16,8 @@ export class PremiumUserComponent implements OnInit {
   //chartConstructor = 'stockChart';
  chartOptions: any;
     chartOptions2: any;
-    loading = true;
+    loadingBuySell = true;
+    loadingForecast = true;
  
 
   constructor(private detailservice:DetailstockService) { }
@@ -68,7 +69,8 @@ export class PremiumUserComponent implements OnInit {
                   ]
               }},
             ]
-      };
+            };
+            this.loadingForecast = false;
   });
 let buysell = [];
 let dates =[];
@@ -111,7 +113,7 @@ this.detailservice.GetBuySellInitial().subscribe(data =>
    };
   }
 );
-      this.loading = false;
+      this.loadingBuySell = false;
 
   }
 }
