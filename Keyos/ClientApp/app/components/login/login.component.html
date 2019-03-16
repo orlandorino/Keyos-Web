@@ -1,16 +1,12 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
 <div class="columns" style="margin:0px">
-    <div class="column is-half" style="background-color:red; overflow:auto;
-    background-image: url(https://images.pexels.com/photos/1558732/pexels-photo-1558732.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
-    background-size:cover;
-    min-height: 100vh;">
-            </div>
-    <div class="column">
-
+    <div id="leftLoginColumn" class="column is-three-fifths">
+    </div>
+    <div id="rightLoginColumn" class="column">
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-            <mat-card class="example-card" style="margin-top:200px">
-                <h1 class="display1" style="font-weight:400; font-size:32px">Welcome to Keyos</h1>
+            <mat-card class="example-card">
+                <h1 class="display1">Welcome to Keyos</h1>
                 <mat-card-content>
                     <mat-form-field class="field" color="accent">
                         <mat-label>Username</mat-label>
