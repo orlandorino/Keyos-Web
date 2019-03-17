@@ -14,27 +14,30 @@
         </div>   
     </mat-card-header>
     <mat-tab-group>
-      <mat-tab label="Historical Data">
-          <highcharts-chart style="width: 100%; display: block;"
-          [Highcharts]="Highcharts"
-          [constructorType]="'stockChart'"
-          [options]="chartOptions">
-          </highcharts-chart>
+        <mat-tab label="Historical Data">
+            <highcharts-chart style="width: 100%; display: block;"
+                              [Highcharts]="Highcharts"
+                              [constructorType]="'stockChart'"
+                              [options]="chartOptions">
+            </highcharts-chart>
         </mat-tab>
         <mat-tab label="Forecasted">
             <div *ngIf="TempUserRole =='User'">
                 <p style="margin:5%;margin-bottom:2%;text-align:center">
                     You are a free user. You must become a premium user for this stock to access forcasted data.
-                </p>  
+                </p>
                 <button mat-raised-button color="primary" style="margin-left:50%" (click)="OnClick()">Buy Now</button>
-            </div> 
+            </div>
             <div *ngIf="TempUserRole =='PremiumUser'">
                 <app-premium-user></app-premium-user>
             </div>
         </mat-tab>
         <mat-tab label="Past Accuracy">
         </mat-tab>
-      </mat-tab-group>
+        <mat-tab label="Stock Sentiment">
+            <app-stocksentiment></app-stocksentiment>
+        </mat-tab>
+    </mat-tab-group>
       <mat-accordion class=" mat-elevation-z0" >
           <mat-expansion-panel  class=" mat-elevation-z0" >
             <mat-expansion-panel-header>

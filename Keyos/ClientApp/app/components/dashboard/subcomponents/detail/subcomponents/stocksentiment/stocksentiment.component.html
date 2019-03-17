@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
+
+<div class="container is-fullhd" style="padding-top:30px;">
+    <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+                <div class="content">
+                    <p class="title">40%</p>
+                    <p class="subtitle">Positve</p>
+                    <div class="content">
+                        <!-- Content -->
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+                <div class="content is-centered">
+                    <p class="title">30%</p>
+                    <p class="subtitle">Negative</p>
+                    <div class="content">
+                        <!-- Content -->
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+<div class="container is-fullhd" style="padding-top:25px;">
+
+    <div class="columns">
+        <div class="column">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Positive Tweets</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let hero of heroes">
+                        <th>{{hero.name}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Negative Tweets</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let hero of heroes1">
+                        <th>{{hero.name}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       </div>
+       
+    </div>
+
+
