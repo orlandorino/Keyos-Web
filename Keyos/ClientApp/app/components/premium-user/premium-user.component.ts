@@ -44,9 +44,11 @@ export class PremiumUserComponent implements OnInit {
         let data = [];
           // let data2 = [];
         t.forEach(element => {
-          var arr = [element.date,element.price];
+          var arr = [Number(element.date),element.price];
           // var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
           data.push(arr);
+  
+
           // data2.push(arr1);
         });
         this.chartOptions = {

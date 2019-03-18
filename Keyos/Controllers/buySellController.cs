@@ -35,7 +35,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.forecastTable.Where(c => c.Symbol == stockID);
+                return _context.forecastTable1.Where(c => c.Symbol == stockID);
             }
 
             return null;
