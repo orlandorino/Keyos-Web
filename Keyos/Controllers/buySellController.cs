@@ -48,7 +48,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.buySellTable.Where(c => c.Symbol == stockID);
+                return _context.buySellTable1.Where(c => c.Symbol == stockID);
             }
 
             return null;
@@ -61,7 +61,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                var temp = _context.buySellTable.OrderBy(d => d.date).Where(c => c.Symbol == stockID).First();
+                var temp = _context.buySellTable1.OrderBy(d => d.date).Where(c => c.Symbol == stockID).First();
 
                 return temp;
             }

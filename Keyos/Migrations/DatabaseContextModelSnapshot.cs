@@ -30,31 +30,16 @@ namespace Keyos.Migrations
 
                     b.Property<string>("date");
 
-                    b.Property<int>("price");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("buySell");
-                });
-
-            modelBuilder.Entity("Keyos.Models.Forecast", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Symbol");
-
-                    b.Property<string>("date");
+                    b.Property<string>("dateNonEpoch");
 
                     b.Property<int>("price");
 
                     b.HasKey("ID");
 
-                    b.ToTable("forecast");
+                    b.ToTable("buySellTable1");
                 });
 
-
+            
 #pragma warning restore 612, 618
         }
     }

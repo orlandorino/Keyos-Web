@@ -9,6 +9,8 @@ namespace Keyos.Models
         public int ID { get; set; }
         public string Symbol { get; set; }
         public string date { get; set; }
+
+        public string dateNonEpoch { get; set; }
         public int price { get; set; }
         public string buySell { get; set; }
     }
