@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using Keyos.Database;
+﻿using Keyos.Database;
 using Keyos.Entities;
 using Keyos.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace Keyos.Services
 {
@@ -17,6 +16,7 @@ namespace Keyos.Services
     public interface IUserService
     {
         User Authenticate(string username, string password);
+        User UpdateRole(int userID);
     }
 
     public class UserService : IUserService
@@ -79,6 +79,15 @@ namespace Keyos.Services
             //return user;
         }
 
+        public User UpdateRole(int userID)
+        {
+            var Logins = _context.Logins.ToList();
+            var User = Logins.Where(x => x.Id == userID).FirstOrDefault();
+            User.Role = "PremiumUser";
+            _context.SaveChanges();
+            var token = Authenticate(User.Username, User.Password);
+            return token;
 
+        }
     }
 }

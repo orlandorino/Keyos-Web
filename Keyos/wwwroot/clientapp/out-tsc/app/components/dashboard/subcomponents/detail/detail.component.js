@@ -31,8 +31,7 @@ var DetailComponent = /** @class */ (function () {
             latestSource: "Close",
             latestTime: "February 22, 2019",
             previousClose: 10.4 };
-        this.UserRole = 'User';
-        this.TempUserRole = this.auth.UserRole;
+        this.UserRole = '';
         this.BuyOrSell = '';
     }
     DetailComponent.prototype.ngOnInit = function () {

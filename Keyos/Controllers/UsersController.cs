@@ -1,11 +1,11 @@
-﻿using System;
-using Keyos.Entities;
+﻿using Keyos.Entities;
 using Keyos.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Stripe;
+using System;
+using System.Security.Claims;
 
 namespace Keyos.Controllers
 {
@@ -50,7 +50,9 @@ namespace Keyos.Controllers
         [HttpPost, Route("processpayment")]
         public IActionResult ProcessPayment([FromBody] Models.Payment.Token token)
         {
-
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = int.Parse(claimsIdentity.FindFirst(ClaimTypes.Name)?.Value);
+            var jwt = _userService.UpdateRole(userId);
 
             var CustomerOptions = new CustomerCreateOptions
             {
@@ -94,7 +96,7 @@ namespace Keyos.Controllers
             //var SubscriptionService = new SubscriptionService();
             //Subscription subscription = SubscriptionService.Create(SubscriptionOptions);
 
-            return Ok(token);
+            return Ok(jwt);
         }
     }
 
