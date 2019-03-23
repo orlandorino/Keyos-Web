@@ -70,6 +70,19 @@ namespace Keyos.Controllers
         }
 
 
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("forecastAccuracyList")]
+        public IEnumerable<ForecastAccuracy> getForecastAccuracy(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.forecastAccuracy.Where(c => c.Symbol == stockID);
+            }
+
+            return null;
+        }
+
+
 
     }
 }

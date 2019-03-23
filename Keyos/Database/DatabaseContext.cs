@@ -15,6 +15,8 @@ namespace Keyos.Database
 
         public DbSet<Forecast> forecastTable1 { get; set; }
 
+        public DbSet<ForecastAccuracy> forecastAccuracy { get; set; }
+
         //public DbSet<buySellList> buySellTable { get; set; }
         public DbSet<buySellList> buySellTable1 { get; set; }
 
