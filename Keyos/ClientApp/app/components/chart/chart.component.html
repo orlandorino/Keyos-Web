@@ -1,13 +1,7 @@
-<mat-card  style=" margin-left: 2%; margin-right:2%;margin-top:20px;">
-    <mat-card-content>
-        <div *ngIf="!loading && chartOptions">
-
+<div *ngIf="chartOptions">
             <highcharts-chart style="width: 100%; display: block;"
                               [Highcharts]="Highcharts"
                               [constructorType]="'stockChart'"
                               [options]="chartOptions">
             </highcharts-chart>
-        </div>
-      
-    </mat-card-content> 
-  </mat-card>
+        </div> 

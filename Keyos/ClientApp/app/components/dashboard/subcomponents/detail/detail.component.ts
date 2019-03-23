@@ -36,8 +36,11 @@ export class DetailComponent implements OnInit {
   token: string = localStorage.getItem("jwt");
   UserRole ='';
   loading = true;
+  loaded = false;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';
+   data = [];
+   data2 = [];
   
 
 
@@ -81,69 +84,16 @@ export class DetailComponent implements OnInit {
       this.detailservice.getStockHistory().subscribe (t =>{
         this.Chart = t;
         this.dataSource = this.Chart;
-        let data = [];
-          let data2 = [];
+        
         this.dataSource.forEach(element => {
           var arr = [new Date(element.date).getTime(),element.close];
           var arr1 = [new Date(element.date).getTime(),element.close * 2];
-          data.push(arr);
-          data2.push(arr1);
+          this.data.push(arr);
+          this.data2.push(arr1);
 
         });
-
-       
-        
-
-
-
-        this.chartOptions = {
-
-          series: [{
-              name: 'AAPL',
-              type: 'line',
-              data: data,
-              gapSize: 5,
-              tooltip: {
-                  valueDecimals: 2
-              },
-              fillColor: {
-                  linearGradient: {
-                      x1: 0,
-                      y1: 0,
-                      x2: 0,
-                      y2: 1
-                  },
-
-                  stops: [
-                      [0, Highcharts.getOptions().colors[0]]
-                  ]
-                  
-              }},
-              // {
-              //   name: 'AAPL',
-              //   type: 'line',
-              //   data: data2,
-              //   gapSize: 5,
-              //   tooltip: {
-              //       valueDecimals: 2
-              //   },
-              //   fillColor: {
-              //       linearGradient: {
-              //           x1: 0,
-              //           y1: 0,
-              //           x2: 0,
-              //           y2: 1
-              //       },
-  
-              //       stops: [
-              //           [0, Highcharts.getOptions().colors[0]]
-              //       ]
-  
-              //   }},
-              
-        ]
-          };
           this.loading = false;
+          this.loaded = true;
   });
 
      

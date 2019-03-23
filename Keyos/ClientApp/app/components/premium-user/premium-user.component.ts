@@ -23,99 +23,98 @@ export class PremiumUserComponent implements OnInit {
   constructor(private detailservice:DetailstockService) { }
 
   ngOnInit() {
+this.detailservice.GetForecastedData().subscribe (t =>{
 
-    var seriesOptions = [];
-
-    seriesOptions[0] = {
-      name:'aapl',
-      data: [ [1293580800000, 46.47],
-      [1293667200000, 46.24],
-      [1293753600000, 46.08]]
-    };
-
-    seriesOptions[1] = {
-      name:'msft',
-      data: [ [1293580800000, 90.47],
-      [1293667200000, 100.24],
-      [1293753600000, 20.08]]
-    };
-
-        this.detailservice.GetForecastedData().subscribe (t =>{
-
-        let data = [];
-          // let data2 = [];
-        t.forEach(element => {
-          var arr = [Number(element.date),element.price];
-          // var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
-          data.push(arr);
+          let data = [];
+            // let data2 = [];
+          t.forEach(element => {
+            console.log("testtttsts",element);
+            var arr = [Number(element.date),element.price];
+            // var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
+            data.push(arr);
+    
   
-
-          // data2.push(arr1);
-        });
-        this.chartOptions = {
-          title: {
-            text: "Forecast"
-          }, 
-          series: [{
-              name: 'AAPL',
-              type: 'line',
-              data: data,
-              gapSize: 5,
-              tooltip: {
-                  valueDecimals: 2
-              },
-              
-              fillColor: {
-                  stops: [
-                      [0, Highcharts.getOptions().colors[0]]
-                  ]
-              }},
-            ]
-            };
-            this.loadingForecast = false;
-  });
-let buysell = [];
-let dates =[];
-this.detailservice.GetBuySellInitial().subscribe(data => 
-  {
-    data.forEach(element => {
-      var arr = {
-        y: element.price,
-        marker: {
-           symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
-        }
-     };
-     dates.push(element.date)
-     
-      buysell.push(arr);
+            // data2.push(arr1);
+          });
+          this.chartOptions = {
+            title: {
+              text: "Forecast"
+            }, 
+            
+      navigator: {
+        enabled: false
+    },
+    scrollbar: {
+        enabled: false
+    },
    
+            rangeSelector: {
+              selected: 1
+          },xAxis: {
+            type: 'datetime'
+        },
+            series: [{
+                name: 'AAPL',
+                data: data,  type: 'spline',
+                tooltip: {
+                    valueDecimals: 2
+                }}]
+              };
+              this.loadingForecast = false;
     });
-    this.chartOptions2 = {   
-      chart: {
-         type: "spline"
-      },
-      title: {
-         text: "Buy/Sell Chart"
-      },
-      tooltip: {
-        valueDecimals: 2
-      },
-      xAxis:{
-        date:dates
-     },
-      series: [
-        {
-          name: 'AAPL',
+  let buysell = [];
+  let dates =[];
+  this.detailservice.GetBuySellInitial().subscribe(data => 
+    {
+      data.forEach(element => {
+        var arr = {
+          y: element.price,
           marker: {
-             symbol: 'square'
-          },
-          data:buysell
+             symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
+          }
+       };
+       dates.push(element.date)
+       
+        buysell.push(arr);
+     
+      });
+      this.chartOptions2 = {   
+        chart: {
+           type: "spline"
+        },
+        title: {
+           text: "Buy/Sell Chart"
+        },
+        tooltip: {
+          valueDecimals: 2
+        },
+        xAxis:{
+          categories:dates
        },
-      ]
-   };
-  }
-);
-      this.loadingBuySell = false;
-
+        series: [
+          {
+            name: 'AAPL',
+            marker: {
+               symbol: 'square'
+            },
+            data:buysell
+         },
+        ]
+     };
+    }
+  );
+        this.loadingBuySell = false;
+  
   }
 }
+
+
+
+
+
+
+
+
+
+
+

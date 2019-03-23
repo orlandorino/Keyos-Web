@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
 
 import HC_exporting from 'highcharts/modules/exporting';
@@ -17,11 +17,13 @@ DarkUnicaTheme(Highcharts);
     styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-
+        @Input() chartData:any[];
+        @Input() chartData2:any[];
+        @Input() chartType:string;
+        @Input() Dates:any[];
     constructor(private stockData: StockdataService, private http: HttpClient) { }
 
-    arr: StockModel[] = [];
-    arr1: any[] = [];
+   
     Highcharts = Highcharts;
     loading = true;
 
@@ -30,40 +32,147 @@ export class ChartComponent implements OnInit {
     public apps: StockModel[];
     ngOnInit() {
 
-        this.stockData.getStockData().subscribe(t => {
-            this.arr = t as StockModel[];
-      
-            this.arr.forEach(data => { this.arr1.push([Number(data.date), data.high]) });
-
-
-            this.chartOptions = {
-
-                series: [{
-                    name: 'AAPL',
-                    type: 'area',
-                    data: this.arr1,
-                    gapSize: 5,
-                    tooltip: {
-                        valueDecimals: 2
+        this.DetermineChartFormat(this.chartType);
+       
+    }
+    DetermineChartFormat(formatName:string)
+    {
+        switch(formatName)
+        {
+            case "dashboard":
+            {
+            
+        this.chartOptions = {
+            series: [{
+                name: 'AAPL',
+                type: 'area',
+                data: this.chartData,
+                gapSize: 5,
+                tooltip: {
+                    valueDecimals: 2
+                },
+                fillColor: { 
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
                     },
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
+
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]]
+                    ]
+
+                },
+                threshold: null
+            }]
+        };
+        break;
+            }
+            case "Historical":
+            {
+                this.chartOptions = {
+
+                    series: [{
+                        name: 'AAPL',
+                        type: 'line',
+                        data: this.chartData,
+                        gapSize: 5,
+                        tooltip: {
+                            valueDecimals: 2
                         },
-
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]]
-                        ]
-
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+          
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]]
+                            ]
+                            
+                        }},
+                        // {
+                        //   name: 'AAPL',
+                        //   type: 'line',
+                        //   data: data2,
+                        //   gapSize: 5,
+                        //   tooltip: {
+                        //       valueDecimals: 2
+                        //   },
+                        //   fillColor: {
+                        //       linearGradient: {
+                        //           x1: 0,
+                        //           y1: 0,
+                        //           x2: 0,
+                        //           y2: 1
+                        //       },
+            
+                        //       stops: [
+                        //           [0, Highcharts.getOptions().colors[0]]
+                        //       ]
+            
+                        //   }},
+                        
+                  ]
+                    };
+                    break;
+            }
+            case "Forecast":
+            {
+                this.chartOptions = {
+                    title: {
+                      text: "Forecast"
+                    }, 
+                    series: [{
+                        name: 'AAPL',
+                        type: 'line',
+                        data: this.chartData,
+                        gapSize: 5,
+                        tooltip: {
+                            valueDecimals: 2
+                        },
+                        xAxis:{
+                                format:'datetime'
+                        },
+                       }]};
+                break;
+            }
+            case "BuySell":
+            {
+                this.chartOptions = {   
+                    chart: {
+                       type: "spline"
                     },
-                    threshold: null
-                }]
-            };
-        });
-        this.loading = false;
-        console.log(this.arr1);
+                    title: {
+                       text: "Buy/Sell Chart"
+                    },
+                    tooltip: {
+                      valueDecimals: 2
+                    },
+                    navigator: {
+                        enabled: false
+                    },
+                    scrollbar: {
+                        enabled: false
+                    },
+                    xAxis:{
+                      data:this.Dates
+                   },
+                    series: [
+                      {
+                        name: 'AAPL',
+                        marker: {
+                           symbol: 'square'
+                        },
+                        data:this.chartData
+                     },
+                    ]
+                 };
+                break;
+            }
+        }
     }
 }
