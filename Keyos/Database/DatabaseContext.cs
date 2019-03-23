@@ -13,6 +13,8 @@ namespace Keyos.Database
 
         public DbSet<Stock> stocks { get; set; }
 
+        public DbSet<stockNotEpoch> stocksNotEpoch { get; set; }
+
         public DbSet<Forecast> forecastTable1 { get; set; }
 
         public DbSet<ForecastAccuracy> forecastAccuracy { get; set; }

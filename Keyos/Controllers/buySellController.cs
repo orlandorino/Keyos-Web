@@ -82,6 +82,18 @@ namespace Keyos.Controllers
             return null;
         }
 
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("stocksNotEpoch")]
+        public IEnumerable<stockNotEpoch> getStocksNotEpoch(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID);
+            }
+
+            return null;
+        }
+
 
 
     }
