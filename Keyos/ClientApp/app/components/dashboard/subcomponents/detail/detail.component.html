@@ -16,13 +16,17 @@
   </mat-card-header>
 
 
-  <mat-tab-group style="width:100%;">
+  <mat-tab-group  style="width:100%;">
       <mat-tab label="Historical Data">
-        <div *ngIf="loaded">
+        <div >
         <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart>
         </div>
       </mat-tab>
       <mat-tab label="Past Accuracy">
+        <div  *ngIf="loadedHistoricalForecast && loadedActual">
+            <app-chart [chartData]="historicalForecastData" [chartData2]="historicalActual" [chartType]="'PastAccuracy'"></app-chart>
+        </div>
+        
         </mat-tab>
       <mat-tab label="Forecasted">
           <div *ngIf="UserRole =='User'">

@@ -75,6 +75,7 @@ export interface BuySell {
     date?:    Date;
     price?:   number;
     buySell?: string;
+    dateNonEpoch:Date;
 }
 
 

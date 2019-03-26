@@ -126,18 +126,26 @@ export class ChartComponent implements OnInit {
                     title: {
                       text: "Forecast"
                     }, 
+                    
+              navigator: {
+                enabled: false
+            },
+            scrollbar: {
+                enabled: false
+            },
+           
+                    rangeSelector: {
+                      selected: 1
+                  },xAxis: {
+                    type: 'datetime'
+                },
                     series: [{
                         name: 'AAPL',
-                        type: 'line',
-                        data: this.chartData,
-                        gapSize: 5,
+                        data: this.chartData,  type: 'spline',
                         tooltip: {
                             valueDecimals: 2
-                        },
-                        xAxis:{
-                                format:'datetime'
-                        },
-                       }]};
+                        }}]
+                      };
                 break;
             }
             case "BuySell":
@@ -172,6 +180,36 @@ export class ChartComponent implements OnInit {
                     ]
                  };
                 break;
+            }
+            case "PastAccuracy":
+            {
+                this.chartOptions = {
+                    xAxis: {
+                      type: 'datetime'
+                  },
+                    series: [{
+                        name: 'Forcasted',
+                       
+                        type: 'line',
+                        data: this.chartData,
+                        gapSize: 5,
+                        tooltip: {
+                            valueDecimals: 2
+                        },
+                        },
+                        {
+                          name: 'Actual',
+                          type: 'line',
+                          data: this.chartData2,
+                          gapSize: 5,
+                          tooltip: {
+                              valueDecimals: 2
+                          },
+                          },
+                          
+                        
+                  ]
+                };
             }
         }
     }

@@ -11,6 +11,7 @@ import { StockdataService } from '../../../../services/stockdata.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import * as jwt_decode from "jwt-decode";
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-detail',
@@ -37,10 +38,15 @@ export class DetailComponent implements OnInit {
   UserRole ='';
   loading = true;
   loaded = false;
+  loadedHistoricalForecast=false;
+  loadedActual = false;
   constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
   BuyOrSell:string = '';
    data = [];
    data2 = [];
+   historicalForecastData = [];
+   historicalActual=[];
+   PastAccuracyLoaded = false;
   
 
 
@@ -61,27 +67,7 @@ export class DetailComponent implements OnInit {
               console.log(x)
           })
       }
-
-  
-
-    var seriesOptions = [];
-
-    seriesOptions[0] = {
-      name:'aapl',
-      data: [ [1293580800000, 46.47],
-      [1293667200000, 46.24],
-      [1293753600000, 46.08]]
-    };
-
-    seriesOptions[1] = {
-      name:'msft',
-      data: [ [1293580800000, 90.47],
-      [1293667200000, 100.24],
-      [1293753600000, 20.08]]
-    };
-
-
-      this.detailservice.getStockHistory().subscribe (t =>{
+       this.detailservice.getStockHistory().subscribe (t =>{
         this.Chart = t;
         this.dataSource = this.Chart;
         
@@ -96,10 +82,32 @@ export class DetailComponent implements OnInit {
           this.loaded = true;
   });
 
-     
+  this.detailservice.GetForecastedHistory().subscribe(t=>
+    {
+      console.log(t);
+      t.forEach(element =>{
+        var arr = [new Date(element.date).getTime(),element.price];
+        this.historicalForecastData.push(arr);
+        
+      })
+      this.loadedHistoricalForecast = true;
+      console.log("forecast",this.historicalForecastData);
+    });
+
+    this.detailservice.GetActualHistoricalData().subscribe(t=>{
+      console.log("dat1",t)
+      t.forEach(element => {
+        let arr = [new Date(element.date).getTime(),element.close]
+
+        this.historicalActual.push(arr);
+       
+      })
+      this.loadedActual = true;
+      
+    })
 
       
-  this.StockQuote = this.detailservice.getStockInfo();
+    this.StockQuote = this.detailservice.getStockInfo();
 
 
 

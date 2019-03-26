@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts/highstock';
+import { DetailstockService } from '../services/detailstock.service';
+import { element } from '@angular/core/src/render3';
+import { setCurrentInjector } from '@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-testcomponent',
@@ -9,54 +12,77 @@ import * as Highcharts from 'highcharts/highstock';
 export class TestcomponentComponent implements OnInit {
   highcharts = Highcharts;
   chartOptions: any;
-  constructor() { }
+  data1 =[];
+  data2 =[];
+  loaded = false;
+  loaded1 = false;
+  constructor(private detailservice:DetailstockService) { }
 
   ngOnInit() {
-    let data =[[1147651200000,67.79],
-    [1147737600000,64.98],
-    [1147824000000,65.26],
-    [1147910400000,63.18],
-    [1147996800000,64.51],
-    [1148256000000,63.38],
-    [1148342400000,63.15],
-    [1148428800000,63.34],
-    [1148515200000,64.33],
-    [1148601600000,63.55],
-    [1148947200000,61.22],
-    [1149033600000,59.77] ]
-  this.chartOptions = {   
+    this.detailservice.GetForecastedHistory().subscribe(t=> {
+      let data =[];
+      console.log("dat",t)
+      t.forEach(element => {
+        let arr = [new Date(element.date).getTime(),element.price]
 
-  
-    navigator: {
-        enabled: false
-    },
-    scrollbar: {
-        enabled: false
-    },
-   
-    rangeSelector: {
-      selected: 1
-  }, 
-  xAxis: {
-    type: 'datetime'
+        this.data1.push(arr);
+     
 
-    
-},
+      })
 
-  title: {
-      text: 'AAPL Stock Price'
-  },
+      this.loaded = true;
+     
+    })
+    this.detailservice.GetActualHistoricalData().subscribe(t=>{
+      console.log("dat1",t)
+      t.forEach(element => {
+        let arr = [new Date(element.date).getTime(),element.close]
 
-  series: [{
-      name: 'AAPL Stock Price',
-      data: data,
-      type: 'spline',
-      tooltip: {
-          valueDecimals: 2
-      }
-  }]
-};
+        this.data2.push(arr);
+       
+      })
+      this.loaded1 = true;
+      this.SetChartOptions();
+      
+    })};
+
+  SetChartOptions()
+  {
+    if(this.loaded == true && this.loaded1 == true)
+    {
+      console.log("dat",this.data1);
+      console.log("dat",this.data2);
+      this.chartOptions = {
+        xAxis: {
+          type: 'datetime'
+      },
+        series: [{
+            name: 'Forcasted',
+           
+            type: 'line',
+            data: this.data1,
+            gapSize: 5,
+            tooltip: {
+                valueDecimals: 2
+            },
+            },
+            {
+              name: 'Actual',
+              type: 'line',
+              data: this.data2,
+              gapSize: 5,
+              tooltip: {
+                  valueDecimals: 2
+              },
+              },
+              
+            
+      ]
+    };
+
+    }
+    else{
+      console.log("Not Loaded");
+    }
   }
-
-
 }

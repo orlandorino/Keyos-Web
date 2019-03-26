@@ -3,6 +3,7 @@ using Keyos.Entities;
 using Keyos.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -88,7 +89,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID);
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2017-01-23"))));
             }
 
             return null;
