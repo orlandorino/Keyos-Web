@@ -37,12 +37,23 @@ this.detailservice.GetForecastedData().subscribe (t =>{
     {
       console.log("biy",data)
       data.forEach(element => {
+        
+        if(element.buySell == "false") {  
+          var arr = {
+            y: element.price,
+            marker: {
+               symbol: 'url(https://imgur.com/a/iaSUyeA)'
+            }
+         };
+       } else {
         var arr = {
           y: element.price,
           marker: {
              symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
           }
-       };
+       }; 
+       }
+       
        dates.push(element.dateNonEpoch);
        
         buysell.push(arr);

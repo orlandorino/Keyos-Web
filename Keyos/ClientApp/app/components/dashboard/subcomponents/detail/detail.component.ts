@@ -56,6 +56,7 @@ export class DetailComponent implements OnInit {
 
       if (this.UserRole == 'PremiumUser') {
           this.detailservice.GetBuySellLatest().subscribe(x => {
+              console.log("aaaa", x);
               if (x.buySell == "true") {
                   this.BuyOrSell = "BUY"
               } else {
