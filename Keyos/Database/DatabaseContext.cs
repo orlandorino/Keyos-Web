@@ -19,7 +19,7 @@ namespace Keyos.Database
         public DbSet<buySellList> buySellTable1 { get; set; }
 
         public DbSet<ForecastAccuracy> forecastAccuracy { get; set; }
-
+        public DbSet<buySellForecastAccuracy> buySellForecastAccuracy { get; set; }
 
         //twitter sentiment
         public DbSet<sentimentPercentage> sentimentPercentage { get; set; }

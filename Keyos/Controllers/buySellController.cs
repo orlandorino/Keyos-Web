@@ -83,6 +83,20 @@ namespace Keyos.Controllers
             return null;
         }
 
+      
+       [Authorize(Roles = Role.PremiumUser)]
+       [HttpGet, Route("buySellForecastAccuracyList")]
+        public IEnumerable<buySellForecastAccuracy> getForecastBuySellAccuracy(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.buySellForecastAccuracy.Where(c => c.Symbol == stockID);
+            }
+
+            return null;
+        }
+
+
         [Authorize(Roles = Role.PremiumUser)]
         [HttpGet, Route("stocksNotEpoch")]
         public IEnumerable<stockNotEpoch> getStocksNotEpoch(string stockID)
