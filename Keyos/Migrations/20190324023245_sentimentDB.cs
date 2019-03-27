@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Keyos.Migrations
 {
-    public partial class stocksNotEpoch : Migration
+    public partial class sentimentDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

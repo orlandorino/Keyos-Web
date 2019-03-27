@@ -78,6 +78,20 @@ export interface BuySell {
     dateNonEpoch:Date;
 }
 
+export interface SentimentPercentage {
+    id?:     number;
+    symbol?: string;
+    date?:   Date;
+    positive?:  number;
+    negative?:  number;
+}
+export interface SentimentMessage {
+    id?:     number;
+    symbol?: string;
+    date?:   Date;
+    tweet?:  string;
+    sentiment?:  string;
+}
 
 export interface GlobalQuote {
     "01. symbol"?:             string;

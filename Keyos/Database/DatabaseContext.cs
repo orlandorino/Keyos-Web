@@ -16,11 +16,16 @@ namespace Keyos.Database
         public DbSet<stockNotEpoch> stocksNotEpoch { get; set; }
 
         public DbSet<Forecast> forecastTable1 { get; set; }
+        public DbSet<buySellList> buySellTable1 { get; set; }
 
         public DbSet<ForecastAccuracy> forecastAccuracy { get; set; }
 
-        //public DbSet<buySellList> buySellTable { get; set; }
-        public DbSet<buySellList> buySellTable1 { get; set; }
+
+        //twitter sentiment
+        public DbSet<sentimentPercentage> sentimentPercentage { get; set; }
+        public DbSet<sentimentMessage> sentimentMessage { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

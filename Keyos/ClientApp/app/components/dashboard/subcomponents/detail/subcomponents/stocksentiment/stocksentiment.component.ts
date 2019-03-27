@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailstockService } from '../../../../../../services/detailstock.service';
 
 @Component({
   selector: 'app-stocksentiment',
@@ -10,20 +11,58 @@ import { Component, OnInit } from '@angular/core';
 
 export class StocksentimentComponent implements OnInit {
 
-//             heroes:[] = [
-//     {id: 1, name:'Superman'},
-//     {id: 4, name:'Shazam'}
-//     ];
-//         heroes1:[] = [
-//     {id: 2, name:'Batman'},
-//     {id: 5, name:'BatGirl'},
-//     {id: 3, name:'Robin'},
-//     {id: 4, name:'Flash'}
-// ];
+    postivePercent: string;
+    negativePercent: string;
+    heroes: Array<String> = [];
+    heroes1: Array<String> = [];
 
-  constructor() { }
+  constructor(private detailservice:DetailstockService) { }
 
-  ngOnInit() {
+    ngOnInit() {
+        this.detailservice.GetSentimentPercentageData().subscribe (t =>{
+        
+          t.forEach(element => {
+
+              this.postivePercent = element.positive.toFixed(2);
+              this.negativePercent = element.negative.toFixed(2);
+              
+          });
+          
+             
+        });
+
+
+        this.detailservice.GetSentimentMessageData().subscribe (t =>{ 
+
+
+        let data = [];
+          t.forEach(element => {
+
+              //console.log(element.tweet);
+              //this.heroes.push(element.tweet);
+              //var arr = [element.tweet];
+              console.log(element.tweet);
+              if (element.sentiment == "positive") {
+                  var tweet = element.sentiment;
+                  var n = element.sentiment.includes("@RobinhoodApp");
+                  if (n == false){
+                      console.log(n);
+                      this.heroes.push(element.tweet);
+                  }
+
+
+              } else {
+                  this.heroes1.push(element.tweet);
+              }
+
+              //console.log(data);
+              //this.postivePercent = element.positive.toFixed(2);
+              //this.negativePercent = element.negative.toFixed(2);
+              
+          });
+          
+             
+    });
 
   }
 

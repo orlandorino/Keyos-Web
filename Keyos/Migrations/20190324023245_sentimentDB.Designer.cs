@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190323221633_stocksNotEpoch")]
-    partial class stocksNotEpoch
+    [Migration("20190324023245_sentimentDB")]
+    partial class sentimentDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
