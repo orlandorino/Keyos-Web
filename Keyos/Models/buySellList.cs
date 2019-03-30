@@ -11,7 +11,7 @@ namespace Keyos.Models
         public string date { get; set; }
 
         public string dateNonEpoch { get; set; }
-        public int price { get; set; }
+        public double price { get; set; }
         public string buySell { get; set; }
     }
 }
