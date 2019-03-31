@@ -1,4 +1,4 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container >
     <mat-sidenav mode="side" opened>
 
 
@@ -36,7 +36,7 @@
 
         <div class="menu">
             <div style="text-align: center">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="logout()">
                     <mat-icon class="icons">power_settings_new</mat-icon>
                 </button>
                 <br>
@@ -46,7 +46,9 @@
         </div>
         
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content
+    style="padding-left: 5%;
+    padding-right: 5%;">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

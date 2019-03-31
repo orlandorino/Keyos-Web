@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StockStats, CompanyInfo, Quote } from '../models/StockSummary';
-import { HttpClient } from '@angular/common/http';
+import { StockStats, CompanyInfo, Quote, ForecastedData, BuySell,SentimentPercentage,SentimentMessage } from '../models/StockSummary';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StockTable } from '../models/StockModel';
 @Injectable({
   providedIn: 'root'
@@ -30,11 +30,44 @@ symbol:string;
   }
   getStockCompanyInfo():Observable<CompanyInfo>
   {
-    return this.http.get<CompanyInfo>("https://api.iextrading.com/1.0/stock/" +this.symbol +"/company");
+    return this.http.get<CompanyInfo>("https://api.iextrading.com/1.0/stock/" +this.symbol + "/company");
   }
 
   getStockHistory():Observable<StockTable[]>
   {
     return this.http.get<StockTable[]>("https://api.iextrading.com/1.0/stock/"+ this.symbol +"/chart/1y");
   }
+
+  GetBuySellInitial(): Observable<BuySell[]> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+    return this.http.get<BuySell[]>("http://localhost:5000/api/buySell/buySellList?stockID="+this.symbol, { headers });
+  }
+
+  GetBuySellLatest(): Observable<BuySell> {
+  let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+  return this.http.get<BuySell>("http://localhost:5000/api/buySell/buySellLatest?stockID="+this.symbol, { headers });
+  }
+  GetForecastedHistory():Observable<ForecastedData[]>
+  {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+"aapl", { headers });
+  }
+  GetForecastedData(): Observable<ForecastedData[]> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastList?stockID="+this.symbol, { headers });
+    }
+
+  GetSentimentPercentageData(): Observable<SentimentPercentage[]> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+    return this.http.get<SentimentPercentage[]>("http://localhost:5000/api/sentiment/sentimentPercentage?stockID="+this.symbol, { headers });
+    }
+      GetSentimentMessageData(): Observable<SentimentMessage[]> {
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+    return this.http.get<SentimentMessage[]>("http://localhost:5000/api/sentiment/SentimentMessage?stockID="+this.symbol, { headers });
+      }
+    GetActualHistoricalData():Observable<StockTable[]>
+    {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+      return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/stocksNotEpoch?stockID="+"aapl", { headers });
+    }
 }

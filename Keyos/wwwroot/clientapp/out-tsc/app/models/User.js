@@ -1,7 +1,10 @@
 var User = /** @class */ (function () {
-    function User() {
+    function User(name, email, phonenumber) {
+        this.name = name;
+        this.email = email;
+        this.phonenumber = phonenumber;
     }
     return User;
 }());
 export { User };
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=user.js.map

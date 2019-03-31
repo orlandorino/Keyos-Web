@@ -1,9 +1,7 @@
-<mat-card  style=" margin-left: 2%; margin-right:2%;margin-top:20px;">
-    <mat-card-content>
-        <highcharts-chart style="width: 100%; display: block;"
-        [Highcharts]="Highcharts"
-        [constructorType]="'stockChart'"
-        [options]="chartOptions">
-      </highcharts-chart>
-    </mat-card-content> 
-  </mat-card>
+<div *ngIf="chartOptions">
+            <highcharts-chart style="width: 100%; display: block;"
+                              [Highcharts]="Highcharts"
+                              [constructorType]="'stockChart'"
+                              [options]="chartOptions">
+            </highcharts-chart>
+        </div> 

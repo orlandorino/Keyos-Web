@@ -1,0 +1,102 @@
+<!-- <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+  <div class="form-row">
+    <label for="card-info">Card Info</label>
+    <div id="card-info" #cardInfo></div>
+
+    <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <button type="submit">Pay $777</button>
+</form> -->
+
+<div fxLayout="row" fxLayoutAlign="center" style="margin-top:5%;" >
+
+    <div class="pricing-item pricing-featured">
+    
+        <div class="pricing-title">
+          PREMIUM
+        </div>
+        <div class="pricing-value" *ngIf="!Success">$200
+          <span class="undertext">/Month</span>
+        </div>
+        <div *ngIf="Success">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" >
+            <circle class="path circle" fill="lightgreen" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+            <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+          </svg>
+          <p class="successPrompt">You are now a Premium User</p>
+        </div>
+        <div *ngIf="IsError">
+
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+            <circle class="path circle" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+            <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+            <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+          </svg>
+          <p class="errorPrompt">Unable To Process Payment</p>
+        </div>
+    
+        <ul class="pricing-features">
+          <li><span class="keywords">Access</span> to stock forecast data</li>
+          <li> Know when to buy or sell using our <span class="keywords">powerful algorithms</span> </li>
+
+        </ul>
+
+        <div>
+            <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)"  >
+                <mat-form-field class="matstuff"  appearance="outline" color ="primary">
+                    <mat-label>Full Name</mat-label>
+                        <input  name="name" matInput [(ngModel)]="model.name" name="name">
+                  </mat-form-field>
+                  <mat-form-field class="matstuff"   appearance="outline" color ="primary">
+                      <mat-label>Email</mat-label>
+                          <input  name="email" matInput [(ngModel)]= "model.email" type="email">
+                    </mat-form-field>
+                    <mat-form-field class="matstuff" appearance="outline"  color ="primary">
+                        <mat-label>Phone Number</mat-label>
+                            <input  matInput name="number" [(ngModel)]= "model.phonenumber" placeholder="(123) 456-7890" type="tel">
+                      </mat-form-field>
+                <div class="form-row">
+                  <div id="card-info" #cardInfo></div>
+              
+                  <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+                </div>
+                <!-- <mat-progress-spinner *ngIf="Submitted"
+               style="margin-left:40%;margin-right:50%"
+                [color]="color"
+                [mode]="mode"
+                [value]="value">
+            </mat-progress-spinner> -->
+        
+                <button  mat-raised-button  type="submit" *ngIf="!Submitted">Subscribe</button>
+                  
+              
+              </form>
+        </div>  
+      </div>
+     </div>
+
+
+
+     <!-- <div class="group">
+        <label>
+          
+          <input name="name"  matInput [(ngModel)]= "model.name" class="field" placeholder="Jane Doe" />
+        </label>
+        <label>
+            
+            <input  matInput class="field" name="email"   [(ngModel)]= "model.email" placeholder="janedoe@gmail.com" type="email" />
+          </label>
+        <label>
+          
+          <input class="field"  matInput name="number" [(ngModel)]= "model.phonenumber" placeholder="(123) 456-7890" type="tel" />
+        </label>
+      </div> -->
+      
+<!--[if lte IE 9]>
+  <style>
+    .path {stroke-dasharray: 0 !important;}
+  </style>
+<![endif]-->
+
+

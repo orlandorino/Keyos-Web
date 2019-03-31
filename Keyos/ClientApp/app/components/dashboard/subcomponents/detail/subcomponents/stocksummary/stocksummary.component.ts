@@ -25,7 +25,9 @@ export class StocksummaryComponent implements OnInit {
   latestTime:"February 22, 2019",
   open:104
 
-  ,previousClose:10.4};
+        , previousClose: 10.4
+    };
+    loading = true;
 
   constructor(private detailstock:DetailstockService) { }
 
@@ -34,7 +36,8 @@ export class StocksummaryComponent implements OnInit {
     // if IEX api is being use comment out to not waste api calls 
 
       this.detailstock.getStockCompanyInfo().subscribe( val =>{this.CompanyInfo = val
-      console.log(this.CompanyInfo,"test")
+          console.log(this.CompanyInfo, "test")
+          this.loading = false;
       });
       this.detailstock.getStockStats().subscribe(val1 => {this.CompanyStats = val1
         console.log(this.CompanyStats)

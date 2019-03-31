@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StockModel } from '../models/StockModel';
 import { merge, Observable, of as observableOf } from 'rxjs';
 
@@ -8,10 +8,12 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 })
 export class StockdataService {
 
+ 
     constructor(private http: HttpClient) { }
 
     getStockData(): Observable<StockModel[]> {
-        return this.http.get<StockModel[]>("http://localhost:5000/api/Stocks?stockID=aapl");
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+        return this.http.get<StockModel[]>("http://localhost:5000/api/Stocks?stockID=msft", { headers });
     }
-
+   
 }

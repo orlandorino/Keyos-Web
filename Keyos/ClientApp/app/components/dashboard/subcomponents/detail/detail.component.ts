@@ -8,7 +8,10 @@ import { Quote, LatestSource, LatestTime } from '../../../../models/StockSummary
 import { StocksummaryService } from '../../../../services/stocksummary.service';
 import { StockTable } from '../../../../models/StockModel';
 import { StockdataService } from '../../../../services/stockdata.service';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
+import * as jwt_decode from "jwt-decode";
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-detail',
@@ -31,101 +34,81 @@ export class DetailComponent implements OnInit {
   latestSource: "Close",
   latestTime:"February 22, 2019"
   ,previousClose:10.4};
+  token: string = localStorage.getItem("jwt");
+  UserRole ='';
+  loading = true;
+  loaded = false;
+  loadedHistoricalForecast=false;
+  loadedActual = false;
+  constructor(private detailservice:DetailstockService,private router:Router,private auth:AuthService) { }
+  BuyOrSell:string = '';
+   data = [];
+   data2 = [];
+   historicalForecastData = [];
+   historicalActual=[];
+   PastAccuracyLoaded = false;
   
-  constructor(private detailservice:DetailstockService) { }
 
 
   ngOnInit() {
+    let jwtToken = jwt_decode(this.token);
+    this.UserRole = jwtToken.role; 
 
+      if (this.UserRole == 'PremiumUser') {
+          this.detailservice.GetBuySellLatest().subscribe(x => {
+              console.log("aaaa", x);
+              if (x.buySell == "true") {
+                  this.BuyOrSell = "BUY"
+              } else {
+                  this.BuyOrSell = "SELL"
+              }
+          });
+          this.detailservice.GetBuySellInitial().subscribe(x => {
 
-    var seriesOptions = [];
-
-    seriesOptions[0] = {
-      name:'aapl',
-      data: [ [1293580800000, 46.47],
-      [1293667200000, 46.24],
-      [1293753600000, 46.08]]
-    };
-
-    seriesOptions[1] = {
-      name:'msft',
-      data: [ [1293580800000, 90.47],
-      [1293667200000, 100.24],
-      [1293753600000, 20.08]]
-    };
-
-
-      this.detailservice.getStockHistory().subscribe (t =>{
+              console.log(x)
+          })
+      }
+       this.detailservice.getStockHistory().subscribe (t =>{
         this.Chart = t;
         this.dataSource = this.Chart;
-        let data = [];
-          let data2 = [];
+        
         this.dataSource.forEach(element => {
-          var arr = [new Date(element.date).getTime() / 1000,element.close];
-          var arr1 = [new Date(element.date).getTime() / 1000,element.close * 2];
-          data.push(arr);
-          data2.push(arr1);
+          var arr = [new Date(element.date).getTime(),element.close];
+          var arr1 = [new Date(element.date).getTime(),element.close * 2];
+          this.data.push(arr);
+          this.data2.push(arr1);
 
         });
-
-       
-        
-
-
-
-        this.chartOptions = {
-
-          series: [{
-              name: 'AAPL',
-              type: 'line',
-              data: data,
-              gapSize: 5,
-              tooltip: {
-                  valueDecimals: 2
-              },
-              fillColor: {
-                  linearGradient: {
-                      x1: 0,
-                      y1: 0,
-                      x2: 0,
-                      y2: 1
-                  },
-
-                  stops: [
-                      [0, Highcharts.getOptions().colors[0]]
-                  ]
-
-              }},
-              {
-                name: 'AAPL',
-                type: 'line',
-                data: data2,
-                gapSize: 5,
-                tooltip: {
-                    valueDecimals: 2
-                },
-                fillColor: {
-                    linearGradient: {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
-  
-                    stops: [
-                        [0, Highcharts.getOptions().colors[0]]
-                    ]
-  
-                }},
-              
-        ]
-      };
+          this.loading = false;
+          this.loaded = true;
   });
 
-     
+  this.detailservice.GetForecastedHistory().subscribe(t=>
+    {
+      console.log(t);
+      t.forEach(element =>{
+        var arr = [new Date(element.date).getTime(),element.price];
+        this.historicalForecastData.push(arr);
+        
+      })
+      this.loadedHistoricalForecast = true;
+      console.log("forecast",this.historicalForecastData);
+    });
+
+    this.detailservice.GetActualHistoricalData().subscribe(t=>{
+      console.log("dat1",t)
+      t.forEach(element => {
+        let arr = [new Date(element.date).getTime(),element.close]
+
+        this.historicalActual.push(arr);
+       
+      })
+      this.loadedActual = true;
+      
+    })
 
       
-   this.StockQuote = this.detailservice.getStockInfo();
+    this.StockQuote = this.detailservice.getStockInfo();
 
 
 
@@ -173,6 +156,8 @@ export class DetailComponent implements OnInit {
       return 'green';
     }
 }
+OnClick()
+{
+  this.router.navigate(["dashboard/payment"]);
 }
-
-
+}

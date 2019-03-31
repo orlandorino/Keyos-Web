@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Keyos.Models;
-
+using Microsoft.AspNetCore.Authorization;
+using Keyos.Entities;
+using Keyos.Database;
 
 namespace Keyos.Controllers
 {
@@ -31,6 +33,7 @@ namespace Keyos.Controllers
         //}
 
         // GET: api/Stocks?stockID=fb
+        [Authorize(Roles = Role.PremiumUser)]
         [HttpGet]
         public IEnumerable<Stock> Getstocks(string stockID)
         {
@@ -39,102 +42,102 @@ namespace Keyos.Controllers
                 return _context.stocks.Where(c => c.Symbol == stockID);
             }
 
-            return _context.stocks;
+            return null;
         }
 
-        // GET: api/Stocks/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetStock([FromRoute] string id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// GET: api/Stocks/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetStock([FromRoute] string id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var stock = await _context.stocks.FindAsync(id);
+        //    var stock = await _context.stocks.FindAsync(id);
 
-            if (stock == null)
-            {
-                return NotFound();
-            }
+        //    if (stock == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(stock);
-        }
+        //    return Ok(stock);
+        //}
 
-        // PUT: api/Stocks/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStock([FromRoute] string id, [FromBody] Stock stock)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Stocks/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutStock([FromRoute] string id, [FromBody] Stock stock)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != stock.ID)
-            {
-                return BadRequest();
-            }
+        //    if (id != stock.ID)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(stock).State = EntityState.Modified;
+        //    _context.Entry(stock).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StockExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!StockExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        // POST: api/Stocks
-        [HttpPost]
-        public async Task<IActionResult> PostStock([FromBody] Stock stock)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Stocks
+        //[HttpPost]
+        //public async Task<IActionResult> PostStock([FromBody] Stock stock)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            _context.stocks.Add(stock);
-            await _context.SaveChangesAsync();
+        //    _context.stocks.Add(stock);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetStock", new { id = stock.ID }, stock);
-        }
+        //    return CreatedAtAction("GetStock", new { id = stock.ID }, stock);
+        //}
 
-        // DELETE: api/Stocks/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStock([FromRoute] string id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// DELETE: api/Stocks/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteStock([FromRoute] string id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var stock = await _context.stocks.FindAsync(id);
-            if (stock == null)
-            {
-                return NotFound();
-            }
+        //    var stock = await _context.stocks.FindAsync(id);
+        //    if (stock == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.stocks.Remove(stock);
-            await _context.SaveChangesAsync();
+        //    _context.stocks.Remove(stock);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(stock);
-        }
+        //    return Ok(stock);
+        //}
 
-        private bool StockExists(string id)
-        {
-            return _context.stocks.Any(e => e.ID == id);
-        }
+        //private bool StockExists(string id)
+        //{
+        //    return _context.stocks.Any(e => e.ID == id);
+        //}
     }
 }

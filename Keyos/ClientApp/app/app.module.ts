@@ -23,6 +23,10 @@ import { HomeComponent } from './components/dashboard/subcomponents/home/home.co
 import { AuthGuard } from './services/auth-guard.service';
 import { StocksummaryComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksummary/stocksummary.component';
 import { BillionPipe } from './pipes/billion.pipe';
+import { PaymentRequestComponent } from './payment-request/payment-request.component';
+import { PremiumUserComponent } from './components/premium-user/premium-user.component';
+import { StocksentimentComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksentiment/stocksentiment.component';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { BillionPipe } from './pipes/billion.pipe';
     DetailComponent,
     HomeComponent,
     StocksummaryComponent,
-    BillionPipe
+    BillionPipe,
+    PaymentRequestComponent,
+    PremiumUserComponent,
+    StocksentimentComponent,
+    TestcomponentComponent
   
   ],
   imports: [
