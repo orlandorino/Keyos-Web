@@ -2,33 +2,44 @@
     padding: 0 14px;
   }
   
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+.example-spacer {
+flex: 1 1 auto;
+}
 
-  .mat-card-title{
-    font-size: 16px;
-  }
+.mat-card-title{
+font-size: 16px;
+}
 
-  .example-card {
-    max-width: 400px;
-    margin: auto;
-    width: 50%;
-    margin-top: 300px;
-   
-  }
+.example-card {
+max-width: 400px;
+margin: auto;
+width: 50%;
+margin-top: 200px;
 
-  .display1 {
-    font-size: 28px;
-    font-weight: 100;
-    line-height: 1.2;
-    color: #00e676;
-    text-transform: inherit;
-    letter-spacing: inherit;
-    text-align: center;
-  }
-  .field{
-      width: 100%;
-  }
-  
-  
+}
+
+.display1 {
+font-size: 32px;
+font-weight: 400;
+line-height: 1.2;
+color: #00e676;
+text-transform: inherit;
+letter-spacing: inherit;
+text-align: center;
+}
+.field{
+  width: 100%;
+}
+
+
+#leftLoginColumn {
+    background-color: red;
+    overflow: auto;
+    background-image: url(https://images.pexels.com/photos/1558732/pexels-photo-1558732.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#rightLoginColumn {
+    background: linear-gradient(to bottom, #1e2455 0%, #a8349b 100%);
+}

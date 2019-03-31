@@ -3,6 +3,7 @@ using Keyos.Entities;
 using Keyos.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,7 +36,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.forecastTable.Where(c => c.Symbol == stockID);
+                return _context.forecastTable1.Where(c => c.Symbol == stockID);
             }
 
             return null;
@@ -48,7 +49,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.buySellTable.Where(c => c.Symbol == stockID);
+                return _context.buySellTable1.Where(c => c.Symbol == stockID);
             }
 
             return null;
@@ -61,9 +62,48 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                var temp = _context.buySellTable.OrderBy(d => d.date).Where(c => c.Symbol == stockID).First();
+                var temp = _context.buySellTable1.OrderBy(d => d.date).Where(c => c.Symbol == stockID).First();
 
                 return temp;
+            }
+
+            return null;
+        }
+
+
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("forecastAccuracyList")]
+        public IEnumerable<ForecastAccuracy> getForecastAccuracy(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.forecastAccuracy.Where(c => c.Symbol == stockID);
+            }
+
+            return null;
+        }
+
+      
+       [Authorize(Roles = Role.PremiumUser)]
+       [HttpGet, Route("buySellForecastAccuracyList")]
+        public IEnumerable<buySellForecastAccuracy> getForecastBuySellAccuracy(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.buySellForecastAccuracy.Where(c => c.Symbol == stockID);
+            }
+
+            return null;
+        }
+
+
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("stocksNotEpoch")]
+        public IEnumerable<stockNotEpoch> getStocksNotEpoch(string stockID)
+        {
+            if (stockID != null)
+            {
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2017-01-23"))));
             }
 
             return null;

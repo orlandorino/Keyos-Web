@@ -25,6 +25,8 @@ import { StocksummaryComponent } from './components/dashboard/subcomponents/deta
 import { BillionPipe } from './pipes/billion.pipe';
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { PremiumUserComponent } from './components/premium-user/premium-user.component';
+import { StocksentimentComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksentiment/stocksentiment.component';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { PremiumUserComponent } from './components/premium-user/premium-user.com
     StocksummaryComponent,
     BillionPipe,
     PaymentRequestComponent,
-    PremiumUserComponent
+    PremiumUserComponent,
+    StocksentimentComponent,
+    TestcomponentComponent
   
   ],
   imports: [

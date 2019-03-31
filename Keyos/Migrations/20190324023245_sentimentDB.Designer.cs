@@ -3,39 +3,22 @@ using Keyos.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190324023245_sentimentDB")]
+    partial class sentimentDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Keyos.Models.buySellForecastAccuracy", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Symbol");
-
-                    b.Property<string>("buySell");
-
-                    b.Property<string>("date");
-
-                    b.Property<int>("price");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("buySellForecastAccuracy");
-                });
 
             modelBuilder.Entity("Keyos.Models.buySellList", b =>
                 {
@@ -51,7 +34,7 @@ namespace Keyos.Migrations
 
                     b.Property<string>("dateNonEpoch");
 
-                    b.Property<double>("price");
+                    b.Property<int>("price");
 
                     b.HasKey("ID");
 
@@ -90,44 +73,6 @@ namespace Keyos.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("forecastAccuracy");
-                });
-
-            modelBuilder.Entity("Keyos.Models.sentimentMessage", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Symbol");
-
-                    b.Property<string>("date");
-
-                    b.Property<string>("sentiment");
-
-                    b.Property<string>("tweet");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("sentimentMessage");
-                });
-
-            modelBuilder.Entity("Keyos.Models.sentimentPercentage", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Symbol");
-
-                    b.Property<string>("date");
-
-                    b.Property<double>("negative");
-
-                    b.Property<double>("positive");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("sentimentPercentage");
                 });
 
             modelBuilder.Entity("Keyos.Models.Stock", b =>

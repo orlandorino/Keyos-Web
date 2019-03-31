@@ -10,7 +10,7 @@ namespace Keyos.Models
         public int ID { get; set; }
         public string Symbol { get; set; }
         public string date { get; set; }
-        public int price { get; set; }
+        public double price { get; set; }
     
     }
 }

@@ -3,12 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Keyos.Migrations
 {
-    public partial class buySellMigration : Migration
+    public partial class intToDouble : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<double>(
+                name: "price",
+                table: "buySellTable1",
+                nullable: false,
+                oldClrType: typeof(int));
+
             migrationBuilder.CreateTable(
-                name: "buySell",
+                name: "buySellForecastAccuracy",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -20,36 +26,20 @@ namespace Keyos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_buySell", x => x.ID);
+                    table.PrimaryKey("PK_buySellForecastAccuracy", x => x.ID);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "forecast",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Symbol = table.Column<string>(nullable: true),
-                    date = table.Column<string>(nullable: true),
-                    price = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_forecast", x => x.ID);
-                });
-
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "buySell");
+                name: "buySellForecastAccuracy");
 
-            migrationBuilder.DropTable(
-                name: "forecast");
-
-    
+            migrationBuilder.AlterColumn<int>(
+                name: "price",
+                table: "buySellTable1",
+                nullable: false,
+                oldClrType: typeof(double));
         }
     }
 }

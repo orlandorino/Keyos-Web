@@ -3,39 +3,22 @@ using Keyos.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190327022456_buySellForecast")]
+    partial class buySellForecast
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Keyos.Models.buySellForecastAccuracy", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Symbol");
-
-                    b.Property<string>("buySell");
-
-                    b.Property<string>("date");
-
-                    b.Property<int>("price");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("buySellForecastAccuracy");
-                });
 
             modelBuilder.Entity("Keyos.Models.buySellList", b =>
                 {
@@ -51,7 +34,7 @@ namespace Keyos.Migrations
 
                     b.Property<string>("dateNonEpoch");
 
-                    b.Property<double>("price");
+                    b.Property<int>("price");
 
                     b.HasKey("ID");
 
