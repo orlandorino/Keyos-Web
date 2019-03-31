@@ -27,6 +27,7 @@ import { PaymentRequestComponent } from './payment-request/payment-request.compo
 import { PremiumUserComponent } from './components/premium-user/premium-user.component';
 import { StocksentimentComponent } from './components/dashboard/subcomponents/detail/subcomponents/stocksentiment/stocksentiment.component';
 import { TestcomponentComponent } from './testcomponent/testcomponent.component';
+import { PortfolioaccuracyComponent } from './components/dashboard/subcomponents/detail/subcomponents/portfolioaccuracy/portfolioaccuracy.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TestcomponentComponent } from './testcomponent/testcomponent.component'
     PaymentRequestComponent,
     PremiumUserComponent,
     StocksentimentComponent,
-    TestcomponentComponent
+    TestcomponentComponent,
+    PortfolioaccuracyComponent
   
   ],
   imports: [
