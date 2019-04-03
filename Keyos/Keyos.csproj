@@ -34,5 +34,6 @@
     <Compile Remove="Models\dbContext.cs" />
     <Compile Remove="Migrations\20190120214006_InitialCreate.cs" />
     <Compile Remove="Migrations\20190120214006_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190324023245_sentimentDB.cs" />
   </ItemGroup>
 </Project>

@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Keyos.Migrations
 {
-    public partial class sentimentDB : Migration
+    public partial class histPort : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "buySellForecastAccuracy",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Symbol = table.Column<string>(nullable: true),
+                    date = table.Column<string>(nullable: true),
+                    price = table.Column<int>(nullable: false),
+                    buySell = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_buySellForecastAccuracy", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "buySellTable1",
                 columns: table => new
@@ -16,7 +32,7 @@ namespace Keyos.Migrations
                     Symbol = table.Column<string>(nullable: true),
                     date = table.Column<string>(nullable: true),
                     dateNonEpoch = table.Column<string>(nullable: true),
-                    price = table.Column<int>(nullable: false),
+                    price = table.Column<double>(nullable: false),
                     buySell = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -55,6 +71,22 @@ namespace Keyos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "historicalPortfolio1",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Symbol = table.Column<string>(nullable: true),
+                    year = table.Column<int>(nullable: false),
+                    buyHoldResult = table.Column<double>(nullable: false),
+                    mlResult = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_historicalPortfolio1", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Logins",
                 columns: table => new
                 {
@@ -71,6 +103,38 @@ namespace Keyos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Logins", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sentimentMessage",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Symbol = table.Column<string>(nullable: true),
+                    date = table.Column<string>(nullable: true),
+                    tweet = table.Column<string>(nullable: true),
+                    sentiment = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sentimentMessage", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sentimentPercentage",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Symbol = table.Column<string>(nullable: true),
+                    date = table.Column<string>(nullable: true),
+                    positive = table.Column<double>(nullable: false),
+                    negative = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sentimentPercentage", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -127,6 +191,9 @@ namespace Keyos.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "buySellForecastAccuracy");
+
+            migrationBuilder.DropTable(
                 name: "buySellTable1");
 
             migrationBuilder.DropTable(
@@ -136,7 +203,16 @@ namespace Keyos.Migrations
                 name: "forecastTable1");
 
             migrationBuilder.DropTable(
+                name: "historicalPortfolio1");
+
+            migrationBuilder.DropTable(
                 name: "Logins");
+
+            migrationBuilder.DropTable(
+                name: "sentimentMessage");
+
+            migrationBuilder.DropTable(
+                name: "sentimentPercentage");
 
             migrationBuilder.DropTable(
                 name: "stocks");
