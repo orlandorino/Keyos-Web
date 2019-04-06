@@ -27,15 +27,15 @@
             Results
           </h2>
           <h3 class="subtitle">
-              Buy & Hold Method: ${{Portfolio[0].buyHoldResult}},
-              Keyos Model: ${{Portfolio[0].mlResult}}
+              Buy & Hold Method: {{Portfolio[0].buyHoldResult | currency }},
+              Keyos Model: {{Portfolio[0].mlResult | currency}}
           </h3>
           <h2 class="subtitle is-3">
               Net Profit:
             </h2>
             <h3 class="subtitle">
-                Buy & Hold Method: $96,
-                Keyos Model: $40
+                Buy & Hold Method: {{Portfolio[0].buyHoldResult - 1000 | currency}},
+                Keyos Model: {{Portfolio[0].mlResult - 1000 | currency}}
             </h3>
         </div>
       </div>
@@ -59,15 +59,15 @@
           Results
         </h2>
         <h3 class="subtitle">
-            buyHold: $1096,
-            ML: $1040
+          Buy & Hold Method: {{Portfolio[1].buyHoldResult | currency }},
+          Keyos Model: {{Portfolio[1].mlResult | currency}}
         </h3>
         <h2 class="subtitle is-3">
             Net Profit:
           </h2>
           <h3 class="subtitle">
-              buyHold: $96,
-              ML: $40
+            Buy & Hold Method: {{Portfolio[1].buyHoldResult - 1000 | currency}},
+            Keyos Model: {{Portfolio[1].mlResult - 1000 | currency}}
           </h3>
       </div>
     </div>
@@ -90,15 +90,15 @@
             Results
           </h2>
           <h3 class="subtitle">
-              buyHold: $1096,
-              ML: $1040
+            Buy & Hold Method: {{Portfolio[2].buyHoldResult - 1000 | currency}},
+            Keyos Model: {{Portfolio[2].mlResult - 1000 | currency}}
           </h3>
           <h2 class="subtitle is-3">
               Net Profit:
             </h2>
             <h3 class="subtitle">
-                buyHold: $96,
-                ML: $40
+              Buy & Hold Method: {{Portfolio[2].buyHoldResult - 1000 | currency}},
+              Keyos Model: {{Portfolio[2].mlResult - 1000 | currency}}
             </h3>
         </div>
       </div>
