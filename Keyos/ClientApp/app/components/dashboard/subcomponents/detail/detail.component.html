@@ -8,7 +8,7 @@
           <mat-card-subtitle ><span style="font-size:10px"> {{StockQuote.latestSource}} as of {{StockQuote.latestTime}} </span></mat-card-subtitle>
       </div>
       <div fxFlex="11">
-        <span>Forecast Accuracy:<span style="color:green">78%</span> </span>
+        <!-- <span>Forecast Accuracy:<span style="color:green">78%</span> </span> -->
         <button class="buysell" mat-flat-button color="primary" *ngIf="UserRole =='PremiumUser'">{{BuyOrSell}}</button>
       </div>
       
@@ -32,9 +32,7 @@
           <div *ngIf="UserRole =='User'">
               <p style="margin:5%;margin-bottom:2%;text-align:center">
                   You are a free user. You must become a premium user for this stock to access forcasted data.
-
               </p>
-
               <button mat-raised-button color="primary" style="margin-left:50%" (click)="OnClick()">Buy Now</button>
           </div>
           <div *ngIf="UserRole =='PremiumUser'">

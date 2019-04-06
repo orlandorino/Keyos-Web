@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailstockService } from '../../../../../../services/detailstock.service';
+import { Portfolio } from '../../../../../../models/StockModel';
 
 @Component({
   selector: 'app-portfolioaccuracy',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolioaccuracy.component.css']
 })
 export class PortfolioaccuracyComponent implements OnInit {
-
-  constructor() { }
+  Portfolio:Portfolio[];
+  constructor(private detailService:DetailstockService) { }
 
   ngOnInit() {
+    this.detailService.GetActualHistoricalPortfolio().subscribe(data =>{this.Portfolio = data});
   }
 
 }

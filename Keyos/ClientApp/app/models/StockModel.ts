@@ -34,3 +34,10 @@ export interface StockTable {
     label?:            string;
     changeOverTime?:   number;
 }
+export interface Portfolio {
+    id?:            number;
+    symbol?:        string;
+    year?:          number;
+    buyHoldResult?: number;
+    mlResult?:      number;
+}
