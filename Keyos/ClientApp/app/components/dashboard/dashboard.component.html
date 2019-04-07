@@ -62,19 +62,33 @@
 
 <mat-toolbar class="example-toolbar" color="primary" class="mat-elevation-z8" >
     <mat-icon (click)="isExpanded = !isExpanded">menu</mat-icon>
-          <span class="example-fill-remaining-space"></span>
+   <span style="margin-left:1%;">Keyos</span>
+          <!-- <span class="example-fill-remaining-space"></span> -->
   
       </mat-toolbar>
-<mat-sidenav-container >
+<mat-sidenav-container>
   
     	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
 			<mat-nav-list class="dashboard">
-        <a mat-list-item (click)="toggleActive($event)">
-          <mat-icon mat-list-icon >account_circle</mat-icon>
-          <p matLine *ngIf="isExpanded">Name</p>
+        <a mat-list-item (click)="goToDashboard()">
+            <mat-icon mat-list-icon > show_chart</mat-icon>
+            <p matLine *ngIf="isExpanded">Dashboard</p>
         </a>
 
+        <a mat-list-item >
+                <mat-icon mat-list-icon>person</mat-icon>
+                <p matLine *ngIf="isExpanded">Account</p>
+        </a>
 
+        <a mat-list-item >
+                <mat-icon mat-list-icon>notifications</mat-icon>
+                <p matLine *ngIf="isExpanded">Notifications</p>
+        </a>
+        <a mat-list-item  (click)="logout()">
+                <mat-icon mat-list-icon>power_settings_new</mat-icon>
+                <p matLine *ngIf="isExpanded">Logout</p>
+        </a>
+<!-- 
         <a mat-list-item (click)="toggleActive($event)">
 						<mat-icon mat-list-icon>inbox</mat-icon>
 						<p matLine *ngIf="isExpanded">Inbox</p>
@@ -101,7 +115,7 @@
         <a mat-list-item (click)="toggleActive($event)">
 						<mat-icon mat-list-icon>warning</mat-icon>
 						<p matLine *ngIf="isExpanded">Spam</p>
-				</a>
+				</a> -->
 			</mat-nav-list>
 		</mat-sidenav>
 

@@ -22,7 +22,9 @@
         <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart>
         </div>
       </mat-tab>
-      <mat-tab label="Past Accuracy">
+      <mat-tab label="Portfolio Accuracy">
+
+          <app-portfolioaccuracy></app-portfolioaccuracy>
         <div  *ngIf="loadedHistoricalForecast && loadedActual">
             <app-chart [chartData]="historicalForecastData" [chartData2]="historicalActual" [chartType]="'PastAccuracy'"></app-chart>
         </div>
@@ -46,11 +48,11 @@
           <app-stocksentiment></app-stocksentiment>
       </mat-tab>
 
-      <mat-tab label="Portfolio Accuracy">
+      <!-- <mat-tab label="Portfolio Accuracy">
         <app-portfolioaccuracy></app-portfolioaccuracy>
   
 
-    </mat-tab>
+    </mat-tab> -->
 
   </mat-tab-group>
   

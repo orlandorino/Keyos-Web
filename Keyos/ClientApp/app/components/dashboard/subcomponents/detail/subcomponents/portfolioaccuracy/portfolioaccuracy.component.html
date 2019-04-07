@@ -1,4 +1,147 @@
+
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
+
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Keyos vs Buy & Hold  
+      </h1>
+      <h2 class="subtitle">
+        Apple
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="columns is-gapless">
+
+<div class="column is-one-third">
+  <section class="hero  is-info is-bold">
+    <div class="hero-body">
+      <div class="container">
+  
+        <h1 class="title is-1">
+          2016
+        </h1>
+        <h2 class="subtitle is-2">
+          Starting Captial: $1000
+        </h2>
+        <h2 class="subtitle is-3">
+          Results
+        </h2>
+        <h3 class="subtitle">
+            Buy & Hold Method: {{Portfolio[0].buyHoldResult | currency }}
+           <br> Keyos Model: {{Portfolio[0].mlResult | currency}}
+        </h3>
+        <h2 class="subtitle is-3">
+            Net Profit:
+          </h2>
+          <h3 class="subtitle">
+              Buy & Hold Method: {{Portfolio[0].buyHoldResult - 1000 | currency}}
+              <br>
+              Keyos Model: {{Portfolio[0].mlResult - 1000 | currency}}
+          </h3>
+      </div>
+    </div>
+</section>
+</div>
+<div class="column is-one-third">
+  <section class="hero  is-danger is-bold">
+    <div class="hero-body">
+      <div class="container">
+  
+        <h1 class="title is-1">
+          2017
+        </h1>
+        <h2 class="subtitle is-2">
+          Starting Captial: $1000
+        </h2>
+        <h2 class="subtitle is-3">
+          Results
+        </h2>
+        <h3 class="subtitle">
+          Buy & Hold Method: {{Portfolio[1].buyHoldResult | currency }}
+          <br>
+          Keyos Model: {{Portfolio[1].mlResult | currency}}
+        </h3>
+        <h2 class="subtitle is-3">
+            Net Profit:
+          </h2>
+          <h3 class="subtitle">
+            Buy & Hold Method: {{Portfolio[1].buyHoldResult - 1000 | currency}}
+            <br>
+            Keyos Model: {{Portfolio[1].mlResult - 1000 | currency}}
+          </h3>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="column is-one-third">
+  <section class="hero  is-success is-bold">
+      <div class="hero-body">
+        <div class="container">
+    
+          <h1 class="title is-1">
+            2018
+          </h1>
+          <h2 class="subtitle is-2">
+            Starting Captial: $1000
+          </h2>
+          <h2 class="subtitle is-3">
+            Results
+          </h2>
+          <h3 class="subtitle">
+            Buy & Hold Method: {{Portfolio[2].buyHoldResult - 1000 | currency}}
+            <br>
+            Keyos Model: {{Portfolio[2].mlResult - 1000 | currency}}
+          </h3>
+          <h2 class="subtitle is-3">
+              Net Profit:
+            </h2>
+            <h3 class="subtitle">
+              Buy & Hold Method: {{Portfolio[2].buyHoldResult - 1000 | currency}}
+              <br>
+              Keyos Model: {{Portfolio[2].mlResult - 1000 | currency}}
+            </h3>
+        </div>
+      </div>
+    </section>
+</div>
+  
+    
+    <!-- <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart> -->
+    
+   
+
+
+    
+    <!-- <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart> -->
+    
+ 
+
+    
+    <!-- <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart> -->
+    
+ 
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
 
 <section class="hero is-dark">
   <div class="hero-body">
@@ -114,4 +257,4 @@
 
 
   
-  
+   -->
