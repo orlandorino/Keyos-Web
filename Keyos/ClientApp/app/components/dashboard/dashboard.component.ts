@@ -10,6 +10,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
+  isExpanded = false;
+  element: HTMLElement;
+
+  toggleActive(event:any){
+    debugger;
+    event.preventDefault();
+    if(this.element !== undefined){
+      this.element.style.backgroundColor = "white";
+    } 
+    var target = event.currentTarget;
+    target.style.backgroundColor = "#e51282";
+    this.element = target;
+  }
     constructor(private router:Router) { }
 
 

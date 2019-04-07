@@ -1,56 +1,53 @@
-.title{
-text-align: center;
- margin: 32px;
- margin-bottom: 50px;
- font-weight: bold;
-}
-mat-icon{
-
-font-size: 36px;
-}
-
-.menu{
-   
-    margin-bottom: 24px;
-    text-align: left;
-}
-
-.menu:hover{
-    color: #00e676;
-    background: #eee;
-}
-
-
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   
-
-
-   div span {
-        opacity: 0;
-        color: #00e676;
-        max-width: 0;
-        display: inline-block;
-        text-decoration: none;
-        transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
-    }
-        div span:hover {
-            color: #00e676;
-        }
-        div span i {
-            float:right;
-            display: block;
-            padding-right: 1em;
-            font:1em/1 'roboto', sans-serif;
-        }
-    div b {
-        color: #c33;
-        line-height:1;
-        font-size: 25px;
-        display: inline-block;
-        padding:.125em .375em;
-    }
-    div:hover {}
-        div:hover span {
-            opacity: 1;
-            max-width: 150px;
-            transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color .2s;
-        }
+   .example-sidenav-container {
+    flex: 1;
+  }
+  
+  .example-sidenav{
+    color: #d36423;
+  }
+  
+  .mat-list-item{
+    color: black;
+    opacity: 0.8;
+  }
+  
+  .mat-drawer{
+    opacity: 0.9;
+    background:White;
+  }
+  
+  .mat-toolbar {
+    opacity: 0.9;
+   
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #e8ded7;
+    opacity: 0.9;
+  }
+  
+  .example-toolbar {
+      z-index: 2;
+  }
+  
+  .example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  
