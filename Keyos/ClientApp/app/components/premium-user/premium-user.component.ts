@@ -74,12 +74,19 @@ this.detailservice.GetForecastedData().subscribe (t =>{
        },
         series: [
           {
-            name: 'AAPL',
+            name: 'BUY',
             marker: {
-               symbol: 'square'
+               symbol: 'url(https://i.imgur.com/8JtH3Ax.png)'
             },
             data:buysell
          },
+         {
+          name: 'SELL',
+          marker: {
+             symbol:  'url(https://i.imgur.com/6yzuxv0.png)'
+          },
+          data:buysell
+       },
         ]
      };
     }
