@@ -50,7 +50,7 @@ symbol:string;
   GetForecastedHistory():Observable<ForecastedData[]>
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
-    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+"aapl", { headers });
+    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+this.symbol, { headers });
   }
   GetForecastedData(): Observable<ForecastedData[]> {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');

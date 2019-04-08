@@ -42,7 +42,7 @@ this.detailservice.GetForecastedData().subscribe (t =>{
           var arr = {
             y: element.price,
             marker: {
-               symbol: 'url(https://imgur.com/a/iaSUyeA)'
+               symbol: 'url(https://i.imgur.com/6yzuxv0.png)'
             }
          };
        } else {
