@@ -5,6 +5,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="638.18359"
@@ -26,7 +27,29 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs26" />
+     id="defs26">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient851">
+      <stop
+         style="stop-color:#003300;stop-opacity:1;"
+         offset="0"
+         id="stop847" />
+      <stop
+         style="stop-color:#003300;stop-opacity:0;"
+         offset="1"
+         id="stop849" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient851"
+       id="linearGradient853"
+       x1="64.5"
+       y1="69.3"
+       x2="130.7"
+       y2="69.3"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -43,7 +66,7 @@
      inkscape:zoom="0.706"
      inkscape:cx="789.66003"
      inkscape:cy="337.40186"
-     inkscape:window-x="1912"
+     inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="g3783" />
@@ -67,7 +90,7 @@
     <path
        d="M 130.7,22.6 64.5,0 V 138.6 L 120,107.9 Z"
        id="path3779"
-       style="fill:#003300;fill-opacity:1"
+       style="fill:url(#linearGradient853);fill-opacity:1"
        inkscape:connector-curvature="0" />
     <path
        d="M 33.035419,21.864102 H 52.217074 V 100.43469 H 33.035419 Z m 50.61285,1.16034 21.594901,-1.16034 -36.244257,39.876354 34.615727,38.697564 -18.485135,0.58017 -32.819871,-39.065477 v 0 z"

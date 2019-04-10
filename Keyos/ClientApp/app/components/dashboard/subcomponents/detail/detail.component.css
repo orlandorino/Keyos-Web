@@ -9,8 +9,12 @@ p {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 h3{
-    font-family: 'roboto', Courier, monospace;
+    font-family: 'Roboto', Courier, monospace;
     font-weight: 800;
     margin-top: 2%;
 }

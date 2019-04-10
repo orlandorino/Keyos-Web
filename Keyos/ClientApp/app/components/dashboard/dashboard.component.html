@@ -63,10 +63,11 @@
 <mat-toolbar class="example-toolbar mat-elevation-z4 " color="primary" class="mat-elevation-z8" >
     <mat-icon (click)="isExpanded = !isExpanded">menu</mat-icon>
 
-   <span  class="title" style="margin-left:1%;"><img src="../../../assets/angular-3.svg" style="width:8%">eyos</span>
+   <span  class="title" style="margin-left:1%;"><img src="../../../assets/angular-3.svg" style="width:8%">EYOS</span>
           <!-- <span class="example-fill-remaining-space"></span> -->
   
       </mat-toolbar>
+      <mat-progress-bar [color]="accent" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <mat-sidenav-container>
   
     	<mat-sidenav #sidenav class="example-sidenav  mat-elevation-z4" mode="side" opened="true">
@@ -125,6 +126,7 @@
     <mat-sidenav-content
     style="padding-left: 5%;
     padding-right: 5%;">
+    
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
