@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
 <div fxLayout="column" fxLayoutAlign="center center " *ngIf="!loading" fxLayoutWrap>
-<mat-card style="width: 100%;margin-top: 5%;margin-left:2%;margin-right: 2%; padding:25px 0px ;"  >
+<mat-card class="mat-elevation-z4" style="width: 100%;margin-top: 5%;margin-left:2%;margin-right: 2%; padding:25px 0px ;"  >
   <mat-card-header >
      <div fxLayout="row" style="width:100%">
       <div fxLayout="column" fxFlex="89">
@@ -8,9 +8,9 @@
           <mat-card-subtitle >{{StockQuote.latestPrice}} <span  [ngStyle]="{'color': getColor(StockQuote.change)}">{{StockQuote.change}}({{StockQuote.changePercent | number}}%)</span></mat-card-subtitle>
           <mat-card-subtitle ><span style="font-size:10px"> {{StockQuote.latestSource}} as of {{StockQuote.latestTime}} </span></mat-card-subtitle>
       </div>
-      <div fxFlex="11">
+      <div fxFlex="11" style="margin-right: 16px;">
         <!-- <span>Forecast Accuracy:<span style="color:green">78%</span> </span> -->
-        <button class="buysell" mat-flat-button color="primary" *ngIf="UserRole =='PremiumUser'">{{BuyOrSell}}</button>
+        <button class="buysell"  mat-flat-button color="primary" *ngIf="UserRole =='PremiumUser'">{{BuyOrSell}}</button>
       </div>
       
      </div>   
@@ -34,14 +34,14 @@
             </section>
             <!-- end of bulma hero -->
 
-        <app-chart [chartData]="data" [chartType]="'Historical'"></app-chart>
+        <app-chart [chartData]="data" [chartType]="'Historical'" [Company]="Company"></app-chart>
         </div>
       </mat-tab>
       <mat-tab label="Portfolio Accuracy">
 
           <app-portfolioaccuracy></app-portfolioaccuracy>
         <div  *ngIf="loadedHistoricalForecast && loadedActual">
-            <app-chart [chartData]="historicalForecastData" [chartData2]="historicalActual" [chartType]="'PastAccuracy'"></app-chart>
+            <app-chart [chartData]="historicalForecastData" [chartData2]="historicalActual" [Company]="Company" [chartType]="'PastAccuracy'"></app-chart>
         </div>
         
         </mat-tab>
@@ -92,7 +92,7 @@
   </mat-accordion> 
   
 </mat-card>
-<h3> One Year Historical Data</h3>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z4" style ="width: 100%;margin-top: 5%;margin-left:2%;margin-right: 2%;">
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>

@@ -18,6 +18,12 @@ h3{
   width:100%;
   font-weight:700;
   font-size:16px;
+  padding-right: 16px;
+  margin-right: 20%;
+}
+
+th{
+    padding-top: 24px;
 }
 table {
     

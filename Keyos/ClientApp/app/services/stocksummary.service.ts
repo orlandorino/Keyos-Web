@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {StockSummary,Quote, GlobalQuote, Dataset} from '../models/StockSummary';
 import { map } from 'rxjs/operators';
 import {formatDate } from '@angular/common';
+import { DowJones } from '../models/StockModel';
 
 
 const httpOptions = {
@@ -31,7 +32,10 @@ export class StocksummaryService {
       return this.quote;
     }));
   }
-
+  getDowTimeSeries():Observable<DowJones>
+  {
+    return this.http.get<DowJones>("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=dji&apikey=V64WLHT0MXEV21MT");
+  }
   getStockIndices()
   {
     

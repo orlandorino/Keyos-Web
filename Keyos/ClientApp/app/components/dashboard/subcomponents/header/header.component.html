@@ -1,7 +1,7 @@
 <div fxFlex fxLayout="row" style="background:inherit">
 
 <!-- eventually add ngfor -->
-    <mat-card fxFlex="33" *ngFor="let item of arr" class="example-card">
+    <mat-card fxFlex="33" *ngFor="let item of arr" class="example-card  mat-elevation-z4">
         <mat-card-content>
           <div fxLayout="row">
             <span  class="mat-card-title" fxFlex="90">{{item.Symbol}} </span> <span  class="mat-card-title">{{item.price | number}}</span>

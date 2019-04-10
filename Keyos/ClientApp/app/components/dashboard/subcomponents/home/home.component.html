@@ -2,9 +2,9 @@
   <app-header fxFlex="15"></app-header>
 
   <div fxFlex="50" *ngIf="loaded">
-      <mat-card  style=" margin-left: 2%; margin-right:2%;margin-top:20px;">
+      <mat-card class=" mat-elevation-z4" style=" margin-left: 2%; margin-right:2%;margin-top:20px;" >
     <mat-card-content>
-      <app-chart [chartData]="arr1" [chartType]="'dashboard'" ></app-chart>
+      <app-chart [chartData]="dowArr" [chartType]="'dashboard'" ></app-chart>
     </mat-card-content> 
   </mat-card>
   </div>

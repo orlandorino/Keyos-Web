@@ -47,10 +47,13 @@ export class DetailComponent implements OnInit {
    historicalForecastData = [];
    historicalActual=[];
    PastAccuracyLoaded = false;
-  
+    Company:any;
 
 
   ngOnInit() {
+
+    this.Company = this.detailservice.stock.symbol;
+
     let jwtToken = jwt_decode(this.token);
     this.UserRole = jwtToken.role; 
 
