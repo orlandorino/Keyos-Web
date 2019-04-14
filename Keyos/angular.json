@@ -27,7 +27,8 @@
                 "input":"ClientApp/theme.scss"
               }
               ,
-              "ClientApp/styles.css"
+              "ClientApp/styles.css",
+              "ClientApp/styles-app-loading.scss"
             ],
             "scripts": []
           },

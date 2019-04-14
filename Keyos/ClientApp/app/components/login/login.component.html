@@ -7,8 +7,13 @@
     <div id="leftLoginColumn" class="column is-three-fifths">
     </div>
     <div id="rightLoginColumn" class="column">
+        <div class="wrapper">
+                <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        </div>
+            
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <mat-card class="example-card">
+                
                 <h1 class="display1">Welcome to Keyos</h1>
                 <mat-card-content>
                     <mat-form-field class="field" color="accent">
@@ -28,10 +33,14 @@
                 <mat-card-actions>
                     <button mat-raised-button class="field"
                             color="primary"
-                            [disabled]="!loginForm.valid">
+                           >
                         Sign In
                     </button>
                 </mat-card-actions>
+                <mat-card-content>
+                        <span class="signup">Don't have an account? Sign Up</span>
+                </mat-card-content>
+    
             </mat-card>
         </form>
 

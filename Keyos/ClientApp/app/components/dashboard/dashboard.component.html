@@ -1,4 +1,4 @@
-<mat-sidenav-container >
+<!-- <mat-sidenav-container >
     <mat-sidenav mode="side" opened>
 
 
@@ -49,6 +49,84 @@
     <mat-sidenav-content
     style="padding-left: 5%;
     padding-right: 5%;">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+
+
+
+
+
+
+<mat-toolbar class="example-toolbar mat-elevation-z4 " color="primary" class="mat-elevation-z8" >
+    <mat-icon (click)="isExpanded = !isExpanded">menu</mat-icon>
+
+   <span  class="title" style="margin-left:1%;"><img src="../../../assets/angular-3.svg" style="width:8%">EYOS</span>
+          <!-- <span class="example-fill-remaining-space"></span> -->
+  
+      </mat-toolbar>
+      <mat-progress-bar [color]="accent" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<mat-sidenav-container>
+  
+    	<mat-sidenav #sidenav class="example-sidenav  mat-elevation-z4" mode="side" opened="true">
+			<mat-nav-list class="dashboard">
+        <a mat-list-item  (click)="goToDashboard()">
+            <mat-icon mat-list-icon class="menu" > show_chart</mat-icon>
+            <p matLine *ngIf="isExpanded">Dashboard</p>
+        </a>
+
+        <a mat-list-item >
+                <mat-icon mat-list-icon class="menu" >person</mat-icon>
+                <p matLine *ngIf="isExpanded">Account</p>
+        </a>
+
+        <a mat-list-item >
+                <mat-icon mat-list-icon class="menu" >notifications</mat-icon>
+                <p matLine *ngIf="isExpanded">Notifications</p>
+        </a>
+        <a mat-list-item class="menu" (click)="logout()">
+                <mat-icon mat-list-icon>power_settings_new</mat-icon>
+                <p matLine *ngIf="isExpanded">Logout</p>
+        </a>
+<!-- 
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>inbox</mat-icon>
+						<p matLine *ngIf="isExpanded">Inbox</p>
+				</a>
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>star</mat-icon>
+						<p matLine *ngIf="isExpanded">Starred</p>
+				</a>
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>drafts</mat-icon>
+						<p matLine *ngIf="isExpanded">Drafts</p>
+				</a>
+
+
+
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>mail</mat-icon>
+						<p matLine *ngIf="isExpanded">All Mail</p>
+				</a>
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>delete</mat-icon>
+						<p matLine *ngIf="isExpanded">Trash</p>
+				</a>
+        <a mat-list-item (click)="toggleActive($event)">
+						<mat-icon mat-list-icon>warning</mat-icon>
+						<p matLine *ngIf="isExpanded">Spam</p>
+				</a> -->
+			</mat-nav-list>
+		</mat-sidenav>
+
+    
+
+    <mat-sidenav-content
+    style="padding-left: 5%;
+    padding-right: 5%;">
+    
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

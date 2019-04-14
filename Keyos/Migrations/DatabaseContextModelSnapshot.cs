@@ -92,6 +92,25 @@ namespace Keyos.Migrations
                     b.ToTable("forecastAccuracy");
                 });
 
+            modelBuilder.Entity("Keyos.Models.historicalPortfolio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Symbol");
+
+                    b.Property<double>("buyHoldResult");
+
+                    b.Property<double>("mlResult");
+
+                    b.Property<int>("year");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("historicalPortfolio1");
+                });
+
             modelBuilder.Entity("Keyos.Models.sentimentMessage", b =>
                 {
                     b.Property<int>("ID")

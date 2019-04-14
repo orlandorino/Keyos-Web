@@ -16,10 +16,12 @@ export class LoginComponent implements OnInit {
   }
 
   invalidLogin: boolean;
+  loading = false;
 
 
 
   login(form: NgForm) {
+    this.loading = true;
     let credentials = JSON.stringify(form.value);
     this.http.post("http://localhost:5000/api/user/login", credentials, {
       headers: new HttpHeaders({
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
       this.router.navigate(["/dashboard"]);
     }, err => {
+      this.loading= false;
       this.invalidLogin = true;
     });
   }

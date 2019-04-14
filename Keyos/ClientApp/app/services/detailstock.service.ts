@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StockStats, CompanyInfo, Quote, ForecastedData, BuySell,SentimentPercentage,SentimentMessage } from '../models/StockSummary';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StockTable } from '../models/StockModel';
+import { StockTable, Portfolio } from '../models/StockModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +50,7 @@ symbol:string;
   GetForecastedHistory():Observable<ForecastedData[]>
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
-    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+"aapl", { headers });
+    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+this.symbol, { headers });
   }
   GetForecastedData(): Observable<ForecastedData[]> {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
@@ -68,6 +68,11 @@ symbol:string;
     GetActualHistoricalData():Observable<StockTable[]>
     {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
-      return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/stocksNotEpoch?stockID="+"aapl", { headers });
+      return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/stocksNotEpoch?stockID="+this.symbol, { headers });
+    }
+    GetActualHistoricalPortfolio():Observable<Portfolio[]>
+    {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
+      return this.http.get<ForecastedData[]>("http://localhost:5000/api/historicalPortfolio/histPortfolio?stockID="+this.symbol, { headers });
     }
 }

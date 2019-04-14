@@ -15,6 +15,7 @@ import {
     MatPaginatorModule,
     MatMenuModule, 
     MatTabsModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
 } from '@angular/material';
@@ -27,6 +28,7 @@ import {
         MatListModule,
         MatCardModule,
         MatExpansionModule,
+        MatProgressBarModule,
         MatButtonModule,
         MatTableModule,
         MatDialogModule, 
@@ -37,6 +39,7 @@ import {
         MatTabsModule
     ],
     exports: [
+        MatProgressBarModule,
         MatSidenavModule,
         MatToolbarModule,
         MatIconModule,

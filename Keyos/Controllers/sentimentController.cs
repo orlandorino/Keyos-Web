@@ -22,6 +22,8 @@ namespace Keyos.Controllers
             _context = context;
         }
 
+
+
         [Authorize(Roles = Role.PremiumUser)]
         [HttpGet, Route("sentimentPercentage")]
         public IEnumerable<sentimentPercentage> getSentimentPercentage(string stockID)

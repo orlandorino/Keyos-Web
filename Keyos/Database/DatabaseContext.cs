@@ -7,8 +7,7 @@ namespace Keyos.Database
 {
     public class DatabaseContext : DbContext
     {
-
- 
+    
         public DbSet<User> Logins { get; set; }
 
         public DbSet<Stock> stocks { get; set; }
@@ -25,7 +24,8 @@ namespace Keyos.Database
         public DbSet<sentimentPercentage> sentimentPercentage { get; set; }
         public DbSet<sentimentMessage> sentimentMessage { get; set; }
 
-
+        //portfolio
+        public DbSet<historicalPortfolio> historicalPortfolio { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -21,6 +21,7 @@ export class ChartComponent implements OnInit {
         @Input() chartData2:any[];
         @Input() chartType:string;
         @Input() Dates:any[];
+        @Input() Company:string;
     constructor(private stockData: StockdataService, private http: HttpClient) { }
 
    
@@ -43,8 +44,11 @@ export class ChartComponent implements OnInit {
             {
             
         this.chartOptions = {
+            title: {
+                text: "Dow Jones Industrial Average"
+              }, 
             series: [{
-                name: 'AAPL',
+                name: 'DJI',
                 type: 'area',
                 data: this.chartData,
                 gapSize: 5,
@@ -72,9 +76,9 @@ export class ChartComponent implements OnInit {
             case "Historical":
             {
                 this.chartOptions = {
-
+                   
                     series: [{
-                        name: 'AAPL',
+                        name: this.Company,
                         type: 'line',
                         data: this.chartData,
                         gapSize: 5,
@@ -140,7 +144,7 @@ export class ChartComponent implements OnInit {
                     type: 'datetime'
                 },
                     series: [{
-                        name: 'AAPL',
+                        name: this.Company,
                         data: this.chartData,  type: 'spline',
                         tooltip: {
                             valueDecimals: 2
@@ -171,7 +175,7 @@ export class ChartComponent implements OnInit {
                    },
                     series: [
                       {
-                        name: 'AAPL',
+                        name: this.Company,
                         marker: {
                            symbol: 'square'
                         },
