@@ -103,7 +103,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2017-01-23"))));
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID);
             }
 
             return null;
