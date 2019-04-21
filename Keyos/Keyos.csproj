@@ -35,5 +35,6 @@
     <Compile Remove="Migrations\20190120214006_InitialCreate.cs" />
     <Compile Remove="Migrations\20190120214006_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20190324023245_sentimentDB.cs" />
+    <Compile Remove="Migrations\20190420220102_portfolio1.Designer.cs" />
   </ItemGroup>
 </Project>
