@@ -39,6 +39,19 @@ namespace Keyos.Controllers
         }
 
 
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("buySellForecastAccuracyPortfolio")]
+        public IEnumerable<buySellForecastAccuracyPortfolio> getBuySellForecastAccuracyPortfolio(string stockID)
+        {
+            if (stockID != null)
+            {
+                return (_context.buySellForecastAccuracyPortfolio1.Where(c => c.Symbol == stockID));
+            }
+
+            return null;
+        }
+
+
 
 
         //// GET: api/values

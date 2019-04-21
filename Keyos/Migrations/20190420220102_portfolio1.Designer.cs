@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Keyos.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20190403204703_histPort")]
-    partial class histPort
+    [Migration("20190420220102_portfolio1")]
+    partial class portfolio1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,29 @@ namespace Keyos.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("buySellForecastAccuracy");
+                });
+
+            modelBuilder.Entity("Keyos.Models.buySellForecastAccuracyPortfolio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Symbol");
+
+                    b.Property<string>("buySell");
+
+                    b.Property<string>("forecastDate");
+
+                    b.Property<double>("forecastprice");
+
+                    b.Property<string>("futureDate");
+
+                    b.Property<double>("futurePrice");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("buySellForecastAccuracyPortfolio1");
                 });
 
             modelBuilder.Entity("Keyos.Models.buySellList", b =>
@@ -110,7 +133,7 @@ namespace Keyos.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("historicalPortfolio1");
+                    b.ToTable("historicalPortfolio");
                 });
 
             modelBuilder.Entity("Keyos.Models.sentimentMessage", b =>

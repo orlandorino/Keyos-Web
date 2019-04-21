@@ -37,6 +37,29 @@ namespace Keyos.Migrations
                     b.ToTable("buySellForecastAccuracy");
                 });
 
+            modelBuilder.Entity("Keyos.Models.buySellForecastAccuracyPortfolio", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Symbol");
+
+                    b.Property<string>("buySell");
+
+                    b.Property<string>("forecastDate");
+
+                    b.Property<double>("forecastprice");
+
+                    b.Property<string>("futureDate");
+
+                    b.Property<double>("futurePrice");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("buySellForecastAccuracyPortfolio1");
+                });
+
             modelBuilder.Entity("Keyos.Models.buySellList", b =>
                 {
                     b.Property<int>("ID")
@@ -108,7 +131,7 @@ namespace Keyos.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("historicalPortfolio1");
+                    b.ToTable("historicalPortfolio");
                 });
 
             modelBuilder.Entity("Keyos.Models.sentimentMessage", b =>

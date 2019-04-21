@@ -20,12 +20,16 @@ namespace Keyos.Database
         public DbSet<ForecastAccuracy> forecastAccuracy { get; set; }
         public DbSet<buySellForecastAccuracy> buySellForecastAccuracy { get; set; }
 
-        //twitter sentiment
+        //sentiment
         public DbSet<sentimentPercentage> sentimentPercentage { get; set; }
         public DbSet<sentimentMessage> sentimentMessage { get; set; }
 
         //portfolio
         public DbSet<historicalPortfolio> historicalPortfolio { get; set; }
+
+
+        //portfolio detailed
+        public DbSet<buySellForecastAccuracyPortfolio> buySellForecastAccuracyPortfolio1 { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
