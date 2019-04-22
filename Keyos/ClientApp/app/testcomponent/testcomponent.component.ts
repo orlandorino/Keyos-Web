@@ -19,20 +19,7 @@ export class TestcomponentComponent implements OnInit {
   constructor(private detailservice:DetailstockService) { }
 
   ngOnInit() {
-    this.detailservice.GetForecastedHistory().subscribe(t=> {
-      let data =[];
-      console.log("dat",t)
-      t.forEach(element => {
-        let arr = [new Date(element.date).getTime(),element.price]
-
-        this.data1.push(arr);
-     
-
-      })
-
-      this.loaded = true;
-     
-    })
+  
     this.detailservice.GetActualHistoricalData().subscribe(t=>{
       console.log("dat1",t)
       t.forEach(element => {

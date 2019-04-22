@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StockStats, CompanyInfo, Quote, ForecastedData, BuySell,SentimentPercentage,SentimentMessage } from '../models/StockSummary';
+import { StockStats, CompanyInfo, Quote, ForecastedData, BuySell,SentimentPercentage,SentimentMessage, BuySellHistory } from '../models/StockSummary';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StockTable, Portfolio } from '../models/StockModel';
 @Injectable({
@@ -47,10 +47,10 @@ symbol:string;
   let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
   return this.http.get<BuySell>("http://localhost:5000/api/buySell/buySellLatest?stockID="+this.symbol, { headers });
   }
-  GetForecastedHistory():Observable<ForecastedData[]>
+  GetForecastedHistory():Observable<BuySellHistory[]>
   {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');
-    return this.http.get<ForecastedData[]>("http://localhost:5000/api/buySell/forecastAccuracyList?stockID="+this.symbol, { headers });
+    return this.http.get<ForecastedData[]>("http://localhost:5000/api/historicalPortfolio/buySellForecastAccuracyPortfolio?stockID="+this.symbol, { headers });
   }
   GetForecastedData(): Observable<ForecastedData[]> {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('jwt')).append('Content-Type', 'application/json').append('Access-Control-Allow-Origin', 'https://localhost:5000');

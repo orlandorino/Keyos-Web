@@ -62,7 +62,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                var temp = _context.buySellTable1.OrderBy(d => d.date).Where(c => c.Symbol == stockID).First();
+                var temp = _context.buySellTable1.OrderByDescending(d => d.date).Where(c => c.Symbol == stockID).First();
 
                 return temp;
             }
@@ -83,9 +83,9 @@ namespace Keyos.Controllers
             return null;
         }
 
-      
-       [Authorize(Roles = Role.PremiumUser)]
-       [HttpGet, Route("buySellForecastAccuracyList")]
+
+        [Authorize(Roles = Role.PremiumUser)]
+        [HttpGet, Route("buySellForecastAccuracyList")]
         public IEnumerable<buySellForecastAccuracy> getForecastBuySellAccuracy(string stockID)
         {
             if (stockID != null)
@@ -103,7 +103,7 @@ namespace Keyos.Controllers
         {
             if (stockID != null)
             {
-                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2017-01-23"))));
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2018-01-31"))));
             }
 
             return null;

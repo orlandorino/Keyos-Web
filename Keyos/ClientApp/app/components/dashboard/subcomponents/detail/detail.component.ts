@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit {
   dataSource = this.Chart;
   chartConstructor = 'stockChart';
   chartOptions: any;
+  chartOptions2: any;
   StockQuote:Quote = {symbol: "AAPL", companyName: "Apple Inc.",latestPrice:172.97,  sector: "Technology"
   ,change: 1.91,changePercent:-0.01117
   ,marketCap:815601981600
@@ -88,12 +89,69 @@ export class DetailComponent implements OnInit {
 
   this.detailservice.GetForecastedHistory().subscribe(t=>
     {
-      console.log(t);
+      console.log("TESTTSTSTST",t);
+
+      let buysell = [];
+      let dates =[];
+      let buysell2 =[];
+      
       t.forEach(element =>{
-        var arr = [new Date(element.date).getTime(),element.price];
+        var arr = [new Date(element.forecastDate).getTime(),element.forecastprice];
         this.historicalForecastData.push(arr);
-        
+         
+        if(element.buySell == "false") {  
+          var arr1 = {
+            y: element.futurePrice,
+            marker: {
+               symbol: 'url(https://i.imgur.com/h8ar9cL.png)'
+            }
+         };
+       } else {
+        var arr1 = {
+          y: element.futurePrice,
+          marker: {
+             symbol: 'url(https://i.imgur.com/p0iONZU.png)'
+          }
+       }; 
+       }
+       
+       dates.push(element.futureDate);
+       
+        buysell.push(arr1);
+       
       })
+      this.chartOptions2 = {   
+        chart: {
+           type: "spline"
+        },
+        title: {
+           text: "Buy/Sell Chart"
+        },
+        tooltip: {
+          valueDecimals: 2
+        },
+        xAxis:{
+          categories:dates
+       },
+        series: [
+          {
+            name: 'BUY',
+            color: '#000000',
+            marker: {
+               symbol: 'url(https://i.imgur.com/p0iONZU.png)'
+            },
+            data:buysell
+         },
+         {
+          name: 'SELL',
+          color: '#000000',
+          marker: {
+             symbol:  'url(https://i.imgur.com/h8ar9cL.png)'
+          },
+          data:buysell
+       },
+        ]
+     };
       this.loadedHistoricalForecast = true;
       console.log("forecast",this.historicalForecastData);
     });
@@ -112,6 +170,10 @@ export class DetailComponent implements OnInit {
 
       
     this.StockQuote = this.detailservice.getStockInfo();
+
+
+  
+  
 
 
 

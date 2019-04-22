@@ -82,22 +82,11 @@ export class ChartComponent implements OnInit {
                         type: 'line',
                         data: this.chartData,
                         gapSize: 5,
+                        color:"#00c09b",
                         tooltip: {
                             valueDecimals: 2
                         },
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-          
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]]
-                            ]
-                            
-                        }},
+                  },
                         // {
                         //   name: 'AAPL',
                         //   type: 'line',
@@ -191,6 +180,15 @@ export class ChartComponent implements OnInit {
                     xAxis: {
                       type: 'datetime'
                   },
+                  navigator: {
+                    enabled: false
+                },
+                title: {
+                    text: "Keyos Predicted Price vs. Actual"
+                 },
+                scrollbar: {
+                    enabled: false
+                },
                     series: [{
                         name: 'Forcasted',
                        

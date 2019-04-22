@@ -44,6 +44,16 @@ export interface Quote {
     week52Low?:             number;
     ytdChange?:             number;
 }
+export interface BuySellHistory {
+    id?:            number;
+    symbol?:        string;
+    forecastDate?:  Date;
+    forecastprice?: number;
+    buySell?:       string;
+    futureDate?:    Date;
+    futurePrice?:   number;
+}
+
 export enum CalculationPrice {
     Close = "close",
 }

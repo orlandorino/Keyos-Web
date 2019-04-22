@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { StockTable } from '../../models/StockModel';
 import * as Highcharts from 'highcharts/highstock';
 import { DetailstockService } from '../../services/detailstock.service';
@@ -9,6 +9,7 @@ import { BuySell } from '../../models/StockSummary';
   styleUrls: ['./premium-user.component.css']
 })
 export class PremiumUserComponent implements OnInit {
+  @Input() ShowBuySell:boolean;
   highcharts = Highcharts;
   displayedColumns: string[] = ['date', 'open', 'high', 'low','close' ];
   Chart:StockTable[] = [];
