@@ -97,13 +97,12 @@ namespace Keyos.Controllers
         }
 
 
-        [Authorize(Roles = Role.PremiumUser)]
         [HttpGet, Route("stocksNotEpoch")]
         public IEnumerable<stockNotEpoch> getStocksNotEpoch(string stockID)
         {
             if (stockID != null)
             {
-                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2018-01-31"))));
+                return _context.stocksNotEpoch.Where(c => c.Symbol == stockID && (DateTime.Parse(c.date) >= DateTime.Parse("2015-12-31") && (DateTime.Parse(c.date) <= DateTime.Parse("2018-12-31"))));
             }
 
             return null;
