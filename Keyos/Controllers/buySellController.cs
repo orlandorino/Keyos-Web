@@ -97,7 +97,7 @@ namespace Keyos.Controllers
         }
 
 
-        [Authorize(Roles = Role.PremiumUser)]
+        [AllowAnonymous]
         [HttpGet, Route("stocksNotEpoch")]
         public IEnumerable<stockNotEpoch> getStocksNotEpoch(string stockID)
         {

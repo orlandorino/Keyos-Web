@@ -26,7 +26,7 @@ namespace Keyos.Controllers
         }
 
 
-        [Authorize(Roles = Role.PremiumUser)]
+        [AllowAnonymous]
         [HttpGet, Route("histPortfolio")]
         public IEnumerable<historicalPortfolio> getHistPortfolio(string stockID)
         {
@@ -39,7 +39,7 @@ namespace Keyos.Controllers
         }
 
 
-        [Authorize(Roles = Role.PremiumUser)]
+        [AllowAnonymous]
         [HttpGet, Route("buySellForecastAccuracyPortfolio")]
         public IEnumerable<buySellForecastAccuracyPortfolio> getBuySellForecastAccuracyPortfolio(string stockID)
         {
